@@ -24,6 +24,9 @@ const appButtonVariants = cva(
           "border-line bg-transparent text-ink hover:border-ink hover:bg-transparent focus-visible:border-line",
         /** On the brand-colored CTA band. */
         inverted: "bg-on-brand text-brand hover:bg-ink hover:text-bg",
+        /** Outline button on the brand-colored CTA band. */
+        ghostInverted:
+          "border-on-brand/45 bg-transparent text-on-brand hover:border-on-brand hover:bg-transparent focus-visible:border-on-brand/45",
       },
       size: {
         default: "h-12 gap-2.5 px-5.5 text-[15px]",

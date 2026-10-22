@@ -342,6 +342,11 @@
     animation: grow-x 0.8s 0.3s var(--ease-out-soft) both;
     animation-play-state: paused;
   }
+  /* `.reveal-wait`: element keeps its own animation (e.g. the process steps) but waits too. */
+  .js [data-reveal] .reveal-wait,
+  .js [data-reveal] .reveal-wait::after {
+    animation-play-state: paused;
+  }
   /* Run once the nearest Reveal is visible (a visible outer Reveal does not start inner ones). */
   .js
     [data-reveal][data-visible="true"]
@@ -349,7 +354,13 @@
   .js [data-reveal][data-visible="true"].reveal,
   .js
     [data-reveal][data-visible="true"]
-    .reveal-bar:not([data-reveal]:not([data-visible="true"]) .reveal-bar)::after {
+    .reveal-bar:not([data-reveal]:not([data-visible="true"]) .reveal-bar)::after,
+  .js
+    [data-reveal][data-visible="true"]
+    .reveal-wait:not([data-reveal]:not([data-visible="true"]) .reveal-wait),
+  .js
+    [data-reveal][data-visible="true"]
+    .reveal-wait:not([data-reveal]:not([data-visible="true"]) .reveal-wait)::after {
     animation-play-state: running;
   }
 }
