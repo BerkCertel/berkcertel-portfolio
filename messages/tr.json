@@ -31,6 +31,14 @@
       },
       "notFound": {
         "title": "Sayfa bulunamadı"
+      },
+      "services": {
+        "title": "Hizmetler",
+        "description": "Web uygulamaları, mobil uygulamalar, backend ve API, kurumsal ve e-ticaret siteleri."
+      },
+      "privacy": {
+        "title": "Gizlilik",
+        "description": "Bu sitede hangi bilgilerin neden ve nasıl kullanıldığı (KVKK)."
       }
     }
   },
@@ -50,7 +58,8 @@
     "copy": "Kopyala",
     "copied": "Kopyalandı",
     "external": "yeni sekmede açılır",
-    "breadcrumb": "Sayfa yolu"
+    "breadcrumb": "Sayfa yolu",
+    "scrollTop": "Yukarı çık"
   },
   "nav": {
     "main": "Ana menü",
@@ -63,30 +72,32 @@
     "contact": "İletişim",
     "cta": "İletişime geç",
     "openMenu": "Menüyü aç",
-    "closeMenu": "Menüyü kapat"
+    "closeMenu": "Menüyü kapat",
+    "home": "Ana sayfa"
   },
   "hero": {
     "eyebrow": "Full-Stack Developer",
     "greeting": "Merhaba,",
     "namePrefix": "ben",
     "name": "Berk.",
-    "lead": "Web ve mobil uygulamaları veritabanından arayüze kadar geliştiriyorum.",
+    "lead": "Web ve mobil uygulamaları <mark>veritabanından arayüze</mark> kadar geliştiriyorum.",
     "ctaProjects": "Projelere göz at",
     "ctaContact": "İletişime geç",
-    "stackLabel": "Üç katman: arayüz, servisler ve veri",
-    "layers": {
-      "ui": "Arayüz",
-      "services": "Servisler",
-      "data": "Veri"
-    }
+    "stackLabel": "Üç katman: arayüz, servisler ve veri"
   },
   "about": {
     "title": "Hakkımda",
-    "paragraph1": "MERN stack, Next.js, React Native ve TypeScript ile web ve mobil uygulamalar geliştiriyorum. Şu anda ROCR Digital’de şirket projelerinde frontend ve backend tarafında yer alıyorum.",
-    "paragraph2": "Kendi girişimim Sunflow, otellerin sipariş ve misafir hizmetlerini tek platformda topluyor ve 4 otelde kullanılıyor. Bir ürünü fikirden yayına taşımayı seviyorum; yeni teknolojiler öğrenmeye de devam ediyorum.",
-    "homeSummary": "Kendi girişimim Sunflow, otellerin sipariş ve misafir hizmetlerini tek platformda topluyor. Bir ürünü fikirden yayına taşımayı seviyorum.",
     "startupLabel": "Girişimim",
-    "languagesLine": "Türkçe · ana dil  ·  İngilizce · A2"
+    "languagesLine": "Türkçe · ana dil  ·  İngilizce · A2",
+    "home": {
+      "p1": "Web ve mobil uygulamaları <mark>uçtan uca</mark> geliştiren bir full-stack developer’ım. Arayüzü, API’yi ve veritabanını birlikte düşünür; bir ürünü fikirden yayına kadar taşırım.",
+      "p2": "Next.js, React Native, Node.js ve TypeScript ile çalışıyorum; sade, hızlı ve bakımı kolay kod yazmaya önem veriyorum."
+    },
+    "page": {
+      "p1": "Bir özelliği geliştirirken ekranı, API’sini ve veri modelini birlikte düşünmeyi seviyorum. Bu yüzden projelerde sadece bir tarafta kalmıyor; frontend’den backend’e, veritabanından yayına kadar işin tamamında yer alıyorum.",
+      "p2": "Kendi girişimim Sunflow’u fikirden yayına tek başıma taşıdım. Bu süreç bana bir ürünün sadece kodunu değil, onu kullanan insanları ve işleyişini de düşünmeyi öğretti.",
+      "p3": "Boş zamanlarımda mikroservisler, mesaj kuyrukları ve yeni araçlarla küçük projeler geliştiriyorum. Öğrenmeye ve kendimi geliştirmeye devam ediyorum."
+    }
   },
   "tech": {
     "title": "Teknolojiler",
@@ -153,11 +164,9 @@
       "mobile": "Mobil",
       "web": "Web"
     },
-    "live": "4 otelde canlı",
     "moreTech": "{count} teknoloji daha",
     "actions": {
       "site": "Siteyi ziyaret et",
-      "demo": "Canlı demo",
       "github": "GitHub",
       "details": "Detaylar"
     },
@@ -167,7 +176,9 @@
       "spotlight": "Instagram benzeri sosyal medya mobil uygulaması.",
       "note": "Tam kimlik doğrulamalı, zengin metin editörlü not uygulaması.",
       "expense": "Grafikli ve Excel dışa aktarmalı gelir-gider takip uygulaması."
-    }
+    },
+    "moreNote": "Seçtiğim birkaç proje. Diğer çalışmalarıma GitHub profilimden göz atabilirsin.",
+    "moreCta": "GitHub’da daha fazlası"
   },
   "michat": {
     "lead": "Turborepo monorepo içinde mikroservis mimarisiyle geliştirdiğim mesajlaşma uygulaması.",
@@ -212,7 +223,6 @@
     "next": "Sonraki proje"
   },
   "sunflow": {
-    "badge": "Girişimim",
     "description": "Otellerin sipariş ve misafir hizmetlerini tek platformda topluyor.",
     "cta": "sunflowapp.com",
     "ticket": {
@@ -221,7 +231,8 @@
       "item1": "Mojito",
       "item2": "Club sandviç",
       "status": "Hazırlanıyor"
-    }
+    },
+    "title": "Girişimim"
   },
   "services": {
     "title": "Hizmetler",
@@ -229,27 +240,57 @@
       "web": {
         "eyebrow": "Web",
         "title": "Web uygulamaları",
-        "description": "Next.js ile paneller, yönetim sistemleri ve SaaS ürünleri."
+        "description": "Yönetim panelleri, SaaS ürünleri ve şirket içi araçlar. Hızlı, güvenli ve büyümeye hazır web uygulamaları geliştiriyorum.",
+        "points": [
+          "Yönetim panelleri",
+          "SaaS ürünleri",
+          "Şirket içi araçlar"
+        ]
       },
       "mobile": {
         "eyebrow": "Mobil",
         "title": "Mobil uygulamalar",
-        "description": "React Native ve Expo ile iOS ve Android uygulamaları."
+        "description": "iOS ve Android’de çalışan, hızlı ve kullanımı kolay mobil uygulamalar; tek kod tabanıyla iki platform.",
+        "points": [
+          "iOS + Android",
+          "Tek kod tabanı",
+          "Bildirimler"
+        ]
       },
       "backend": {
         "eyebrow": "Backend",
         "title": "Backend ve API",
-        "description": "REST API’ler, kimlik doğrulama ve veritabanı."
+        "description": "Kimlik doğrulama, veritabanı tasarımı ve API’ler: uygulamanın görünmeyen ama en önemli kısmı.",
+        "points": [
+          "REST API",
+          "Kimlik doğrulama",
+          "Veritabanı tasarımı"
+        ]
       },
       "websites": {
         "eyebrow": "Web sitesi",
         "title": "Kurumsal ve e-ticaret siteleri",
-        "description": "Hızlı, çok dilli ve SEO uyumlu web siteleri."
+        "description": "Hızlı açılan, arama motorlarında bulunan, çok dilli kurumsal siteler ve e-ticaret mağazaları.",
+        "points": [
+          "SEO",
+          "Çok dilli",
+          "Hızlı açılış"
+        ]
       }
     },
-    "tags": {
-      "seo": "SEO",
-      "multilingual": "Çok dilli"
+    "viewAll": "Tümünü gör",
+    "pageLead": "Fikrini <mark>çalışan bir ürüne</mark> dönüştürüyorum: web, mobil ve backend tek elden.",
+    "flow": {
+      "browser": "Tarayıcı",
+      "browserNote": "istemci",
+      "api": "API",
+      "apiNote": "gateway",
+      "service": "Servis",
+      "serviceNote": "iş mantığı",
+      "queue": "Kuyruk",
+      "queueNote": "olaylar",
+      "database": "Veritabanı",
+      "databaseNote": "kalıcı veri"
     }
   },
   "process": {
@@ -300,7 +341,7 @@
   },
   "cta": {
     "title": "Birlikte çalışalım",
-    "text": "Projenden ya da pozisyondan bahset. Bir iş günü içinde dönüş yapıyorum.",
+    "text": "Projenden ya da pozisyondan bahset. <mark>Bir iş günü içinde</mark> dönüş yapıyorum.",
     "primary": "İletişime geç",
     "whatsapp": "WhatsApp"
   },
@@ -361,16 +402,71 @@
     },
     "mail": {
       "subjectPrefix": "Yeni mesaj"
-    }
+    },
+    "privacyNote": "Ad ve e-posta bilgini yalnızca mesajına dönüş yapabilmek için kullanıyorum. Mesajın doğrudan e-posta kutuma gelir; bilgilerini bir veritabanında saklamıyor, başka bir amaçla kullanmıyorum. Ayrıntılar: <link>Gizlilik</link>."
   },
   "footer": {
-    "copyright": "© {year} Mehmet Berk Certel"
+    "copyright": "© {year} Mehmet Berk Certel. Tüm hakları saklıdır.",
+    "privacy": "Gizlilik"
   },
   "notFound": {
     "eyebrow": "Hata 404 · Katman bulunamadı",
     "lead": "Aradığın sayfa bulunamadı. Taşınmış olabilir ya da bağlantı hatalı.",
     "home": "Ana sayfaya dön",
     "projects": "Projelere göz at",
-    "missing": "Kayıp"
+    "missing": "Kayıp",
+    "layers": {
+      "data": "Veri",
+      "services": "Servisler"
+    }
+  },
+  "privacy": {
+    "title": "Gizlilik",
+    "updated": "Son güncelleme: {date}",
+    "sections": [
+      {
+        "title": "Veri sorumlusu",
+        "body": [
+          "Bu site Mehmet Berk Certel’e aittir. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında veri sorumlusu benim. Sorularını m.berkcertel@outlook.com adresine iletebilirsin."
+        ]
+      },
+      {
+        "title": "Hangi bilgileri topluyorum",
+        "body": [
+          "Yalnızca iletişim formunu doldurduğunda yazdığın ad, e-posta adresi, konu, zaman planı ve mesaj.",
+          "Sitede üyelik, reklam ya da ziyaretçi takibi (analytics) yok."
+        ]
+      },
+      {
+        "title": "Neden kullanıyorum",
+        "body": [
+          "Bu bilgileri sadece mesajına dönüş yapabilmek ve mesajın kimden geldiğini bilmek için kullanıyorum. Pazarlama, bülten ya da başka bir amaçla kullanmıyorum ve kimseyle paylaşmıyorum."
+        ]
+      },
+      {
+        "title": "Nasıl saklanıyor",
+        "body": [
+          "Form bilgileri bir veritabanına kaydedilmez. Mesajın e-posta olarak doğrudan bana iletilir ve yalnızca e-posta kutumda, görüşmemiz için gerektiği sürece kalır. Silinmesini istersen yazman yeterli."
+        ]
+      },
+      {
+        "title": "Hizmet sağlayıcılar",
+        "body": [
+          "Site Vercel üzerinde yayınlanır. Form gönderilirken spam kontrolü için Cloudflare Turnstile kullanılır; mesaj Google (Gmail) altyapısıyla iletilir. Bu sağlayıcıların sunucuları yurt dışında olabilir; bilgiler yalnızca bu hizmetlerin çalışması için gerektiği kadar işlenir."
+        ]
+      },
+      {
+        "title": "Tarayıcında tutulanlar",
+        "body": [
+          "Seçtiğin tema (açık/koyu) yalnızca kendi tarayıcında saklanır. Site, çalışması için gerekli olmayan hiçbir çerez kullanmaz."
+        ]
+      },
+      {
+        "title": "Hakların",
+        "body": [
+          "KVKK’nın 11. maddesi kapsamında verilerinin işlenip işlenmediğini öğrenme, düzeltilmesini ya da silinmesini isteme gibi haklara sahipsin. Bunun için m.berkcertel@outlook.com adresine yazman yeterli."
+        ]
+      }
+    ]
   }
 }

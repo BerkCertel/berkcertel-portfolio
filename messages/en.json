@@ -31,6 +31,14 @@
       },
       "notFound": {
         "title": "Page not found"
+      },
+      "services": {
+        "title": "Services",
+        "description": "Web apps, mobile apps, backend and APIs, corporate and e-commerce websites."
+      },
+      "privacy": {
+        "title": "Privacy",
+        "description": "What information this site uses, why and how (KVKK)."
       }
     }
   },
@@ -50,7 +58,8 @@
     "copy": "Copy",
     "copied": "Copied",
     "external": "opens in a new tab",
-    "breadcrumb": "Breadcrumb"
+    "breadcrumb": "Breadcrumb",
+    "scrollTop": "Back to top"
   },
   "nav": {
     "main": "Main menu",
@@ -63,30 +72,32 @@
     "contact": "Contact",
     "cta": "Get in touch",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "home": "Home"
   },
   "hero": {
     "eyebrow": "Full-Stack Developer",
     "greeting": "Hi,",
     "namePrefix": "I’m",
     "name": "Berk.",
-    "lead": "I build web and mobile apps, from the database to the interface.",
+    "lead": "I build web and mobile apps, <mark>from the database to the interface</mark>.",
     "ctaProjects": "See my projects",
     "ctaContact": "Get in touch",
-    "stackLabel": "Three layers: interface, services and data",
-    "layers": {
-      "ui": "Interface",
-      "services": "Services",
-      "data": "Data"
-    }
+    "stackLabel": "Three layers: interface, services and data"
   },
   "about": {
     "title": "About",
-    "paragraph1": "I build web and mobile apps with the MERN stack, Next.js, React Native and TypeScript. At ROCR Digital, I work on company projects on both the frontend and the backend.",
-    "paragraph2": "My own startup, Sunflow, brings hotel ordering and guest services together on one platform and is used in 4 hotels. I enjoy taking a product from idea to launch, and I keep learning new technologies.",
-    "homeSummary": "My own startup, Sunflow, brings hotel ordering and guest services together on one platform. I enjoy taking a product from idea to launch.",
     "startupLabel": "My startup",
-    "languagesLine": "Turkish · native  ·  English · A2"
+    "languagesLine": "Turkish · native  ·  English · A2",
+    "home": {
+      "p1": "I’m a full-stack developer who builds web and mobile apps <mark>end to end</mark>. I think about the interface, the API and the database together, and I take a product from idea to launch.",
+      "p2": "I work with Next.js, React Native, Node.js and TypeScript, and I care about writing simple, fast and maintainable code."
+    },
+    "page": {
+      "p1": "When I build a feature, I like to think about the screen, its API and its data model together. That’s why I don’t stay on one side of a project: I work across all of it, from the frontend to the backend and from the database to launch.",
+      "p2": "I took my own startup, Sunflow, from idea to launch on my own. It taught me to think not only about a product’s code, but also about the people who use it and how it works day to day.",
+      "p3": "In my free time I build small projects with microservices, message queues and new tools. I keep learning and improving."
+    }
   },
   "tech": {
     "title": "Technologies",
@@ -153,11 +164,9 @@
       "mobile": "Mobile",
       "web": "Web"
     },
-    "live": "Live in 4 hotels",
     "moreTech": "{count} more technologies",
     "actions": {
       "site": "Visit site",
-      "demo": "Live demo",
       "github": "GitHub",
       "details": "Details"
     },
@@ -167,7 +176,9 @@
       "spotlight": "An Instagram-like social media mobile app.",
       "note": "A note-taking app with full authentication and a rich text editor.",
       "expense": "An income and expense tracker with charts and Excel export."
-    }
+    },
+    "moreNote": "A few projects I picked. You can find more of my work on my GitHub profile.",
+    "moreCta": "More on GitHub"
   },
   "michat": {
     "lead": "A messaging app I built with a microservice architecture inside a Turborepo monorepo.",
@@ -212,7 +223,6 @@
     "next": "Next project"
   },
   "sunflow": {
-    "badge": "My startup",
     "description": "Brings hotel ordering and guest services together on one platform.",
     "cta": "sunflowapp.com",
     "ticket": {
@@ -221,7 +231,8 @@
       "item1": "Mojito",
       "item2": "Club sandwich",
       "status": "Preparing"
-    }
+    },
+    "title": "My startup"
   },
   "services": {
     "title": "Services",
@@ -229,27 +240,57 @@
       "web": {
         "eyebrow": "Web",
         "title": "Web apps",
-        "description": "Dashboards, admin systems and SaaS products with Next.js."
+        "description": "Admin dashboards, SaaS products and internal tools. I build fast, secure web apps that are ready to grow.",
+        "points": [
+          "Admin dashboards",
+          "SaaS products",
+          "Internal tools"
+        ]
       },
       "mobile": {
         "eyebrow": "Mobile",
         "title": "Mobile apps",
-        "description": "iOS and Android apps with React Native and Expo."
+        "description": "Fast, easy-to-use mobile apps for iOS and Android, built from a single codebase.",
+        "points": [
+          "iOS + Android",
+          "Single codebase",
+          "Push notifications"
+        ]
       },
       "backend": {
         "eyebrow": "Backend",
         "title": "Backend & APIs",
-        "description": "REST APIs, authentication and databases."
+        "description": "Authentication, database design and APIs: the part of an app you don’t see, but the most important one.",
+        "points": [
+          "REST APIs",
+          "Authentication",
+          "Database design"
+        ]
       },
       "websites": {
         "eyebrow": "Website",
         "title": "Corporate & e-commerce sites",
-        "description": "Fast, multilingual and SEO-friendly websites."
+        "description": "Fast-loading, multilingual corporate sites and online stores that people can find on search engines.",
+        "points": [
+          "SEO",
+          "Multilingual",
+          "Fast loading"
+        ]
       }
     },
-    "tags": {
-      "seo": "SEO",
-      "multilingual": "Multilingual"
+    "viewAll": "View all",
+    "pageLead": "I turn your idea into <mark>a working product</mark>: web, mobile and backend in one place.",
+    "flow": {
+      "browser": "Browser",
+      "browserNote": "client",
+      "api": "API",
+      "apiNote": "gateway",
+      "service": "Service",
+      "serviceNote": "business logic",
+      "queue": "Queue",
+      "queueNote": "events",
+      "database": "Database",
+      "databaseNote": "persistent data"
     }
   },
   "process": {
@@ -300,7 +341,7 @@
   },
   "cta": {
     "title": "Let’s work together",
-    "text": "Tell me about your project or the role. I reply within one business day.",
+    "text": "Tell me about your project or the role. I reply <mark>within one business day</mark>.",
     "primary": "Get in touch",
     "whatsapp": "WhatsApp"
   },
@@ -361,16 +402,71 @@
     },
     "mail": {
       "subjectPrefix": "New message"
-    }
+    },
+    "privacyNote": "I use your name and email only to reply to your message. Your message comes straight to my inbox; I don’t store your details in a database or use them for anything else. Details: <link>Privacy</link>."
   },
   "footer": {
-    "copyright": "© {year} Mehmet Berk Certel"
+    "copyright": "© {year} Mehmet Berk Certel. All rights reserved.",
+    "privacy": "Privacy"
   },
   "notFound": {
     "eyebrow": "Error 404 · Layer not found",
     "lead": "The page you’re looking for could not be found. It may have moved, or the link is wrong.",
     "home": "Back to home",
     "projects": "See my projects",
-    "missing": "Missing"
+    "missing": "Missing",
+    "layers": {
+      "data": "Data",
+      "services": "Services"
+    }
+  },
+  "privacy": {
+    "title": "Privacy",
+    "updated": "Last updated: {date}",
+    "sections": [
+      {
+        "title": "Data controller",
+        "body": [
+          "This site belongs to Mehmet Berk Certel. Under the Turkish Personal Data Protection Law No. 6698 (KVKK), I am the data controller. You can send your questions to m.berkcertel@outlook.com."
+        ]
+      },
+      {
+        "title": "What I collect",
+        "body": [
+          "Only what you write when you fill in the contact form: your name, email address, topic, timeline and message.",
+          "There are no accounts, ads or visitor tracking (analytics) on this site."
+        ]
+      },
+      {
+        "title": "Why I use it",
+        "body": [
+          "I use this information only to reply to your message and to know who it is from. I don’t use it for marketing, newsletters or anything else, and I don’t share it with anyone."
+        ]
+      },
+      {
+        "title": "How it is kept",
+        "body": [
+          "Form data is not saved in a database. Your message is sent to me as an email and stays only in my inbox for as long as our conversation needs it. If you want it deleted, just write to me."
+        ]
+      },
+      {
+        "title": "Service providers",
+        "body": [
+          "The site is hosted on Vercel. Cloudflare Turnstile checks for spam when the form is sent, and the message is delivered through Google (Gmail). These providers may have servers outside Türkiye; the information is processed only as much as these services need to work."
+        ]
+      },
+      {
+        "title": "Stored in your browser",
+        "body": [
+          "Your theme choice (light/dark) is stored only in your own browser. The site uses no cookies that are not needed for it to work."
+        ]
+      },
+      {
+        "title": "Your rights",
+        "body": [
+          "Under Article 11 of KVKK, you have rights such as learning whether your data is processed and asking for it to be corrected or deleted. To do so, just write to m.berkcertel@outlook.com."
+        ]
+      }
+    ]
   }
 }
