@@ -1,0 +1,66 @@
+/* V1 "Veri akışı" (update-01 reference: .vcell, .flowsvg). */
+
+.cell {
+  position: relative;
+  padding: 22px;
+  border: 1px solid var(--c-line);
+  border-radius: 18px;
+  background: var(--c-bg);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 240px;
+  margin-top: 10px;
+  overflow: visible;
+}
+
+.node rect {
+  fill: var(--c-surface);
+  stroke: var(--c-line);
+  transition:
+    stroke 0.3s,
+    fill 0.3s;
+}
+.node text {
+  fill: var(--c-ink);
+  font: 600 13px var(--font-display);
+}
+.node .note {
+  fill: var(--c-muted);
+  font: 500 9.5px var(--font-mono);
+}
+.node:hover rect {
+  stroke: var(--c-accent);
+  fill: color-mix(in srgb, var(--c-accent) 10%, var(--c-surface));
+}
+.db rect {
+  fill: var(--c-deep);
+  stroke: var(--c-deep-line);
+}
+.db text {
+  fill: var(--c-on-deep);
+}
+
+.wire {
+  fill: none;
+  stroke: var(--c-line);
+  stroke-width: 2;
+}
+
+.packet {
+  fill: var(--c-accent);
+  filter: drop-shadow(0 0 6px var(--c-accent));
+}
+.packet.sun {
+  fill: var(--c-sun);
+  filter: drop-shadow(0 0 6px var(--c-sun));
+}
+
+/* SMIL motion ignores the CSS reduced-motion rule, so hide the travelling dots instead. */
+@media (prefers-reduced-motion: reduce) {
+  .packet {
+    display: none;
+  }
+}
