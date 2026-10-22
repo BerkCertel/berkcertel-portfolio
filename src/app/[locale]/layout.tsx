@@ -5,6 +5,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 import { ThemeScript } from "@/components/common/ThemeScript";
+import { BackToTop } from "@/components/layout/BackToTop";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { routing } from "@/i18n/routing";
@@ -58,6 +59,7 @@ export default async function LocaleLayout({ children }: { children: React.React
               {children}
             </main>
             <Footer />
+            <BackToTop />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
