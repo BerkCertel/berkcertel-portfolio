@@ -1,0 +1,12 @@
+{
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "deny": [
+      "Bash(git push:*)",
+      "Bash(git remote add:*)",
+      "Bash(gh pr create:*)",
+      "Read(./.env.local)",
+      "Read(./.env)"
+    ]
+  }
+}

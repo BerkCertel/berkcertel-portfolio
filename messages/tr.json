@@ -1,0 +1,375 @@
+{
+  "metadata": {
+    "siteName": "Berk Certel",
+    "titleTemplate": "%s · Berk Certel",
+    "defaultTitle": "Berk Certel · Full-Stack Developer",
+    "description": "Web ve mobil uygulamaları veritabanından arayüze kadar geliştiriyorum. Next.js, React Native, Node.js ve TypeScript.",
+    "pages": {
+      "home": {
+        "title": "Berk Certel · Full-Stack Developer",
+        "description": "Web ve mobil uygulamaları veritabanından arayüze kadar geliştiriyorum. Next.js, React Native, Node.js ve TypeScript."
+      },
+      "about": {
+        "title": "Hakkımda",
+        "description": "Full-stack developer Berk Certel: deneyim, kullandığım teknolojiler ve CV."
+      },
+      "projects": {
+        "title": "Projeler",
+        "description": "Kendi girişimim Sunflow ve kişisel projelerim: web, mobil ve full-stack uygulamalar."
+      },
+      "michat": {
+        "title": "miChat",
+        "description": "Turborepo monorepo içinde mikroservis mimarisiyle geliştirdiğim mesajlaşma uygulaması."
+      },
+      "blog": {
+        "title": "Blog",
+        "description": "Web ve mobil geliştirme, backend ve Sunflow üzerine notlar."
+      },
+      "contact": {
+        "title": "İletişim",
+        "description": "Projenden ya da pozisyondan bahset. Bir iş günü içinde dönüş yapıyorum."
+      },
+      "notFound": {
+        "title": "Sayfa bulunamadı"
+      }
+    }
+  },
+  "common": {
+    "skipToContent": "İçeriğe geç",
+    "home": "Ana sayfa",
+    "readMore": "Devamı",
+    "viewAll": "Tümünü gör",
+    "downloadCv": "CV’yi indir",
+    "otherCv": "English CV",
+    "themeToggle": "Temayı değiştir",
+    "language": "Dil",
+    "languages": {
+      "tr": "Türkçe",
+      "en": "English"
+    },
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "external": "yeni sekmede açılır"
+  },
+  "nav": {
+    "main": "Ana menü",
+    "mobile": "Mobil menü",
+    "footer": "Alt menü",
+    "projects": "Projeler",
+    "about": "Hakkımda",
+    "services": "Hizmetler",
+    "blog": "Blog",
+    "contact": "İletişim",
+    "cta": "İletişime geç",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat"
+  },
+  "hero": {
+    "eyebrow": "Full-Stack Developer",
+    "greeting": "Merhaba,",
+    "namePrefix": "ben",
+    "name": "Berk.",
+    "lead": "Web ve mobil uygulamaları veritabanından arayüze kadar geliştiriyorum.",
+    "ctaProjects": "Projelere göz at",
+    "ctaContact": "İletişime geç",
+    "stackLabel": "Üç katman: arayüz, servisler ve veri",
+    "layers": {
+      "ui": "Arayüz",
+      "services": "Servisler",
+      "data": "Veri"
+    }
+  },
+  "about": {
+    "title": "Hakkımda",
+    "paragraph1": "MERN stack, Next.js, React Native ve TypeScript ile web ve mobil uygulamalar geliştiriyorum. Şu anda ROCR Digital’de şirket projelerinde frontend ve backend tarafında yer alıyorum.",
+    "paragraph2": "Kendi girişimim Sunflow, otellerin sipariş ve misafir hizmetlerini tek platformda topluyor ve 4 otelde kullanılıyor. Bir ürünü fikirden yayına taşımayı seviyorum; yeni teknolojiler öğrenmeye de devam ediyorum.",
+    "homeSummary": "Kendi girişimim Sunflow, otellerin sipariş ve misafir hizmetlerini tek platformda topluyor. Bir ürünü fikirden yayına taşımayı seviyorum.",
+    "startupLabel": "Girişimim",
+    "languagesLine": "Türkçe · ana dil  ·  İngilizce · A2"
+  },
+  "tech": {
+    "title": "Teknolojiler",
+    "categories": {
+      "frontend": "Frontend",
+      "languages": "Diller",
+      "mobile": "Mobil",
+      "backend": "Backend",
+      "database": "Veritabanı & ORM",
+      "auth": "Kimlik doğrulama",
+      "devops": "DevOps & Araçlar"
+    }
+  },
+  "experience": {
+    "title": "Deneyim",
+    "items": {
+      "rocr": {
+        "period": "May 2026 — devam",
+        "role": "Full-Stack Developer",
+        "company": "ROCR Digital",
+        "description": "Bir CRM platformunun ağırlıklı olarak Next.js frontend’inde çalışıyor, backend ekibine destek veriyorum."
+      },
+      "sunflow": {
+        "period": "Tem 2025 — devam",
+        "role": "Kurucu",
+        "company": "Sunflow",
+        "description": "Kendi girişimim: oteller için QR sipariş ve yapay zekâ raporlama platformunu tek başıma geliştirdim."
+      },
+      "tekera": {
+        "period": "Haz 2024 — Haz 2025",
+        "role": "Frontend Developer",
+        "company": "Tekera Teknoloji",
+        "description": "Şirketin e-ticaret sitesi, kurumsal web siteleri ve çok satıcılı pazaryeri projelerinde frontend geliştirici olarak çalıştım."
+      },
+      "cvbanko": {
+        "period": "Mar 2024 — May 2024",
+        "role": "Yazılım Geliştirici Stajyer",
+        "company": "CV Banko Teknoloji ve İnsan Kaynakları",
+        "description": "JavaScript ve Node.js ile backend özellikleri ve REST API endpoint’leri geliştirdim."
+      },
+      "softalya": {
+        "period": "Haz 2023 — Ağu 2023",
+        "role": "Yazılım Geliştirici Stajyer",
+        "company": "Softalya Software",
+        "description": "Geliştirme ekibinin bir parçası olarak backend web geliştirme ve HTML5/JavaScript arayüzleri üzerinde çalıştım."
+      }
+    }
+  },
+  "projects": {
+    "title": "Projeler",
+    "pageLead": "Kendi girişimim ve kişisel projelerim.",
+    "count": "{count} proje",
+    "filterLabel": "Projeleri filtrele",
+    "filters": {
+      "all": "Tümü",
+      "web": "Web",
+      "mobile": "Mobil",
+      "fullstack": "Full-stack",
+      "startup": "Girişim"
+    },
+    "kinds": {
+      "startup": "Girişimim",
+      "fullstack": "Full-stack",
+      "mobile": "Mobil",
+      "web": "Web"
+    },
+    "live": "4 otelde canlı",
+    "moreTech": "{count} teknoloji daha",
+    "actions": {
+      "site": "Siteyi ziyaret et",
+      "demo": "Canlı demo",
+      "github": "GitHub",
+      "details": "Detaylar"
+    },
+    "items": {
+      "sunflow": "Oteller için QR sipariş ve yapay zekâ raporlama platformu.",
+      "michat": "Turborepo monorepo içinde mikroservis mimarisiyle geliştirdiğim mesajlaşma uygulaması.",
+      "spotlight": "Instagram benzeri sosyal medya mobil uygulaması.",
+      "note": "Tam kimlik doğrulamalı, zengin metin editörlü not uygulaması.",
+      "expense": "Grafikli ve Excel dışa aktarmalı gelir-gider takip uygulaması."
+    }
+  },
+  "michat": {
+    "lead": "Turborepo monorepo içinde mikroservis mimarisiyle geliştirdiğim mesajlaşma uygulaması.",
+    "meta": {
+      "role": "Rol",
+      "roleValue": "Tasarım ve geliştirme, tek başıma",
+      "type": "Tür",
+      "typeValue": "Kişisel proje",
+      "stack": "Teknolojiler",
+      "stackValue": "Next.js, Bun, Elysia, Drizzle",
+      "setup": "Altyapı",
+      "setupValue": "Turborepo · Docker Compose"
+    },
+    "diagram": {
+      "caption": "Mimari",
+      "label": "miChat mimarisi: Next.js web uygulaması bir API gateway ile konuşur, gateway istekleri user, chat ve mail servislerine yönlendirir. Ortak paketler auth, cache ve veritabanı kodunu tutar.",
+      "web": "Next.js istemci",
+      "gateway": "İstemci için tek giriş noktası",
+      "user": "Hesaplar ve profiller",
+      "chat": "Odalar ve mesajlar",
+      "mail": "E-posta gönderimi",
+      "auth": "Ortak kimlik doğrulama",
+      "cache": "Ortak cache istemcisi",
+      "database": "Drizzle şeması",
+      "infra": "infra · docker-compose · PostgreSQL · Redis · RabbitMQ"
+    },
+    "goal": {
+      "label": "01 · Amaç",
+      "p1": "Backend ve altyapı katmanlarını uçtan uca kendim kurmak istedim: servisler, veri ve bunların birbiriyle nasıl konuştuğu.",
+      "p2": "Mesajlaşma uygulaması bunun için iyi bir deneme: hesaplar, mesajlar ve e-posta gerekiyor ve her biri kendi servisinde çalışabiliyor."
+    },
+    "build": {
+      "label": "02 · Yapı",
+      "p1": "Her şey tek bir Turborepo monorepo’sunda; web uygulaması ve servisler aynı tipleri ve araçları paylaşıyor.",
+      "list": [
+        "Web istemcisi yalnızca API gateway ile konuşuyor.",
+        "User, chat ve mail, apps/server altında ayrı servisler olarak çalışıyor.",
+        "Auth, cache ve veritabanı kodu ortak paketlerde; hiçbir servis bunları kopyalamıyor.",
+        "Docker Compose; PostgreSQL, Redis ve RabbitMQ’yu yerelde tek komutla ayağa kaldırıyor."
+      ]
+    },
+    "next": "Sonraki proje"
+  },
+  "sunflow": {
+    "badge": "Girişimim",
+    "description": "Otellerin sipariş ve misafir hizmetlerini tek platformda topluyor.",
+    "cta": "sunflowapp.com",
+    "ticket": {
+      "place": "Havuz Bar · Masa 12",
+      "title": "Yeni sipariş",
+      "item1": "Mojito",
+      "item2": "Club sandviç",
+      "status": "Hazırlanıyor"
+    }
+  },
+  "services": {
+    "title": "Hizmetler",
+    "items": {
+      "web": {
+        "eyebrow": "Web",
+        "title": "Web uygulamaları",
+        "description": "Next.js ile paneller, yönetim sistemleri ve SaaS ürünleri."
+      },
+      "mobile": {
+        "eyebrow": "Mobil",
+        "title": "Mobil uygulamalar",
+        "description": "React Native ve Expo ile iOS ve Android uygulamaları."
+      },
+      "backend": {
+        "eyebrow": "Backend",
+        "title": "Backend ve API",
+        "description": "REST API’ler, kimlik doğrulama ve veritabanı."
+      },
+      "websites": {
+        "eyebrow": "Web sitesi",
+        "title": "Kurumsal ve e-ticaret siteleri",
+        "description": "Hızlı, çok dilli ve SEO uyumlu web siteleri."
+      }
+    },
+    "tags": {
+      "seo": "SEO",
+      "multilingual": "Çok dilli"
+    }
+  },
+  "process": {
+    "title": "Çalışma sürecim",
+    "steps": {
+      "discovery": {
+        "title": "Keşif",
+        "description": "Hedefleri ve kapsamı netleştiriyoruz."
+      },
+      "design": {
+        "title": "Tasarım",
+        "description": "Koddan önce ekranlar ve veri modeli."
+      },
+      "development": {
+        "title": "Geliştirme",
+        "description": "Canlı önizlemede haftalık ilerleme."
+      },
+      "testing": {
+        "title": "Test",
+        "description": "Gerçek cihaz ve tarayıcılarda test."
+      },
+      "launch": {
+        "title": "Yayın ve destek",
+        "description": "Yayına alma ve sonrasında destek."
+      }
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "pageLead": "Web ve mobil geliştirme, backend ve Sunflow üzerine notlar.",
+    "viewAll": "Tüm yazılar",
+    "filterLabel": "Yazıları filtrele",
+    "categories": {
+      "all": "Tümü",
+      "engineering": "Mühendislik",
+      "guides": "Rehber",
+      "tourism": "Turizm"
+    },
+    "featured": "Öne çıkan",
+    "readPost": "Yazıyı oku",
+    "readingTime": "{minutes} dk",
+    "readingTimeLong": "{minutes} dk okuma",
+    "onThisPage": "Bu sayfada",
+    "writtenBy": "Yazan",
+    "authorLine": "Berk Certel, Full-Stack Developer",
+    "morePosts": "Diğer yazılar",
+    "empty": "Bu kategoride henüz yazı yok."
+  },
+  "cta": {
+    "title": "Birlikte çalışalım",
+    "text": "Projenden ya da pozisyondan bahset. Bir iş günü içinde dönüş yapıyorum.",
+    "primary": "İletişime geç",
+    "whatsapp": "WhatsApp"
+  },
+  "contact": {
+    "title": "Birlikte çalışalım",
+    "lead": "Projenden ya da pozisyondan bahset. Bir iş günü içinde dönüş yapıyorum.",
+    "channels": {
+      "email": "E-posta",
+      "phone": "Telefon",
+      "call": "Ara",
+      "whatsapp": "WhatsApp",
+      "whatsappText": "Doğrudan mesaj at",
+      "whatsappCta": "WhatsApp’tan yaz",
+      "freelance": "Freelance",
+      "location": "Konum",
+      "locationValue": "Antalya, Türkiye"
+    },
+    "form": {
+      "title": "Mesaj gönder",
+      "name": "Ad",
+      "namePlaceholder": "Adın",
+      "email": "E-posta",
+      "emailPlaceholder": "ornek@sirket.com",
+      "subject": "Konu",
+      "subjects": {
+        "webApp": "Web uygulaması",
+        "mobileApp": "Mobil uygulama",
+        "backend": "Backend / API",
+        "website": "Web sitesi",
+        "jobOffer": "İş teklifi"
+      },
+      "timeline": "Zaman planı",
+      "timelines": {
+        "asap": "En kısa sürede",
+        "months": "1–3 ay içinde",
+        "thisYear": "Bu yıl içinde",
+        "notSure": "Henüz belli değil"
+      },
+      "message": "Mesaj",
+      "messagePlaceholder": "Projenden ya da pozisyondan kısaca bahset.",
+      "submit": "Mesajı gönder",
+      "sending": "Gönderiliyor…",
+      "spamProtection": "Spam koruması"
+    },
+    "success": {
+      "titleWithName": "Teşekkürler, {name}.",
+      "title": "Teşekkürler.",
+      "text": "Mesajın bana ulaştı. Bir iş günü içinde dönüş yapıyorum.",
+      "again": "Yeni mesaj yaz"
+    },
+    "errors": {
+      "nameRequired": "Adını yaz.",
+      "emailInvalid": "Geçerli bir e-posta adresi yaz.",
+      "messageShort": "Mesaj en az 10 karakter olmalı.",
+      "messageLong": "Mesaj en fazla 2000 karakter olabilir.",
+      "turnstile": "Spam doğrulaması tamamlanmadı. Sayfayı yenileyip tekrar dene.",
+      "generic": "Mesaj gönderilemedi. Biraz sonra tekrar dene ya da doğrudan e-posta gönder."
+    },
+    "mail": {
+      "subjectPrefix": "Yeni mesaj"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Mehmet Berk Certel"
+  },
+  "notFound": {
+    "eyebrow": "Hata 404 · Katman bulunamadı",
+    "lead": "Aradığın sayfa bulunamadı. Taşınmış olabilir ya da bağlantı hatalı.",
+    "home": "Ana sayfaya dön",
+    "projects": "Projelere göz at",
+    "missing": "Kayıp"
+  }
+}

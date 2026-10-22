@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Berk Certel — 404</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="bc-root {{themeClass}}">
+<dc-import name="Nav" active="none" dark="{{dark}}" on-toggle="{{toggle}}" hint-size="100%,76px"></dc-import>
+<main class="wrap nf">
+  <div style="display:flex;flex-direction:column;gap:26px">
+    <p class="eyebrow">Hata 404 · Katman bulunamadı</p>
+    <h1 class="disp rv">404</h1>
+    <p class="lead rv rv-2">Aradığın sayfa bulunamadı. Taşınmış olabilir ya da bağlantı hatalı.</p>
+    <div class="cta-row rv rv-3">
+      <a class="btn btn-primary" href="Main.dc.html">Ana sayfaya dön <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <a class="btn btn-ghost" href="Work.dc.html">Projelere göz at</a>
+    </div>
+  </div>
+  <div class="fall" aria-hidden="true">
+    <div class="pl fp1" style="background:var(--deep);border-color:var(--deep-line)"><span class="pl-lab" style="color:var(--deep-muted)">L1 · Veri</span></div>
+    <div class="pl fp2" style="background:var(--sunk)"><span class="pl-lab">L2 · Servisler</span></div>
+    <div class="pl fp3" style="background:var(--surface);border-color:var(--accent)"><span class="pl-lab" style="color:var(--accent)">L3 · Kayıp</span></div>
+  </div>
+</main>
+<dc-import name="Footer" dark="{{dark}}" hint-size="100%,220px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark": {"editor": "boolean", "default": false}, "$preview": {"width": 1440, "height": 1300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const dark = s.dark != null ? s.dark : !!this.props.dark;
+    return { dark: dark, themeClass: dark ? 'is-dark' : '', toggle: () => this.setState({ dark: !dark }) };
+  }
+}
+</script>
+</body>
+</html>

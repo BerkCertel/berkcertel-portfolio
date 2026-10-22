@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Berk Certel — Blog</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="bc-root {{themeClass}}">
+<dc-import name="Nav" active="blog" dark="{{dark}}" on-toggle="{{toggle}}" hint-size="100%,76px"></dc-import>
+<main>
+  <section class="wrap ph">
+    <p class="crumb"><a href="Main.dc.html">Ana sayfa</a><span>/</span><span>Blog</span></p>
+    <div class="ph-row">
+      <h1 class="disp rv">Blog</h1>
+      <p class="lead rv rv-2">Web ve mobil geliştirme, backend ve Sunflow üzerine notlar.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Yazıları filtrele">
+      <sc-for list="{{cats}}" as="c" hint-placeholder-count="4">
+        <button type="button" class="chip {{c.on}}" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}">{{c.label}}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:48px">
+    <a class="feat" href="Post.dc.html">
+      <div class="feat-art" aria-hidden="true">
+        <div><span class="c">// miChat-app</span></div>
+        <div><span class="k">apps/</span></div>
+        <div>&#160;&#160;web/ <span class="c">— Next.js</span></div>
+        <div>&#160;&#160;server/</div>
+        <div>&#160;&#160;&#160;&#160;<span class="a">api-gateway/</span></div>
+        <div>&#160;&#160;&#160;&#160;user/ · chat/ · mail/</div>
+        <div><span class="k">packages/</span></div>
+        <div>&#160;&#160;auth/ · cache/ · database/</div>
+        <div><span class="k">infra/</span> docker-compose.yaml</div>
+      </div>
+      <div class="feat-copy">
+        <div style="display:flex;gap:10px;align-items:center"><span class="tag">Öne çıkan</span><span class="eyebrow">Mühendislik · 7 dk</span></div>
+        <h2>Bir mesajlaşma uygulamasını Turborepo ile mikroservislere bölmek</h2>
+        <p class="muted">Gateway, user, chat ve mail servisleri arasındaki sınırları nasıl çizdiğim.</p>
+        <span class="btn btn-primary" style="align-self:flex-start">Yazıyı oku <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+      </div>
+    </a>
+  </section>
+
+  <section class="wrap" style="padding-block:40px 120px" aria-label="Tüm yazılar">
+    <div class="posts">
+      <sc-for list="{{posts}}" as="p" hint-placeholder-count="3">
+        <a class="post" href="Post.dc.html">
+          <div class="post-top"><span class="eyebrow">{{p.cat}}</span><span class="mono muted" style="font-size:12px">{{p.time}}</span></div>
+          <h3>{{p.title}}</h3>
+          <p>{{p.sum}}</p>
+          <span class="more">Yazıyı oku <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</main>
+<dc-import name="Footer" dark="{{dark}}" hint-size="100%,220px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark": {"editor": "boolean", "default": false}, "$preview": {"width": 1440, "height": 2700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const dark = s.dark != null ? s.dark : !!this.props.dark;
+    const cur = s.cat || 'Tümü';
+    const all = [{"cat": "Turizm", "time": "5 dk", "title": "Oteller QR siparişten aslında ne bekliyor?", "sum": "Sunflow’u gerçek otellerde çalıştırırken öğrendiklerim."}, {"cat": "Mühendislik", "time": "8 dk", "title": "Better Auth, Clerk ya da düz JWT?", "sum": "Yeni bir projede kimlik doğrulama altyapısını nasıl seçiyorum."}, {"cat": "Rehber", "time": "6 dk", "title": "Web uygulaması mı, mobil uygulama mı?", "sum": "Bütçeyi harcamadan önce ürünün nereden başlayacağına karar vermenin basit bir yolu."}];
+    const names = ['Tümü', 'Mühendislik', 'Rehber', 'Turizm'];
+    return {
+      dark: dark,
+      themeClass: dark ? 'is-dark' : '',
+      toggle: () => this.setState({ dark: !dark }),
+      cats: names.map((n) => ({ label: n, on: n === cur ? 'on' : '', pressed: n === cur ? 'true' : 'false', pick: () => this.setState({ cat: n }) })),
+      posts: cur === 'Tümü' ? all : all.filter((p) => p.cat === cur)
+    };
+  }
+}
+</script>
+</body>
+</html>

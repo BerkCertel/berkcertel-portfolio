@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Berk Certel — Blog yazısı</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="bc-root {{themeClass}}">
+<dc-import name="Nav" active="blog" dark="{{dark}}" on-toggle="{{toggle}}" hint-size="100%,76px"></dc-import>
+<main>
+  <article>
+    <header class="wrap art-head">
+      <p class="crumb"><a href="Main.dc.html">Ana sayfa</a><span>/</span><a href="Blog.dc.html">Blog</a><span>/</span><span>Mühendislik</span></p>
+      <h1 class="disp rv">Bir mesajlaşma uygulamasını Turborepo ile mikroservislere bölmek</h1>
+      <p class="lead rv rv-2">miChat’te gateway, user, chat ve mail servisleri arasındaki sınırları nasıl çizdiğim.</p>
+      <div class="art-meta rv rv-3"><span>Berk Certel</span><span>·</span><span>7 dk okuma</span></div>
+    </header>
+
+    <div class="wrap art">
+      <nav class="toc" aria-label="Bu sayfada">
+        <span class="eyebrow" style="margin-bottom:6px">Bu sayfada</span>
+        <a class="on" href="#why">Neden mikroservis</a>
+        <a href="#layout">Repo yapısı</a>
+        <a href="#gateway">Tek kapı: gateway</a>
+        <a href="#shared">Ortak paketler</a>
+      </nav>
+
+      <div class="art-body">
+        <p>miChat’i backend ve altyapı katmanlarını uçtan uca kurmak için başlattım. Amacım, zor kısmın backend olduğu bir proje yapmaktı.</p>
+
+        <h2 id="why">Neden mikroservis</h2>
+        <p>Bir mesajlaşma uygulamasının net işleri var: kullanıcılar kayıt olur, mesaj gönderir ve uygulama e-posta yollar. Her iş kendi kodu ve kendi dağıtımıyla ayrı bir servis olabilir.</p>
+        <div class="callout"><b>Not</b><span>Küçük bir ürün için iyi düzenlenmiş tek bir backend çoğu zaman yeterli. Ben öğrenmek için bilerek böldüm.</span></div>
+
+        <h2 id="layout">Repo yapısı</h2>
+        <p>Her şey tek bir Turborepo monorepo’sunda. Uygulamalar, paylaştıkları paketlerin yanında duruyor:</p>
+        <pre class="codeblock"><span class="c"># miChat-app</span>
+apps/
+  web/                 <span class="c"># Next.js istemci</span>
+  server/
+    api-gateway/
+    user/
+    chat/
+    mail/
+packages/
+  auth/  cache/  database/
+infra/
+  docker-compose.yaml</pre>
+
+        <h2 id="gateway">Tek kapı: gateway</h2>
+        <p>Web istemcisi hiçbir servisi doğrudan çağırmıyor. <code>api-gateway</code> ile konuşuyor; gateway her isteği <code>user</code>, <code>chat</code> ya da <code>mail</code> servisine yönlendiriyor. İstemcinin tek bir adres bilmesi yetiyor.</p>
+
+        <h2 id="shared">Ortak paketler</h2>
+        <p>Auth, cache ve veritabanı kodu <code>packages/</code> altında. Veritabanı paketi Drizzle şemasını tutuyor, böylece her servis aynı tipleri okuyor.</p>
+
+        <hr class="rule" style="margin-top:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span class="eyebrow">Yazan</span>
+            <span style="font-weight:600">Berk Certel, Full-Stack Developer</span>
+          </div>
+          <a class="btn btn-ghost" href="Project.dc.html">miChat projesine bak</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <section class="wrap" style="padding-bottom:120px" aria-labelledby="more-title">
+    <div class="sec-head" style="margin-bottom:32px">
+      <h2 id="more-title" class="disp" style="font-size:40px">Diğer yazılar</h2>
+    </div>
+    <div class="posts"><a class="post" href="Post.dc.html"><div class="post-top"><span class="eyebrow">Turizm</span><span class="mono muted" style="font-size:12px">5 dk</span></div><h3>Oteller QR siparişten aslında ne bekliyor?</h3><p>Sunflow’u gerçek otellerde çalıştırırken öğrendiklerim.</p></a><a class="post" href="Post.dc.html"><div class="post-top"><span class="eyebrow">Mühendislik</span><span class="mono muted" style="font-size:12px">6 dk</span></div><h3>Turborepo monorepo’da Drizzle ve Prisma</h3><p>Tek bir veritabanı paketini birden çok serviste paylaşmak.</p></a><a class="post" href="Post.dc.html"><div class="post-top"><span class="eyebrow">Rehber</span><span class="mono muted" style="font-size:12px">5 dk</span></div><h3>Bir geliştiriciden teklif istemeden önce neler hazırlanmalı?</h3><p>İlk görüşmeyi verimli yapan kısa bir kontrol listesi.</p></a></div>
+  </section>
+</main>
+<dc-import name="Footer" dark="{{dark}}" hint-size="100%,220px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark": {"editor": "boolean", "default": false}, "$preview": {"width": 1440, "height": 3700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const dark = s.dark != null ? s.dark : !!this.props.dark;
+    return { dark: dark, themeClass: dark ? 'is-dark' : '', toggle: () => this.setState({ dark: !dark }) };
+  }
+}
+</script>
+</body>
+</html>

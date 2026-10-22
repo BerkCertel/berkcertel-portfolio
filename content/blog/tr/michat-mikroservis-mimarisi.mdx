@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "Bir mesajlaşma uygulamasını Turborepo ile mikroservislere bölmek",
+  summary: "miChat’te gateway, user, chat ve mail servisleri arasındaki sınırları nasıl çizdiğim.",
+  category: "engineering",
+  date: "2026-11-01",
+  readingMinutes: 6,
+  featured: true,
+  translationKey: "michat-microservices",
+};
+
+miChat’i backend ve altyapı katmanlarını uçtan uca kurmak için başlattım. Amacım, zor kısmın backend olduğu bir proje yapmaktı.
+
+## Neden mikroservis
+
+Bir mesajlaşma uygulamasının net işleri var: kullanıcılar kayıt olur, mesaj gönderir ve uygulama e-posta yollar. Her iş kendi kodu ve kendi dağıtımıyla ayrı bir servis olabilir.
+
+<Callout title="Not">
+  Küçük bir ürün için iyi düzenlenmiş tek bir backend çoğu zaman yeterli. Ben öğrenmek için bilerek böldüm.
+</Callout>
+
+## Repo yapısı
+
+Her şey tek bir Turborepo monorepo’sunda. Uygulamalar, paylaştıkları paketlerin yanında duruyor:
+
+```txt
+# miChat-app
+apps/
+  web/                 # Next.js istemci
+  server/
+    api-gateway/
+    user/
+    chat/
+    mail/
+packages/
+  auth/  cache/  database/
+infra/
+  docker-compose.yaml
+```
+
+## Tek kapı: gateway
+
+Web istemcisi hiçbir servisi doğrudan çağırmıyor. `api-gateway` ile konuşuyor; gateway her isteği `user`, `chat` ya da `mail` servisine yönlendiriyor. İstemcinin tek bir adres bilmesi yetiyor.
+
+## Ortak paketler
+
+Auth, cache ve veritabanı kodu `packages/` altında. Veritabanı paketi Drizzle şemasını tutuyor, böylece her servis aynı tipleri okuyor.
+
+## Altyapı
+
+`infra/docker-compose.yaml` PostgreSQL, Redis ve RabbitMQ’yu yerelde tek komutla ayağa kaldırıyor. Servisler bu altyapıyı paylaşıyor, ama her biri kendi işinden sorumlu kalıyor.

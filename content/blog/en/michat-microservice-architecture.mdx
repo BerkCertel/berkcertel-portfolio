@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "Splitting a messaging app into microservices with Turborepo",
+  summary: "How I drew the lines between the gateway, user, chat and mail services in miChat.",
+  category: "engineering",
+  date: "2026-11-01",
+  readingMinutes: 6,
+  featured: true,
+  translationKey: "michat-microservices",
+};
+
+I started miChat to build the backend and infrastructure layers end to end. My goal was a project where the backend is the hard part.
+
+## Why microservices
+
+A messaging app has clear jobs: people sign up, send messages, and the app sends emails. Each job can be its own service, with its own code and its own deployment.
+
+<Callout title="Note">
+  For a small product, one well-organised backend is usually enough. I split it on purpose, to learn.
+</Callout>
+
+## The repo layout
+
+Everything lives in one Turborepo monorepo. Apps sit next to the packages they share:
+
+```txt
+# miChat-app
+apps/
+  web/                 # Next.js client
+  server/
+    api-gateway/
+    user/
+    chat/
+    mail/
+packages/
+  auth/  cache/  database/
+infra/
+  docker-compose.yaml
+```
+
+## One door: the gateway
+
+The web client never calls a service directly. It talks to `api-gateway`, which routes each request to the `user`, `chat` or `mail` service. The client only needs to know one address.
+
+## Shared packages
+
+Auth, cache and database code live under `packages/`. The database package holds the Drizzle schema, so every service reads the same types.
+
+## Infrastructure
+
+`infra/docker-compose.yaml` starts PostgreSQL, Redis and RabbitMQ locally with one command. The services share this infrastructure, but each one stays responsible for its own job.

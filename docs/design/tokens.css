@@ -1,0 +1,217 @@
+/*
+ * Berk Certel — design tokens ("Layer by layer").
+ * Merge this into src/app/globals.css (after `@import "tailwindcss";` and the shadcn import).
+ * Brand tokens use the --c-* prefix so they never clash with shadcn's own variable names.
+ * Dark mode = `.dark` class on <html>.
+ */
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* brand — light */
+  --c-bg: #f1f3f6;
+  --c-surface: #ffffff;
+  --c-sunk: #e6e9ef;
+  --c-ink: #0c1222;
+  --c-muted: #515a6e;
+  --c-line: #d3d8e2;
+  --c-accent: #2747f0;
+  --c-on-accent: #ffffff;
+  --c-sun: #ffc43a;
+  --c-on-sun: #0c1222;
+  --c-deep: #0c1222;
+  --c-on-deep: #e9edf6;
+  --c-deep-muted: #a3abbf;
+  --c-deep-line: #283149;
+  --c-ok: #13804a;
+  --c-danger: #c62f3b;
+
+  /* code card (same in both themes) */
+  --c-code-bg: #0b101c;
+  --c-code-line-no: #5b6478;
+  --c-code-kw: #9fb0ff;
+  --c-code-str: #a6e3b4;
+  --c-code-punc: #8f98ae;
+  --c-code-key: #ffd05c;
+
+  /* shadcn mapping */
+  --background: var(--c-bg);
+  --foreground: var(--c-ink);
+  --card: var(--c-surface);
+  --card-foreground: var(--c-ink);
+  --popover: var(--c-surface);
+  --popover-foreground: var(--c-ink);
+  --primary: var(--c-ink);
+  --primary-foreground: var(--c-bg);
+  --secondary: var(--c-sunk);
+  --secondary-foreground: var(--c-ink);
+  --muted: var(--c-sunk);
+  --muted-foreground: var(--c-muted);
+  --accent: var(--c-sunk);
+  --accent-foreground: var(--c-ink);
+  --destructive: var(--c-danger);
+  --border: var(--c-line);
+  --input: var(--c-line);
+  --ring: var(--c-accent);
+  --radius: 0.875rem;
+}
+
+.dark {
+  --c-bg: #070a12;
+  --c-surface: #0e1320;
+  --c-sunk: #141b2b;
+  --c-ink: #e8ecf6;
+  --c-muted: #9aa3b8;
+  --c-line: #212a3c;
+  --c-accent: #8096ff;
+  --c-on-accent: #070a12;
+  --c-sun: #ffd05c;
+  --c-on-sun: #0c1222;
+  --c-deep: #0b101c;
+  --c-on-deep: #e8ecf6;
+  --c-deep-muted: #8f98ae;
+  --c-deep-line: #232c3f;
+  --c-ok: #3dd68c;
+  --c-danger: #ff6b76;
+}
+
+@theme inline {
+  /* brand utilities: bg-bg, bg-surface, bg-sunk, text-ink, text-subtle, border-line,
+     bg-brand, text-on-brand, bg-sun, text-on-sun, bg-deep, text-on-deep, text-ok … */
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-sunk: var(--c-sunk);
+  --color-ink: var(--c-ink);
+  --color-subtle: var(--c-muted);
+  --color-line: var(--c-line);
+  --color-brand: var(--c-accent);
+  --color-on-brand: var(--c-on-accent);
+  --color-sun: var(--c-sun);
+  --color-on-sun: var(--c-on-sun);
+  --color-deep: var(--c-deep);
+  --color-on-deep: var(--c-on-deep);
+  --color-deep-muted: var(--c-deep-muted);
+  --color-deep-line: var(--c-deep-line);
+  --color-ok: var(--c-ok);
+  --color-code-bg: var(--c-code-bg);
+  --color-code-line-no: var(--c-code-line-no);
+  --color-code-kw: var(--c-code-kw);
+  --color-code-str: var(--c-code-str);
+  --color-code-punc: var(--c-code-punc);
+  --color-code-key: var(--c-code-key);
+
+  /* shadcn */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 10px);
+
+  /* fonts — the CSS variables come from next/font on <html> (NOT on <body>) */
+  --font-display: var(--font-bricolage), var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* layout */
+  --container-site: 80rem; /* 1280px content width, 48px side padding on desktop, 20px on mobile */
+
+  /* motion */
+  --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --animate-rise: rise 0.7s var(--ease-out-soft) both;
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-pulse-dot: pulse-dot 2.4s ease-out infinite;
+  --animate-blink: blink 1.1s steps(1) infinite;
+
+  @keyframes rise {
+    from { opacity: 0; translate: 0 16px; }
+    to { opacity: 1; translate: none; }
+  }
+  @keyframes float {
+    0%, 100% { translate: 0 -6px; }
+    50% { translate: 0 8px; }
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pulse-dot {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c-ok) 55%, transparent); }
+    70% { box-shadow: 0 0 0 9px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+}
+
+/* process section + headings (see docs/design/README.md → Motion) */
+@keyframes draw-line { from { stroke-dashoffset: 60; } to { stroke-dashoffset: 0; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes open-text { from { max-height: 0; opacity: 0; } to { max-height: 90px; opacity: 1; } }
+@keyframes grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes step-glow {
+  0%, 22%, 100% { background: var(--c-ink); color: var(--c-bg); transform: none; }
+  8%, 14% { background: var(--c-accent); color: var(--c-on-accent); transform: scale(1.08) rotate(-6deg); }
+}
+@keyframes step-bar {
+  0% { transform: scaleX(0); }
+  12% { transform: scaleX(1); }
+  22%, 100% { transform: scaleX(1); opacity: 0; }
+}
+@keyframes drift { to { transform: translate(-4%, 3%) scale(1.08); } }
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  ::selection { background: var(--c-sun); color: var(--c-on-sun); }
+}
+
+@layer components {
+  /* highlighted word in the hero (yellow marker in light, yellow text in dark) */
+  .text-highlight {
+    background: linear-gradient(transparent 60%, var(--c-sun) 60%, var(--c-sun) 90%, transparent 90%);
+    padding-inline: 0.04em;
+  }
+  .dark .text-highlight { background: none; color: var(--c-sun); }
+
+  /* small uppercase mono label */
+  .eyebrow {
+    font: 500 12px/1 var(--font-mono);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
