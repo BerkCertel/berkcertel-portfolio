@@ -80,6 +80,18 @@ Files in `src/constants`, `src/types` and `src/i18n/routing.ts` were provided wi
 - No AI attribution in commit messages (no "Co-Authored-By", no "Generated with").
 - Never commit `.env*` files except `.env.example`.
 
+## Working style (keep it lean)
+
+- Do exactly what the step asks. No extra features, refactors or "nice to have" changes.
+- Timebox investigations: if a problem is not solved after ~10 minutes or 2 failed attempts, stop and ask the owner with a short summary (what, why, options). Never go down rabbit holes.
+- Edge cases (no-JS rendering, rare browsers, dev-only warnings that do not affect production, framework internals): note them in the report and ask; do not fix them unless asked.
+- Prefer the simplest documented solution. No experimental flags, workarounds or hacks without asking first.
+- Verification is light: `bun run lint && bun run typecheck && bun run test && bun run build` must pass. The owner does the visual and responsive review locally.
+- Browser checks only when the step changes UI, and only a quick look at 390px and 1280px (light + dark). No long screenshot loops, no repeated server restarts.
+- Never use or kill the process on port 3000 (the owner's dev server). Use another port and stop your own servers when done.
+- Do not read node_modules or framework source unless a documented API is truly unclear; then read only the relevant doc page.
+- Reports: max 10–12 lines. What was done, anything the owner must decide, nothing else.
+
 ## Commands
 
 ```
