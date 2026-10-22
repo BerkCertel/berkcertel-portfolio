@@ -296,15 +296,33 @@
   color: var(--c-muted);
 }
 
+/* ≤1080px: single column — the stack sits centered, the legend below it (no overlap). */
 @media (max-width: 1080px) {
   .wrap {
-    height: 500px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .stage {
+    position: relative;
+    width: 100%;
+    height: 390px;
+  }
+  /* The tilted planes rise above their box; nudge them down so nothing above is covered. */
+  .stk {
+    top: 30px;
+  }
+  .legend {
+    position: static;
+    width: min(100%, 420px);
   }
 }
 
 @media (max-width: 760px) {
-  .wrap {
-    height: 430px;
+  .stage {
+    height: 320px;
   }
   .stk {
     width: 250px;
@@ -343,10 +361,20 @@
     height: 80px;
   }
   .legend {
-    left: 0;
-    right: 0;
-    bottom: 0;
     min-width: 0;
+  }
+}
+
+/* Narrow phones: shrink the whole stack so its rotated footprint fits the screen. */
+@media (max-width: 430px) {
+  .stage {
+    height: 280px;
+  }
+  .stk {
+    top: 40px;
+  }
+  .floaty {
+    scale: 0.82;
   }
 }
 
