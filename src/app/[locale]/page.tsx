@@ -1,0 +1,24 @@
+import type { Locale } from "next-intl";
+import { useTranslations } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
+import { use } from "react";
+
+import { Container } from "@/components/common/Container";
+import { Section } from "@/components/common/Section";
+
+// Skeleton only; the real content comes in a later step.
+export default function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
+  setRequestLocale(locale as Locale);
+  const t = useTranslations("hero");
+
+  return (
+    <Section>
+      <Container>
+        <h1 className="font-display text-6xl font-bold tracking-[-0.045em]">
+          {t("greeting")} {t("namePrefix")} {t("name")}
+        </h1>
+      </Container>
+    </Section>
+  );
+}

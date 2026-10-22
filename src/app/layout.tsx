@@ -1,19 +1,5 @@
-import type { Metadata } from "next";
-
-import { SITE } from "@/constants/site";
-
-import { fontVariables } from "./fonts";
-import "./globals.css";
-
-export const metadata: Metadata = {
-  title: SITE.name,
-};
-
-// Temporary root layout; replaced by src/app/[locale]/layout.tsx in step 02.
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="tr" className={fontVariables}>
-      <body>{children}</body>
-    </html>
-  );
+// The real root layout is src/app/[locale]/layout.tsx (it renders <html lang={locale}>).
+// This pass-through exists because src/app/not-found.tsx needs a layout at the app root.
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return children;
 }
