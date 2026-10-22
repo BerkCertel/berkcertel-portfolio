@@ -5,6 +5,9 @@ export const routing = defineRouting({
   defaultLocale: "tr",
   // TR lives at "/", EN at "/en"
   localePrefix: "as-needed",
+  // The URL alone decides the language (no Accept-Language / cookie redirects);
+  // it only changes through the TR / EN switch.
+  localeDetection: false,
   pathnames: {
     "/": "/",
     "/about": { tr: "/hakkimda", en: "/about" },
