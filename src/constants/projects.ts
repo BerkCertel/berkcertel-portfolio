@@ -13,7 +13,6 @@ export const PROJECTS: Project[] = [
     name: "Sunflow",
     kind: "startup",
     filters: ["startup", "web"],
-    live: true,
     tech: [
       { key: "nextjs", label: "Next.js" },
       { key: "node", label: "Node.js" },
@@ -70,10 +69,7 @@ export const PROJECTS: Project[] = [
       { key: "drizzle", label: "Drizzle" },
       { key: "postgres", label: "PostgreSQL" },
     ],
-    links: [
-      { type: "demo", href: "https://noteforgeapp.netlify.app" },
-      { type: "github", href: `${GITHUB}/note-app` },
-    ],
+    links: [{ type: "github", href: `${GITHUB}/note-app` }],
   },
   {
     key: "expense",
@@ -87,9 +83,6 @@ export const PROJECTS: Project[] = [
       { key: "express", label: "Express.js" },
       { key: "mongodb", label: "MongoDB" },
     ],
-    links: [
-      { type: "demo", href: "https://expense-tracker-ten-chi-84.vercel.app" },
-      { type: "github", href: `${GITHUB}/expense-tracker` },
-    ],
+    links: [{ type: "github", href: `${GITHUB}/expense-tracker` }],
   },
 ];

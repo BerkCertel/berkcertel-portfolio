@@ -13,8 +13,6 @@ export type ServiceKey = "web" | "mobile" | "backend" | "websites";
 export interface ServiceItem {
   key: ServiceKey;
   icon: LucideIcon;
-  /** Tags: tech names are shown as-is, `t:` prefixed ones are translation keys under services.tags. */
-  tags: string[];
 }
 
 export type ProcessKey = "discovery" | "design" | "development" | "testing" | "launch";

@@ -1,75 +1,71 @@
 import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/common/Container";
-import { Reveal } from "@/components/common/Reveal";
+import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { TechTile } from "@/components/common/TechTile";
 import { TECH_CATEGORIES } from "@/constants/tech-stack";
 import { cn } from "@/lib/utils";
 
-import { Marquee } from "./Marquee";
+/** Each lane needs enough tiles to fill the track; the list is then doubled for the -50% loop. */
+const MIN_TILES = 8;
 
-/** Desktop column span per card (3-column grid); 2 columns ≤1080px, 1 column ≤760px. */
-const SPAN_CLASS = {
-  1: "col-span-1",
-  2: "col-span-2 max-[760px]:col-span-1",
-  3: "col-span-3 max-[1080px]:col-span-2 max-[760px]:col-span-1",
-} as const;
-
-/** Marquee strip + "Technologies": category cards with brand-colored tech tiles. */
+/**
+ * "Technologies" (T3): one endlessly scrolling lane per category, alternating direction,
+ * paused on hover. With reduced motion the lane stops and wraps its tiles instead.
+ */
 export function TechStack() {
   const t = useTranslations("tech");
 
   return (
-    <section aria-labelledby="stack-title">
-      <Marquee />
-      <div className="py-30 max-[760px]:py-20">
-        <Container>
-          <SectionHeading id="stack-title" title={t("title")} />
-          <Reveal className="grid grid-cols-3 gap-5 max-[1080px]:grid-cols-2 max-[760px]:grid-cols-1">
-            {TECH_CATEGORIES.map(({ key, icon: Icon, span, items }, card) => (
-              <div
+    <Section aria-labelledby="stack-title">
+      <Container>
+        <SectionHeading id="stack-title" title={t("title")} />
+        <ul>
+          {TECH_CATEGORIES.map(({ key, icon: Icon, items }, lane) => {
+            const copies = Math.max(2, Math.ceil(MIN_TILES / items.length)) * 2;
+            return (
+              <li
                 key={key}
-                className={cn(
-                  "reveal rounded-[20px] border border-line bg-surface p-6 transition-colors duration-300 hover:border-[color-mix(in_srgb,var(--c-ink)_35%,var(--c-line))] max-[760px]:p-5",
-                  SPAN_CLASS[span],
-                )}
-                style={{ "--i": card } as React.CSSProperties}
+                className="group grid grid-cols-[230px_minmax(0,1fr)] items-center gap-4 border-b border-line py-3.5 first:border-t max-[760px]:grid-cols-1"
               >
-                <div className="mb-[18px] flex items-center gap-2.5">
-                  <span className="grid size-8 place-items-center rounded-[9px] bg-ink text-bg">
-                    <Icon className="size-[17px]" strokeWidth={1.75} aria-hidden="true" />
+                <h3 className="flex items-center gap-2.5 font-semibold">
+                  <span className="grid size-8 flex-none place-items-center rounded-[9px] bg-ink text-bg">
+                    <Icon className="size-[17px]" strokeWidth={1.8} aria-hidden="true" />
                   </span>
-                  <h3 className="flex-1 font-mono text-xs leading-none font-medium tracking-[0.09em] text-subtle uppercase">
-                    {t(`categories.${key}`)}
-                  </h3>
-                  <span className="rounded-md border border-line px-2 py-1.5 font-mono text-xs leading-none font-medium text-subtle">
+                  {t(`categories.${key}`)}
+                  <span className="mr-3 ml-auto font-mono text-xs leading-none font-medium text-subtle">
                     {String(items.length).padStart(2, "0")}
                   </span>
+                </h3>
+                <div className="overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)] motion-reduce:[mask-image:none]">
+                  <ul
+                    className={cn(
+                      "flex w-max animate-[marquee_var(--dur)_linear_infinite] gap-2.5 group-hover:[animation-play-state:paused]",
+                      "motion-reduce:w-auto motion-reduce:animate-none motion-reduce:flex-wrap",
+                      lane % 2 === 1 && "[animation-direction:reverse]",
+                    )}
+                    style={{ "--dur": `${18 + items.length * 2}s` } as React.CSSProperties}
+                  >
+                    {Array.from({ length: copies }, (_, copy) =>
+                      items.map((tech) => (
+                        <li
+                          key={`${copy}-${tech.label}`}
+                          // Only the first copy is real content; the rest just keep the loop full.
+                          aria-hidden={copy > 0 || undefined}
+                          className={cn(copy > 0 && "motion-reduce:hidden")}
+                        >
+                          <TechTile tech={tech} />
+                        </li>
+                      )),
+                    )}
+                  </ul>
                 </div>
-                <ul className="flex flex-wrap gap-2.5">
-                  {items.map((tech, i) => (
-                    <li key={tech.label}>
-                      <TechTile
-                        tech={tech}
-                        className="reveal"
-                        style={
-                          {
-                            "--i": i,
-                            "--reveal-delay": `${card * 80 + 150}ms`,
-                            "--reveal-step": "35ms",
-                            "--reveal-duration": "0.6s",
-                          } as React.CSSProperties
-                        }
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </Reveal>
-        </Container>
-      </div>
-    </section>
+              </li>
+            );
+          })}
+        </ul>
+      </Container>
+    </Section>
   );
 }

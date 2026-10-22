@@ -9,6 +9,7 @@ import { Experience } from "@/components/sections/home/Experience";
 import { Hero } from "@/components/sections/home/Hero";
 import { Process } from "@/components/sections/home/Process";
 import { ProjectList } from "@/components/sections/home/ProjectList";
+import { ProjectsMore } from "@/components/sections/home/ProjectsMore";
 import { Services } from "@/components/sections/home/Services";
 import { SunflowPromo } from "@/components/sections/home/SunflowPromo";
 import { TechStack } from "@/components/sections/home/TechStack";
@@ -32,6 +33,7 @@ export default function HomePage() {
             link={{ href: "/projects", label: t("common.viewAll") }}
           />
           <ProjectList projects={PROJECTS} />
+          <ProjectsMore />
         </Container>
       </Section>
       <SunflowPromo />

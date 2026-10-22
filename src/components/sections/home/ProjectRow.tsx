@@ -5,7 +5,6 @@ import { AppButton } from "@/components/common/AppButton";
 import { AppLink } from "@/components/common/AppLink";
 import { BrandIcon } from "@/components/common/icons";
 import { KindPill } from "@/components/common/KindPill";
-import { LiveBadge } from "@/components/common/LiveBadge";
 import { TechChip } from "@/components/common/TechChip";
 import { PROJECT_VISIBLE_TECH } from "@/constants/projects";
 import type { Project, ProjectLink } from "@/types/project";
@@ -14,11 +13,10 @@ type AppLinkHref = React.ComponentProps<typeof AppLink>["href"];
 
 const ACTION_ICON = { size: "size-4", strokeWidth: 1.75 } as const;
 
-/** Button look per link type: site/demo/details = primary, github = ghost. */
+/** Button look per link type: site/details = primary, github = ghost. */
 function ProjectAction({ link, label }: { link: ProjectLink; label: string }) {
   const leftIcon = {
     site: <Globe className={ACTION_ICON.size} strokeWidth={ACTION_ICON.strokeWidth} />,
-    demo: <Globe className={ACTION_ICON.size} strokeWidth={ACTION_ICON.strokeWidth} />,
     github: <BrandIcon name="github" />,
     details: <Code className={ACTION_ICON.size} strokeWidth={ACTION_ICON.strokeWidth} />,
   }[link.type];
@@ -37,7 +35,7 @@ function ProjectAction({ link, label }: { link: ProjectLink; label: string }) {
   );
 }
 
-/** One project in the list: index, kind/live, name, description, tech chips, actions. */
+/** One project in the list: index, kind, name, description, tech chips, actions. */
 export function ProjectRow({ project, index }: { project: Project; index: number }) {
   const t = useTranslations("projects");
   const visible = project.tech.slice(0, PROJECT_VISIBLE_TECH);
@@ -52,7 +50,6 @@ export function ProjectRow({ project, index }: { project: Project; index: number
       <div>
         <div className="mb-2.5 flex flex-wrap items-center gap-2.5">
           <KindPill kind={project.kind} />
-          {project.live && <LiveBadge>{t("live")}</LiveBadge>}
         </div>
         <h3 className="font-display text-[clamp(28px,3vw,40px)] leading-none font-bold tracking-[-0.045em]">
           {project.name}

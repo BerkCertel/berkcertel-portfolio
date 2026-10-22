@@ -15,3 +15,6 @@ export const SITE = {
   },
   sunflowUrl: "https://sunflowapp.com",
 } as const;
+
+/** Date of the current privacy notice (shown as "Last updated"). */
+export const PRIVACY_UPDATED = "2026-10-23";

@@ -2,12 +2,12 @@ import { useTranslations } from "next-intl";
 
 import { CodeCard } from "@/components/common/CodeCard";
 import { CvLinks } from "@/components/common/CvLinks";
+import { markTag } from "@/components/common/mark-tag";
 import { Container } from "@/components/common/Container";
 import { Reveal } from "@/components/common/Reveal";
 import { SectionHeading } from "@/components/common/SectionHeading";
-import { StartupCard } from "@/components/common/StartupCard";
 
-/** Home "About" summary: intro, startup card, CV links, and the berk.ts code card. */
+/** Home "About" summary: two short paragraphs, CV links, and the berk.ts code card. */
 export function AboutPreview() {
   const t = useTranslations();
 
@@ -26,16 +26,15 @@ export function AboutPreview() {
               className="reveal max-w-[52ch] text-[22px] leading-[1.55] text-pretty text-ink max-[760px]:text-[19px]"
               style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}
             >
-              {t("about.paragraph1")}
+              {t.rich("about.home.p1", markTag)}
             </p>
             <p
               className="reveal max-w-[56ch] text-[17px] text-subtle"
               style={{ "--reveal-delay": "0.18s" } as React.CSSProperties}
             >
-              {t("about.homeSummary")}
+              {t("about.home.p2")}
             </p>
 
-            <StartupCard />
             <CvLinks />
           </Reveal>
           <CodeCard className="rotate-[1.2deg] transition-[rotate] duration-500 ease-out-soft hover:rotate-0 max-[1080px]:rotate-0" />

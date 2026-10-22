@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 
 import { ProjectList } from "@/components/sections/home/ProjectList";
+import { ProjectsMore } from "@/components/sections/home/ProjectsMore";
 import { PROJECT_FILTERS, PROJECTS } from "@/constants/projects";
 import type { ProjectFilter } from "@/types/project";
 
@@ -27,6 +28,7 @@ export function ProjectsBrowser({ filter }: { filter: ProjectFilter }) {
       </div>
       <div className="pt-12 pb-30 max-[760px]:pb-20">
         <ProjectList projects={projects} />
+        <ProjectsMore />
       </div>
     </>
   );

@@ -4,28 +4,22 @@ import { Container } from "@/components/common/Container";
 import { Reveal } from "@/components/common/Reveal";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
-import { Tag } from "@/components/common/Tag";
-import { SERVICES_ANCHOR } from "@/constants/navigation";
 import { SERVICES } from "@/constants/services";
 
-/** Prefix marking a tag as a translation key under services.tags (e.g. "t:seo"). */
-const TAG_KEY_PREFIX = "t:";
-
-/** 2×2 grid of services with hairline gaps; the header's "Services" link points here. */
+/** Home services: 2×2 grid with hairline gaps and a link to the services page. */
 export function Services() {
   const t = useTranslations("services");
 
   return (
-    <Section
-      id={SERVICES_ANCHOR}
-      aria-labelledby="services-title"
-      // Anchor target: keep the heading clear of the sticky header (76px / 68px).
-      className="scroll-mt-19 pt-0 max-[760px]:scroll-mt-17 max-[760px]:pt-0"
-    >
+    <Section aria-labelledby="services-title" className="pt-0 max-[760px]:pt-0">
       <Container>
-        <SectionHeading id="services-title" title={t("title")} />
+        <SectionHeading
+          id="services-title"
+          title={t("title")}
+          link={{ href: "/services", label: t("viewAll") }}
+        />
         <Reveal className="grid grid-cols-2 gap-px overflow-hidden rounded-[22px] border border-line bg-line max-[760px]:grid-cols-1 max-[760px]:rounded-[18px]">
-          {SERVICES.map(({ key, icon: Icon, tags }, i) => (
+          {SERVICES.map(({ key, icon: Icon }, i) => (
             <div
               key={key}
               className="reveal group flex min-h-[280px] flex-col gap-4 bg-bg p-9 transition-colors duration-300 hover:bg-surface max-[760px]:min-h-0 max-[760px]:p-[26px]"
@@ -41,17 +35,6 @@ export function Services() {
                 {t(`items.${key}.title`)}
               </h3>
               <p className="max-w-[44ch] text-subtle">{t(`items.${key}.description`)}</p>
-              <ul className="mt-auto flex flex-wrap gap-1.5">
-                {tags.map((tag) => (
-                  <li key={tag}>
-                    <Tag>
-                      {tag.startsWith(TAG_KEY_PREFIX)
-                        ? t(`tags.${tag.slice(TAG_KEY_PREFIX.length)}` as "tags.seo")
-                        : tag}
-                    </Tag>
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </Reveal>

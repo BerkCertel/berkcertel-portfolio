@@ -11,7 +11,7 @@ import styles from "./not-found.module.css";
 export default function NotFound() {
   const t = useTranslations();
   const layer = (n: 1 | 2 | 3) =>
-    `L${n} · ${n === 3 ? t("notFound.missing") : t(`hero.layers.${n === 1 ? "data" : "services"}`)}`;
+    `L${n} · ${n === 3 ? t("notFound.missing") : t(`notFound.layers.${n === 1 ? "data" : "services"}`)}`;
 
   return (
     <Container className="grid min-h-[760px] grid-cols-2 items-center gap-10 py-14 max-[1080px]:grid-cols-1 max-[760px]:min-h-0 max-[760px]:pt-10 max-[760px]:pb-[72px]">

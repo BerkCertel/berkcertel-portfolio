@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { AppButton } from "@/components/common/AppButton";
 import { AppLink } from "@/components/common/AppLink";
 import { Container } from "@/components/common/Container";
+import { markTag } from "@/components/common/mark-tag";
 import { Reveal } from "@/components/common/Reveal";
 import { SocialLinks } from "@/components/common/SocialLinks";
 import { HERO_SOCIALS } from "@/constants/socials";
@@ -37,7 +38,7 @@ export function Hero() {
             className="reveal max-w-[54ch] text-[19px] leading-[1.55] text-pretty text-subtle max-[760px]:text-[17px]"
             style={rise(2)}
           >
-            {t("lead")}
+            {t.rich("lead", markTag)}
           </p>
           <div className="reveal flex flex-wrap gap-3" style={rise(3)}>
             <AppButton asChild rightIcon="arrow">

@@ -3,6 +3,7 @@ import { Suspense } from "react";
 
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
+import { Marker } from "@/components/common/Marker";
 import { CtaBand } from "@/components/layout/CtaBand";
 import {
   parseProjectFilter,
@@ -35,7 +36,7 @@ export default function ProjectsPage({ searchParams }: ProjectsPageProps) {
                 id="projects-title"
                 className="font-display text-[clamp(56px,10vw,150px)] leading-[0.95] font-bold tracking-[-0.045em]"
               >
-                {t("projects.title")}
+                <Marker>{t("projects.title")}</Marker>
               </h1>
               <p className="max-w-[54ch] text-[19px] leading-[1.55] text-pretty text-subtle max-[760px]:text-[17px]">
                 {t("projects.pageLead")}

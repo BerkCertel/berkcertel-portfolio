@@ -4,6 +4,7 @@ import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { CodeCard } from "@/components/common/CodeCard";
 import { Container } from "@/components/common/Container";
 import { CvLinks } from "@/components/common/CvLinks";
+import { Marker } from "@/components/common/Marker";
 import { StartupCard } from "@/components/common/StartupCard";
 import { PROSE_CLASS } from "@/components/common/styles";
 import { CtaBand } from "@/components/layout/CtaBand";
@@ -21,11 +22,12 @@ export default function AboutPage() {
               items={[{ label: t("common.home"), href: "/" }, { label: t("about.title") }]}
             />
             <h1 className="font-display text-[clamp(48px,7vw,100px)] leading-[0.95] font-bold tracking-[-0.045em]">
-              {t("about.title")}
+              <Marker>{t("about.title")}</Marker>
             </h1>
             <div className={PROSE_CLASS}>
-              <p>{t("about.paragraph1")}</p>
-              <p>{t("about.paragraph2")}</p>
+              <p>{t("about.page.p1")}</p>
+              <p>{t("about.page.p2")}</p>
+              <p>{t("about.page.p3")}</p>
             </div>
             <StartupCard />
             <CvLinks />

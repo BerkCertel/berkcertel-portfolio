@@ -15,7 +15,7 @@ export function TechTile({ tech, className, style, ...props }: TechTileProps) {
     <div
       style={{ ...style, "--c": techColor(tech.key) } as React.CSSProperties}
       className={cn(
-        "group relative flex h-12 items-center gap-2.5 overflow-hidden rounded-xl border border-line bg-bg pr-4 pl-3 text-[15px] font-medium max-[760px]:h-11 max-[760px]:text-sm",
+        "group/tile relative flex h-12 items-center gap-2.5 overflow-hidden rounded-xl border border-line bg-bg pr-4 pl-3 text-[15px] font-medium whitespace-nowrap max-[760px]:h-11 max-[760px]:text-sm",
         // Hover lift uses `transform`: the entrance animation holds the `translate` property.
         "transition-[transform,border-color,box-shadow] duration-300 ease-out-soft hover:transform-[translateY(-3px)] hover:border-(--c) hover:shadow-[0_14px_26px_-18px_var(--c)]",
         "before:absolute before:inset-0 before:bg-(--c) before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-8",
@@ -26,7 +26,7 @@ export function TechTile({ tech, className, style, ...props }: TechTileProps) {
       <TechIcon
         tech={tech.key}
         label={tech.label}
-        className="relative transition-[scale,rotate] duration-350 ease-out-soft group-hover:scale-112 group-hover:-rotate-6"
+        className="relative transition-[scale,rotate] duration-350 ease-out-soft group-hover/tile:scale-114 group-hover/tile:-rotate-6"
       />
       <span className="relative">{tech.label}</span>
     </div>
