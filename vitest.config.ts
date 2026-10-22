@@ -8,7 +8,7 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
     include: ["src/**/*.test.{ts,tsx}"],
-    // No unit tests yet; remove once the first test exists.
-    passWithNoTests: true,
+    // next-intl imports "next/navigation" without an extension; let Vite resolve it.
+    server: { deps: { inline: ["next-intl"] } },
   },
 });
