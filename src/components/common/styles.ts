@@ -11,3 +11,10 @@ export const FIELD_CONTROL_CLASS = [
   "focus-visible:border-brand focus-visible:ring-[3px] focus-visible:ring-brand/22 focus-visible:outline-none",
   "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
 ].join(" ");
+
+/** Long-form text block (About intro, project write-ups); list items get brand square bullets. */
+export const PROSE_CLASS = [
+  "flex max-w-[62ch] flex-col gap-[18px] text-lg leading-[1.65] max-[760px]:text-[17px]",
+  "[&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2.5 [&_li]:flex [&_li]:gap-3",
+  "[&_li]:before:mt-3 [&_li]:before:size-1.5 [&_li]:before:flex-none [&_li]:before:rounded-[2px] [&_li]:before:bg-brand [&_li]:before:content-['']",
+].join(" ");
