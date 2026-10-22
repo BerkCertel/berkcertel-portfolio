@@ -49,7 +49,8 @@
     },
     "copy": "Kopyala",
     "copied": "Kopyalandı",
-    "external": "yeni sekmede açılır"
+    "external": "yeni sekmede açılır",
+    "breadcrumb": "Sayfa yolu"
   },
   "nav": {
     "main": "Ana menü",
