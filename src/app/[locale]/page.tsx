@@ -1,19 +1,16 @@
-import { useTranslations } from "next-intl";
+import { AboutPreview } from "@/components/sections/home/AboutPreview";
+import { Experience } from "@/components/sections/home/Experience";
+import { Hero } from "@/components/sections/home/Hero";
+import { TechStack } from "@/components/sections/home/TechStack";
 
-import { Container } from "@/components/common/Container";
-import { Section } from "@/components/common/Section";
-
-// Skeleton only; the real content comes in a later step.
 export default function HomePage() {
-  const t = useTranslations("hero");
-
   return (
-    <Section>
-      <Container>
-        <h1 className="font-display text-6xl font-bold tracking-[-0.045em]">
-          {t("greeting")} {t("namePrefix")} {t("name")}
-        </h1>
-      </Container>
-    </Section>
+    <>
+      <Hero />
+      <AboutPreview />
+      <TechStack />
+      {/* Design: no top padding here; the tech section above already provides the gap. */}
+      <Experience className="pt-0" />
+    </>
   );
 }

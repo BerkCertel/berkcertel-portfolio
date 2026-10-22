@@ -1,0 +1,373 @@
+/* Hero 3D layer stack — ported 1:1 from docs/design/canvas (site.css: .stack-wrap … .legend). */
+
+.wrap {
+  position: relative;
+  height: 540px;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  perspective: 1900px;
+}
+
+.floaty {
+  animation: floaty 9s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.stk {
+  position: relative;
+  width: 330px;
+  height: 330px;
+  transform-style: preserve-3d;
+  transform: rotateX(57deg) rotateZ(-42deg);
+  animation: tilt-in 1.5s var(--ease-out-soft) backwards;
+}
+
+.pl {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+  border-radius: 20px;
+  transition:
+    transform 0.8s var(--ease-out-soft),
+    box-shadow 0.4s,
+    border-color 0.4s;
+}
+
+.pl1 {
+  background: var(--c-deep);
+  border-color: var(--c-deep-line);
+  transform: translateZ(0);
+  box-shadow: 0 40px 60px -30px color-mix(in srgb, var(--c-deep) 45%, transparent);
+}
+
+.pl2 {
+  background: var(--c-sunk);
+  transform: translateZ(78px);
+  animation: lift 1.2s 0.35s var(--ease-out-soft) backwards;
+}
+
+.pl3 {
+  background: var(--c-surface);
+  transform: translateZ(156px);
+  box-shadow: 0 30px 50px -28px color-mix(in srgb, var(--c-deep) 35%, transparent);
+  animation: lift 1.2s 0.35s var(--ease-out-soft) backwards;
+}
+
+/* Hovering the stack spreads the planes; hovering a legend row highlights its plane. */
+.wrap:hover .pl2 {
+  transform: translateZ(104px);
+}
+.wrap:hover .pl3 {
+  transform: translateZ(208px);
+}
+.wrap:has(.lg1:hover) .pl1,
+.wrap:has(.lg2:hover) .pl2,
+.wrap:has(.lg3:hover) .pl3 {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 2px var(--c-accent);
+}
+.wrap:has(.lg2:hover) .pl2 {
+  transform: translateZ(120px);
+}
+.wrap:has(.lg3:hover) .pl3 {
+  transform: translateZ(230px);
+}
+
+.plLab {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+.pl1 .plLab {
+  color: var(--c-deep-muted);
+}
+
+/* plane 3 — interface */
+.uiBar {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 16px;
+  height: 22px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.uiBar i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c-line);
+}
+.uiBar b {
+  margin-left: 8px;
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--c-sunk);
+}
+.uiH {
+  position: absolute;
+  left: 16px;
+  top: 56px;
+  width: 58%;
+  height: 22px;
+  border-radius: 5px;
+  background: var(--c-ink);
+}
+.uiS {
+  position: absolute;
+  left: 16px;
+  top: 88px;
+  width: 42%;
+  height: 9px;
+  border-radius: 5px;
+  background: var(--c-line);
+}
+.uiBtn {
+  position: absolute;
+  left: 16px;
+  top: 112px;
+  width: 80px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--c-accent);
+}
+.uiC1,
+.uiC2 {
+  position: absolute;
+  top: 158px;
+  width: calc(50% - 22px);
+  height: 110px;
+  border: 1px solid var(--c-line);
+  border-radius: 10px;
+  background: var(--c-bg);
+}
+.uiC1 {
+  left: 16px;
+}
+.uiC2 {
+  right: 16px;
+}
+.uiC1::after,
+.uiC2::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 30%;
+  bottom: 14px;
+  height: 7px;
+  border-radius: 4px;
+  background: var(--c-line);
+}
+.uiC2::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--c-sun);
+}
+
+/* plane 2 — services */
+.svc {
+  position: absolute;
+  width: 86px;
+  height: 40px;
+  border: 1px solid var(--c-line);
+  border-radius: 9px;
+  background: var(--c-surface);
+  font: 500 10px/40px var(--font-mono);
+  text-align: center;
+  color: var(--c-ink);
+}
+.gw {
+  left: 122px;
+  top: 30px;
+  background: var(--c-ink);
+  color: var(--c-bg);
+  border-color: var(--c-ink);
+}
+.s1 {
+  left: 22px;
+  top: 140px;
+}
+.s2 {
+  left: 122px;
+  top: 140px;
+}
+.s3 {
+  left: 222px;
+  top: 140px;
+}
+.q {
+  left: 72px;
+  top: 240px;
+  width: 186px;
+  background: transparent;
+  border-style: dashed;
+  color: var(--c-muted);
+}
+.wire {
+  position: absolute;
+  background: var(--c-muted);
+  opacity: 0.45;
+}
+
+/* plane 1 — data */
+.rows {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.rows i {
+  display: block;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--c-deep-line);
+}
+.rows i:nth-child(3n) {
+  width: 70%;
+}
+.rows i:nth-child(3n + 1) {
+  width: 92%;
+}
+.rows i:nth-child(2) {
+  width: 55%;
+  background: var(--c-accent);
+  opacity: 0.75;
+}
+
+/* legend card */
+.legend {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 270px;
+  padding: 10px;
+  border: 1px solid var(--c-line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--c-surface) 90%, transparent);
+  backdrop-filter: blur(8px);
+}
+.lg {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 2px 10px;
+  padding: 9px 10px;
+  border-radius: 9px;
+  cursor: default;
+  transition: background 0.2s;
+}
+.lg:hover {
+  background: var(--c-sunk);
+}
+.lg b {
+  grid-row: span 2;
+  font: 500 12px/20px var(--font-mono);
+  color: var(--c-accent);
+}
+.lg strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.lg span {
+  font: 400 12px/1.35 var(--font-mono);
+  color: var(--c-muted);
+}
+
+@media (max-width: 1080px) {
+  .wrap {
+    height: 500px;
+  }
+}
+
+@media (max-width: 760px) {
+  .wrap {
+    height: 430px;
+  }
+  .stk {
+    width: 250px;
+    height: 250px;
+  }
+  .svc {
+    width: 66px;
+    height: 34px;
+    font-size: 9px;
+    line-height: 34px;
+  }
+  .gw {
+    left: 92px;
+    top: 22px;
+  }
+  .s1 {
+    left: 14px;
+    top: 104px;
+  }
+  .s2 {
+    left: 92px;
+    top: 104px;
+  }
+  .s3 {
+    left: 170px;
+    top: 104px;
+  }
+  .q {
+    left: 50px;
+    top: 182px;
+    width: 150px;
+  }
+  .uiC1,
+  .uiC2 {
+    top: 130px;
+    height: 80px;
+  }
+  .legend {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-width: 0;
+  }
+}
+
+@keyframes tilt-in {
+  from {
+    transform: rotateX(70deg) rotateZ(-70deg) scale(0.86);
+  }
+}
+
+@keyframes lift {
+  from {
+    transform: translateZ(0);
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    translate: 0 -6px;
+  }
+  50% {
+    translate: 0 8px;
+  }
+}
