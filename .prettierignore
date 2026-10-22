@@ -1,0 +1,21 @@
+# build output & dependencies
+.next/
+out/
+build/
+coverage/
+test-results/
+playwright-report/
+node_modules/
+bun.lock
+next-env.d.ts
+
+# static assets
+public/
+
+# design kit & content — kept as delivered
+docs/
+prompts/
+content/
+
+# shadcn-generated primitives — kept as generated
+src/components/ui/
