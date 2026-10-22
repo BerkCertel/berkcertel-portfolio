@@ -241,41 +241,25 @@
         "eyebrow": "Web",
         "title": "Web apps",
         "description": "Admin dashboards, SaaS products and internal tools. I build fast, secure web apps that are ready to grow.",
-        "points": [
-          "Admin dashboards",
-          "SaaS products",
-          "Internal tools"
-        ]
+        "points": ["Admin dashboards", "SaaS products", "Internal tools"]
       },
       "mobile": {
         "eyebrow": "Mobile",
         "title": "Mobile apps",
         "description": "Fast, easy-to-use mobile apps for iOS and Android, built from a single codebase.",
-        "points": [
-          "iOS + Android",
-          "Single codebase",
-          "Push notifications"
-        ]
+        "points": ["iOS + Android", "Single codebase", "Push notifications"]
       },
       "backend": {
         "eyebrow": "Backend",
         "title": "Backend & APIs",
         "description": "Authentication, database design and APIs: the part of an app you don’t see, but the most important one.",
-        "points": [
-          "REST APIs",
-          "Authentication",
-          "Database design"
-        ]
+        "points": ["REST APIs", "Authentication", "Database design"]
       },
       "websites": {
         "eyebrow": "Website",
         "title": "Corporate & e-commerce sites",
         "description": "Fast-loading, multilingual corporate sites and online stores that people can find on search engines.",
-        "points": [
-          "SEO",
-          "Multilingual",
-          "Fast loading"
-        ]
+        "points": ["SEO", "Multilingual", "Fast loading"]
       }
     },
     "viewAll": "View all",

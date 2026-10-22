@@ -241,41 +241,25 @@
         "eyebrow": "Web",
         "title": "Web uygulamaları",
         "description": "Yönetim panelleri, SaaS ürünleri ve şirket içi araçlar. Hızlı, güvenli ve büyümeye hazır web uygulamaları geliştiriyorum.",
-        "points": [
-          "Yönetim panelleri",
-          "SaaS ürünleri",
-          "Şirket içi araçlar"
-        ]
+        "points": ["Yönetim panelleri", "SaaS ürünleri", "Şirket içi araçlar"]
       },
       "mobile": {
         "eyebrow": "Mobil",
         "title": "Mobil uygulamalar",
         "description": "iOS ve Android’de çalışan, hızlı ve kullanımı kolay mobil uygulamalar; tek kod tabanıyla iki platform.",
-        "points": [
-          "iOS + Android",
-          "Tek kod tabanı",
-          "Bildirimler"
-        ]
+        "points": ["iOS + Android", "Tek kod tabanı", "Bildirimler"]
       },
       "backend": {
         "eyebrow": "Backend",
         "title": "Backend ve API",
         "description": "Kimlik doğrulama, veritabanı tasarımı ve API’ler: uygulamanın görünmeyen ama en önemli kısmı.",
-        "points": [
-          "REST API",
-          "Kimlik doğrulama",
-          "Veritabanı tasarımı"
-        ]
+        "points": ["REST API", "Kimlik doğrulama", "Veritabanı tasarımı"]
       },
       "websites": {
         "eyebrow": "Web sitesi",
         "title": "Kurumsal ve e-ticaret siteleri",
         "description": "Hızlı açılan, arama motorlarında bulunan, çok dilli kurumsal siteler ve e-ticaret mağazaları.",
-        "points": [
-          "SEO",
-          "Çok dilli",
-          "Hızlı açılış"
-        ]
+        "points": ["SEO", "Çok dilli", "Hızlı açılış"]
       }
     },
     "viewAll": "Tümünü gör",
