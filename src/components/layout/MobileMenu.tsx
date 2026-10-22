@@ -89,7 +89,7 @@ export function MobileMenu() {
           ref={panelRef}
           id={panelId}
           aria-label={t("mobile")}
-          className="absolute inset-x-0 top-full max-h-[calc(100dvh-100%)] overflow-y-auto border-b border-line bg-bg pt-5 pb-7"
+          className="absolute inset-x-0 top-full h-[calc(100dvh-100%)] overflow-y-auto bg-bg pt-5 pb-7"
         >
           {/* Same side padding as the header row above it. */}
           <Container className="flex flex-col gap-0.5">
