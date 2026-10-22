@@ -17,12 +17,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-bg/84 backdrop-blur-[14px]">
       <Container className="flex h-19 items-center justify-between gap-6 max-[760px]:h-17">
-        <Logo />
+        <Logo className="shrink-0" />
         <NavLinks />
-        <div className="flex items-center gap-2.5">
-          <LanguageSwitch className="max-[900px]:hidden" />
+        <div className="flex shrink-0 items-center gap-2.5">
+          <LanguageSwitch className="shrink-0 max-[1080px]:hidden" />
           <ThemeToggle />
-          <AppButton asChild rightIcon="arrow" className="max-[900px]:hidden">
+          <AppButton asChild rightIcon="arrow" className="shrink-0 max-[1080px]:hidden">
             <AppLink href="/contact">{t("cta")}</AppLink>
           </AppButton>
           <MobileMenu />

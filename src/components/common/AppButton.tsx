@@ -20,7 +20,8 @@ const appButtonVariants = cva(
       variant: {
         primary: "bg-ink text-bg hover:bg-brand hover:text-on-brand",
         accent: "bg-brand text-on-brand hover:bg-ink hover:text-bg",
-        ghost: "border-line bg-transparent text-ink hover:border-ink focus-visible:border-line",
+        ghost:
+          "border-line bg-transparent text-ink hover:border-ink hover:bg-transparent focus-visible:border-line",
         /** On the brand-colored CTA band. */
         inverted: "bg-on-brand text-brand hover:bg-ink hover:text-bg",
       },
