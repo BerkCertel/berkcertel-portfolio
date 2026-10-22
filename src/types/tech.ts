@@ -1,12 +1,45 @@
 import type { LucideIcon } from "lucide-react";
 
 export type TechKey =
-  | "javascript" | "typescript" | "react" | "nextjs" | "redux" | "zustand"
-  | "tailwind" | "shadcn" | "html5" | "css3" | "sass" | "bootstrap" | "primereact"
-  | "expo" | "nativewind" | "node" | "express" | "nestjs" | "bun" | "elysia" | "convex"
-  | "postgres" | "mongodb" | "mysql" | "redis" | "prisma" | "drizzle"
-  | "betterauth" | "clerk" | "jwt"
-  | "docker" | "turborepo" | "rabbitmq" | "minio" | "git" | "github" | "postman" | "vercel" | "figma";
+  | "javascript"
+  | "typescript"
+  | "react"
+  | "nextjs"
+  | "redux"
+  | "zustand"
+  | "tailwind"
+  | "shadcn"
+  | "html5"
+  | "css3"
+  | "sass"
+  | "bootstrap"
+  | "primereact"
+  | "expo"
+  | "nativewind"
+  | "node"
+  | "express"
+  | "nestjs"
+  | "bun"
+  | "elysia"
+  | "convex"
+  | "postgres"
+  | "mongodb"
+  | "mysql"
+  | "redis"
+  | "prisma"
+  | "drizzle"
+  | "betterauth"
+  | "clerk"
+  | "jwt"
+  | "docker"
+  | "turborepo"
+  | "rabbitmq"
+  | "minio"
+  | "git"
+  | "github"
+  | "postman"
+  | "vercel"
+  | "figma";
 
 export interface TechIcon {
   title: string;
@@ -23,7 +56,7 @@ export interface TechItem {
 }
 
 export type TechCategoryKey =
-  | "frontend" | "languages" | "mobile" | "backend" | "database" | "auth" | "devops";
+  "frontend" | "languages" | "mobile" | "backend" | "database" | "auth" | "devops";
 
 export interface TechCategory {
   key: TechCategoryKey;

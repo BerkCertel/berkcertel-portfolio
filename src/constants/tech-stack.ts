@@ -1,4 +1,12 @@
-import { Braces, Database, LayoutGrid, Lock, Server, Smartphone, SquareTerminal } from "lucide-react";
+import {
+  Braces,
+  Database,
+  LayoutGrid,
+  Lock,
+  Server,
+  Smartphone,
+  SquareTerminal,
+} from "lucide-react";
 import type { TechCategory, TechItem } from "@/types/tech";
 
 /** Order and spans match the design (3-column grid on desktop). */
@@ -96,12 +104,26 @@ export const TECH_CATEGORIES: TechCategory[] = [
 
 /** Scrolling strip above the technologies section. */
 export const MARQUEE_ITEMS: string[] = [
-  "TypeScript", "Next.js", "React Native", "Expo", "Node.js", "PostgreSQL",
-  "MongoDB", "Redis", "RabbitMQ", "Docker", "Turborepo", "Tailwind CSS",
+  "TypeScript",
+  "Next.js",
+  "React Native",
+  "Expo",
+  "Node.js",
+  "PostgreSQL",
+  "MongoDB",
+  "Redis",
+  "RabbitMQ",
+  "Docker",
+  "Turborepo",
+  "Tailwind CSS",
 ];
 
 /** Hero layer stack legend (L3 → L1). */
-export const STACK_LAYERS: { key: "ui" | "services" | "data"; level: string; items: TechItem["label"][] }[] = [
+export const STACK_LAYERS: {
+  key: "ui" | "services" | "data";
+  level: string;
+  items: TechItem["label"][];
+}[] = [
   { key: "ui", level: "L3", items: ["Next.js", "React Native", "TypeScript"] },
   { key: "services", level: "L2", items: ["Node.js", "Bun / Elysia", "RabbitMQ"] },
   { key: "data", level: "L1", items: ["PostgreSQL", "MongoDB", "Redis"] },

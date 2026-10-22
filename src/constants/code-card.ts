@@ -7,8 +7,11 @@ export type CodeToken = { t: "kw" | "key" | "str" | "punc" | "plain"; v: string 
 const s = (v: string): CodeToken => ({ t: "str", v: `"${v}"` });
 const p = (v: string): CodeToken => ({ t: "punc", v });
 const k = (v: string): CodeToken => ({ t: "key", v });
-const list = (...items: string[]): CodeToken[] =>
-  [p("["), ...items.flatMap((x, i) => (i ? [p(", "), s(x)] : [s(x)])), p("],")];
+const list = (...items: string[]): CodeToken[] => [
+  p("["),
+  ...items.flatMap((x, i) => (i ? [p(", "), s(x)] : [s(x)])),
+  p("],"),
+];
 
 export const CODE_CARD_FILE = "berk.ts";
 
