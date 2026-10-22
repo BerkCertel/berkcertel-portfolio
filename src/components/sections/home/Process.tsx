@@ -34,7 +34,7 @@ export function Process() {
               return (
                 <Fragment key={key}>
                   <li
-                    className="min-w-0 flex-1 max-[1080px]:basis-[calc(50%-16px)] max-[760px]:flex-none"
+                    className="min-w-0 flex-1 max-[1080px]:basis-[calc(50%-8px)] max-[1080px]:last:basis-full max-[760px]:flex-none"
                     style={vars}
                   >
                     <div className="reveal-wait relative h-full animate-[rise_0.6s_var(--ease-out-soft)_both] overflow-hidden rounded-[18px] border border-line bg-surface p-[22px] transition-[border-color,transform] duration-300 [animation-delay:calc(var(--i)*var(--stagger))] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-left after:scale-x-0 after:animate-[step-bar_6s_ease-in-out_infinite] after:bg-brand after:content-[''] after:[animation-delay:calc(var(--glow-start)+var(--i)*1.2s)] hover:transform-[translateY(-3px)] hover:border-brand">
