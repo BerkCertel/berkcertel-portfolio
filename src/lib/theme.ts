@@ -1,10 +1,27 @@
 export type Theme = "light" | "dark";
 
-/** localStorage key for the chosen theme (shared by the inline script and ThemeProvider). */
+/** localStorage key for the chosen theme (shared by applyTheme and ThemeProvider). */
 export const THEME_STORAGE_KEY = "theme";
 
 /**
- * Runs in <head> before paint: applies the stored theme (or the OS preference) as the `.dark`
- * class and adds `.js` so JS-only entrance states can be used safely (see Reveal).
+ * Applies the stored theme (or the OS preference) as the `.dark` class on <html> and adds `.js`
+ * so JS-only entrance states can be used safely (see Reveal).
+ * Must stay self-contained (no outer references): it is also serialized into THEME_SCRIPT,
+ * which is why the storage key is written out literally.
  */
-export const THEME_SCRIPT = `(function(){var d=document.documentElement;d.classList.add("js");try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";d.classList.toggle("dark",t==="dark")}catch(e){}})()`;
+export function applyTheme() {
+  const root = document.documentElement;
+  root.classList.add("js");
+  try {
+    let theme = localStorage.getItem("theme");
+    if (theme !== "light" && theme !== "dark") {
+      theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    root.classList.toggle("dark", theme === "dark");
+  } catch {
+    // Storage blocked (private mode): keep the default light theme.
+  }
+}
+
+/** Inline <head> script that runs applyTheme before first paint (no theme flash). */
+export const THEME_SCRIPT = `(${applyTheme.toString()})()`;

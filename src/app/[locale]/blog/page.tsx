@@ -1,15 +1,10 @@
-import type { Locale } from "next-intl";
 import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
-import { use } from "react";
 
 import { Container } from "@/components/common/Container";
 import { Section } from "@/components/common/Section";
 
 // Skeleton only; the real content comes in a later step.
-export default function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = use(params);
-  setRequestLocale(locale as Locale);
+export default function BlogPage() {
   const t = useTranslations("blog");
 
   return (

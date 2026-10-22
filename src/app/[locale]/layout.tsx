@@ -1,30 +1,24 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { locale as rootLocale } from "next/root-params";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
+import { ThemeScript } from "@/components/common/ThemeScript";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { routing } from "@/i18n/routing";
-import { THEME_SCRIPT } from "@/lib/theme";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 import { fontVariables } from "../fonts";
 import "../globals.css";
 
-interface LocaleLayoutProps {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}
-
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params }: LocaleLayoutProps): Promise<Metadata> {
-  const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) return {};
-  const t = await getTranslations({ locale, namespace: "metadata" });
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("metadata");
 
   return {
     title: { default: t("defaultTitle"), template: t("titleTemplate") },
@@ -32,18 +26,23 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
   };
 }
 
-export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
-  const { locale } = await params;
+// Root layout. The locale is a root param (next/root-params), not read from `params`, so every
+// page keeps a static, locale-specific App Shell (no URL data outside <Suspense>).
+export default async function LocaleLayout({ children }: { children: React.ReactNode }) {
+  const locale = await rootLocale();
   if (!hasLocale(routing.locales, locale)) notFound();
-  // Static rendering: tells next-intl the locale without reading request headers.
-  setRequestLocale(locale);
   const t = await getTranslations("common");
 
   return (
-    // `dark` / `js` classes are set by THEME_SCRIPT before hydration.
-    <html lang={locale} className={fontVariables} suppressHydrationWarning>
+    // `dark` / `js` classes are set by ThemeScript before paint.
+    <html
+      lang={locale}
+      className={fontVariables}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+        <ThemeScript />
       </head>
       <body className="flex min-h-dvh flex-col">
         <a

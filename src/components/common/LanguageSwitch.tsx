@@ -1,10 +1,10 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useTransition } from "react";
 
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { getPathname, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
@@ -20,9 +20,12 @@ export function LanguageSwitch({ className }: { className?: string }) {
   function switchTo(next: typeof locale) {
     if (next === locale) return;
     startTransition(() => {
+      // Resolve the localized URL ourselves (e.g. /hakkimda ↔ /en/about). next-intl's
+      // router.replace({ locale }) forces a "/tr" prefix to update its cookie, which the proxy then
+      // redirects (307) back to "/"; without locale detection that cookie is not needed.
       // `pathname` is the internal template (e.g. /blog/[slug]); params fill it in.
       // @ts-expect-error -- params always match the current pathname
-      router.replace({ pathname, params }, { locale: next });
+      router.replace(getPathname({ href: { pathname, params }, locale: next }));
     });
   }
 

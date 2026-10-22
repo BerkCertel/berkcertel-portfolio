@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
@@ -7,17 +8,28 @@ import { THEME_SCRIPT } from "@/lib/theme";
 import { fontVariables } from "./fonts";
 import "./globals.css";
 
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations({ locale: routing.defaultLocale, namespace: "metadata" });
+  return { title: t("pages.notFound.title") };
+}
+
 /**
- * Fallback for requests that never reach a locale (e.g. a missing file excluded by the proxy).
- * Localized 404s are rendered by src/app/[locale]/not-found.tsx. Plain next/link here: this page
- * renders outside the next-intl provider.
+ * Global 404 for URLs that match no route (e.g. a missing file excluded by the proxy). It is a
+ * standalone document (no root layout), so it brings its own fonts, styles and theme script;
+ * the plain <script> is fine here because this page is never rendered on the client.
+ * Localized 404s inside the site are rendered by src/app/[locale]/not-found.tsx.
  */
-export default async function RootNotFound() {
+export default async function GlobalNotFound() {
   const locale = routing.defaultLocale;
   const t = await getTranslations({ locale, namespace: "notFound" });
 
   return (
-    <html lang={locale} className={fontVariables} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={fontVariables}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
