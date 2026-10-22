@@ -4,10 +4,10 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useId, useRef, useState } from "react";
 
+import { AppButton } from "@/components/common/AppButton";
+import { AppLink } from "@/components/common/AppLink";
 import { LanguageSwitch } from "@/components/common/LanguageSwitch";
-import { Button } from "@/components/ui/button";
 import { NAV_ITEMS } from "@/constants/navigation";
-import { Link } from "@/i18n/navigation";
 import { navHref } from "@/lib/nav";
 
 /** Above this width the desktop nav is shown, so the menu must not stay open. */
@@ -56,16 +56,24 @@ export function MobileMenu() {
 
   return (
     <>
-      <button
+      <AppButton
         ref={burgerRef}
-        type="button"
+        variant="ghost"
+        size="icon"
         onClick={() => setOpenOn(open ? null : pathname)}
         aria-label={t(open ? "closeMenu" : "openMenu")}
         aria-expanded={open}
         aria-controls={panelId}
-        className="hidden size-11 cursor-pointer place-items-center rounded-full border border-line text-ink transition-colors hover:border-ink max-[900px]:grid"
+        className="hidden max-[900px]:inline-flex"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+          className="size-[18px]"
+        >
           <path
             d={open ? "M6 6l12 12M18 6 6 18" : "M4 9h16M4 15h10"}
             stroke="currentColor"
@@ -73,7 +81,7 @@ export function MobileMenu() {
             strokeLinecap="round"
           />
         </svg>
-      </button>
+      </AppButton>
 
       {open && (
         <nav
@@ -83,7 +91,7 @@ export function MobileMenu() {
           className="absolute inset-x-0 top-full flex max-h-[calc(100dvh-100%)] flex-col gap-0.5 overflow-y-auto border-b border-line bg-bg px-5 pt-5 pb-7"
         >
           {NAV_ITEMS.map((item, index) => (
-            <Link
+            <AppLink
               key={item.key}
               href={navHref(item)}
               onClick={close}
@@ -97,18 +105,14 @@ export function MobileMenu() {
               >
                 {String(index + 1).padStart(2, "0")}
               </span>
-            </Link>
+            </AppLink>
           ))}
           <div className="mt-5.5 flex animate-[rise_0.55s_var(--ease-out-soft)_0.25s_both] gap-2.5">
-            {/* TODO(step 03): switch to AppButton */}
-            <Button
-              asChild
-              className="h-12 rounded-full px-5.5 text-[15px] hover:bg-brand hover:text-on-brand"
-            >
-              <Link href="/contact" onClick={close}>
+            <AppButton asChild>
+              <AppLink href="/contact" onClick={close}>
                 {t("cta")}
-              </Link>
-            </Button>
+              </AppLink>
+            </AppButton>
             <LanguageSwitch />
           </div>
         </nav>

@@ -1,9 +1,9 @@
-import { useTranslations } from "next-intl";
-
 import { SOCIALS } from "@/constants/socials";
 import { SOCIAL_ICON_PATHS } from "@/constants/tech-icons";
 import { cn } from "@/lib/utils";
 import type { SocialKey } from "@/types/content";
+
+import { AppLink } from "./AppLink";
 
 interface SocialLinksProps {
   /** Which profiles to show, in order (e.g. HERO_SOCIALS, ALL_SOCIALS). */
@@ -15,19 +15,14 @@ interface SocialLinksProps {
 
 /** Row of square icon buttons linking to social / freelance profiles. */
 export function SocialLinks({ items, size = "md", className }: SocialLinksProps) {
-  const t = useTranslations("common");
-
   return (
     <ul className={cn("flex items-center gap-2.5", className)}>
       {items.map((key) => {
         const { label, href } = SOCIALS[key];
         return (
           <li key={key}>
-            <a
+            <AppLink
               href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${label} (${t("external")})`}
               className={cn(
                 "grid place-items-center rounded-xl border border-line text-subtle transition-[color,border-color,translate] duration-300 ease-out-soft hover:-translate-y-0.5 hover:border-ink hover:text-ink",
                 size === "sm" ? "size-10" : "size-11",
@@ -52,7 +47,8 @@ export function SocialLinks({ items, size = "md", className }: SocialLinksProps)
                   <path d={SOCIAL_ICON_PATHS[key]} />
                 </svg>
               )}
-            </a>
+              <span className="sr-only">{label}</span>
+            </AppLink>
           </li>
         );
       })}

@@ -1,8 +1,9 @@
 import { useTranslations } from "next-intl";
 
 import { SITE } from "@/constants/site";
-import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+
+import { AppLink } from "./AppLink";
 
 const [FIRST_NAME, LAST_NAME] = SITE.name.split(" ");
 
@@ -11,7 +12,7 @@ export function Logo({ className }: { className?: string }) {
   const t = useTranslations("common");
 
   return (
-    <Link
+    <AppLink
       href="/"
       aria-label={`${SITE.name}, ${t("home")}`}
       className={cn(
@@ -34,6 +35,6 @@ export function Logo({ className }: { className?: string }) {
         {FIRST_NAME}
         <span className="text-subtle">{LAST_NAME}</span>
       </span>
-    </Link>
+    </AppLink>
   );
 }
