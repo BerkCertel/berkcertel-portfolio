@@ -324,3 +324,32 @@
     outline-offset: 3px;
   }
 }
+
+/* ---- Reveal (components/common/Reveal.tsx) ----
+ * Entrance animations wait (paused on their first frame) until the Reveal block is in view.
+ * Scoped to `.js` + no reduced motion, so without JS / for crawlers / with reduced motion
+ * everything is simply visible. Per element: --i (stagger index), and optionally
+ * --reveal-delay, --reveal-step, --reveal-duration.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .js :is([data-reveal] .reveal, [data-reveal].reveal) {
+    animation: rise var(--reveal-duration, 0.7s) var(--ease-out-soft) both;
+    animation-delay: calc(var(--reveal-delay, 0s) + var(--i, 0) * var(--reveal-step, 80ms));
+    animation-play-state: paused;
+  }
+  /* Brand bar under section headings grows in after the title. */
+  .js [data-reveal] .reveal-bar::after {
+    animation: grow-x 0.8s 0.3s var(--ease-out-soft) both;
+    animation-play-state: paused;
+  }
+  /* Run once the nearest Reveal is visible (a visible outer Reveal does not start inner ones). */
+  .js
+    [data-reveal][data-visible="true"]
+    .reveal:not([data-reveal]:not([data-visible="true"]) .reveal),
+  .js [data-reveal][data-visible="true"].reveal,
+  .js
+    [data-reveal][data-visible="true"]
+    .reveal-bar:not([data-reveal]:not([data-visible="true"]) .reveal-bar)::after {
+    animation-play-state: running;
+  }
+}
