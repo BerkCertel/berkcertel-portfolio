@@ -1,17 +1,54 @@
 import { useTranslations } from "next-intl";
+import { Suspense } from "react";
 
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
-import { Section } from "@/components/common/Section";
+import { CtaBand } from "@/components/layout/CtaBand";
+import {
+  parseProjectFilter,
+  ProjectsBrowser,
+} from "@/components/sections/projects/ProjectsBrowser";
 
-// Skeleton only; the real content comes in a later step.
-export default function ProjectsPage() {
-  const t = useTranslations("projects");
+interface ProjectsPageProps {
+  searchParams: Promise<{ filter?: string | string[] }>;
+}
+
+/** Reads `?filter=` per request; kept inside <Suspense> so the rest of the page stays static. */
+async function FilteredProjects({ searchParams }: ProjectsPageProps) {
+  const { filter } = await searchParams;
+  return <ProjectsBrowser filter={parseProjectFilter(filter)} />;
+}
+
+export default function ProjectsPage({ searchParams }: ProjectsPageProps) {
+  const t = useTranslations();
 
   return (
-    <Section>
+    <>
       <Container>
-        <h1 className="font-display text-6xl font-bold tracking-[-0.045em]">{t("title")}</h1>
+        <section aria-labelledby="projects-title" className="pt-[72px] max-[760px]:pt-11">
+          <div className="flex flex-col gap-[22px]">
+            <Breadcrumb
+              items={[{ label: t("common.home"), href: "/" }, { label: t("projects.title") }]}
+            />
+            <div className="flex flex-wrap items-end justify-between gap-8">
+              <h1
+                id="projects-title"
+                className="font-display text-[clamp(56px,10vw,150px)] leading-[0.95] font-bold tracking-[-0.045em]"
+              >
+                {t("projects.title")}
+              </h1>
+              <p className="max-w-[54ch] text-[19px] leading-[1.55] text-pretty text-subtle max-[760px]:text-[17px]">
+                {t("projects.pageLead")}
+              </p>
+            </div>
+          </div>
+          {/* Static fallback = the full list, so crawlers and no-JS visitors see every project. */}
+          <Suspense fallback={<ProjectsBrowser filter="all" />}>
+            <FilteredProjects searchParams={searchParams} />
+          </Suspense>
+        </section>
       </Container>
-    </Section>
+      <CtaBand />
+    </>
   );
 }
