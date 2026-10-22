@@ -8,6 +8,8 @@ export const routing = defineRouting({
   // The URL alone decides the language (no Accept-Language / cookie redirects);
   // it only changes through the TR / EN switch.
   localeDetection: false,
+  // No NEXT_LOCALE cookie: the language comes from the URL only, so the cookie is never needed.
+  localeCookie: false,
   pathnames: {
     "/": "/",
     "/about": { tr: "/hakkimda", en: "/about" },
