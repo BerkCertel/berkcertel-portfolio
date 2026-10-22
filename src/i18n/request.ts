@@ -15,6 +15,8 @@ export default getRequestConfig(async ({ locale: override }) => {
 
   return {
     locale,
+    // Fixed zone so formatted dates match between server and client (and no dev warning).
+    timeZone: "Europe/Istanbul",
     messages: (await import(`../../messages/${locale}.json`)).default,
   };
 });
