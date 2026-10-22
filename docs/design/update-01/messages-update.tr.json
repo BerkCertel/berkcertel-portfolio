@@ -1,0 +1,138 @@
+{
+  "nav": {
+    "home": "Ana sayfa"
+  },
+  "common": {
+    "scrollTop": "Yukarı çık"
+  },
+  "hero": {
+    "lead": "Web ve mobil uygulamaları <mark>veritabanından arayüze</mark> kadar geliştiriyorum."
+  },
+  "about": {
+    "home": {
+      "p1": "Web ve mobil uygulamaları <mark>uçtan uca</mark> geliştiren bir full-stack developer’ım. Arayüzü, API’yi ve veritabanını birlikte düşünür; bir ürünü fikirden yayına kadar taşırım.",
+      "p2": "Next.js, React Native, Node.js ve TypeScript ile çalışıyorum; sade, hızlı ve bakımı kolay kod yazmaya önem veriyorum."
+    },
+    "page": {
+      "p1": "Bir özelliği geliştirirken ekranı, API’sini ve veri modelini birlikte düşünmeyi seviyorum. Bu yüzden projelerde sadece bir tarafta kalmıyor; frontend’den backend’e, veritabanından yayına kadar işin tamamında yer alıyorum.",
+      "p2": "Kendi girişimim Sunflow’u fikirden yayına tek başıma taşıdım. Bu süreç bana bir ürünün sadece kodunu değil, onu kullanan insanları ve işleyişini de düşünmeyi öğretti.",
+      "p3": "Boş zamanlarımda mikroservisler, mesaj kuyrukları ve yeni araçlarla küçük projeler geliştiriyorum. Öğrenmeye ve kendimi geliştirmeye devam ediyorum."
+    }
+  },
+  "sunflow": {
+    "title": "Girişimim"
+  },
+  "projects": {
+    "moreNote": "Seçtiğim birkaç proje. Diğer çalışmalarıma GitHub profilimden göz atabilirsin.",
+    "moreCta": "GitHub’da daha fazlası"
+  },
+  "services": {
+    "viewAll": "Tümünü gör",
+    "pageLead": "Fikrini <mark>çalışan bir ürüne</mark> dönüştürüyorum: web, mobil ve backend tek elden.",
+    "items": {
+      "web": {
+        "description": "Yönetim panelleri, SaaS ürünleri ve şirket içi araçlar. Hızlı, güvenli ve büyümeye hazır web uygulamaları geliştiriyorum.",
+        "points": [
+          "Yönetim panelleri",
+          "SaaS ürünleri",
+          "Şirket içi araçlar"
+        ]
+      },
+      "mobile": {
+        "description": "iOS ve Android’de çalışan, hızlı ve kullanımı kolay mobil uygulamalar; tek kod tabanıyla iki platform.",
+        "points": [
+          "iOS + Android",
+          "Tek kod tabanı",
+          "Bildirimler"
+        ]
+      },
+      "backend": {
+        "description": "Kimlik doğrulama, veritabanı tasarımı ve API’ler: uygulamanın görünmeyen ama en önemli kısmı.",
+        "points": [
+          "REST API",
+          "Kimlik doğrulama",
+          "Veritabanı tasarımı"
+        ]
+      },
+      "websites": {
+        "description": "Hızlı açılan, arama motorlarında bulunan, çok dilli kurumsal siteler ve e-ticaret mağazaları.",
+        "points": [
+          "SEO",
+          "Çok dilli",
+          "Hızlı açılış"
+        ]
+      }
+    }
+  },
+  "cta": {
+    "text": "Projenden ya da pozisyondan bahset. <mark>Bir iş günü içinde</mark> dönüş yapıyorum."
+  },
+  "contact": {
+    "privacyNote": "Ad ve e-posta bilgini yalnızca mesajına dönüş yapabilmek için kullanıyorum. Mesajın doğrudan e-posta kutuma gelir; bilgilerini bir veritabanında saklamıyor, başka bir amaçla kullanmıyorum. Ayrıntılar: <link>Gizlilik</link>."
+  },
+  "footer": {
+    "copyright": "© {year} Mehmet Berk Certel. Tüm hakları saklıdır.",
+    "privacy": "Gizlilik"
+  },
+  "metadata": {
+    "pages": {
+      "services": {
+        "title": "Hizmetler",
+        "description": "Web uygulamaları, mobil uygulamalar, backend ve API, kurumsal ve e-ticaret siteleri."
+      },
+      "privacy": {
+        "title": "Gizlilik",
+        "description": "Bu sitede hangi bilgilerin neden ve nasıl kullanıldığı (KVKK)."
+      }
+    }
+  },
+  "privacy": {
+    "title": "Gizlilik",
+    "updated": "Son güncelleme: {date}",
+    "sections": [
+      {
+        "title": "Veri sorumlusu",
+        "body": [
+          "Bu site Mehmet Berk Certel’e aittir. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında veri sorumlusu benim. Sorularını m.berkcertel@outlook.com adresine iletebilirsin."
+        ]
+      },
+      {
+        "title": "Hangi bilgileri topluyorum",
+        "body": [
+          "Yalnızca iletişim formunu doldurduğunda yazdığın ad, e-posta adresi, konu, zaman planı ve mesaj.",
+          "Sitede üyelik, reklam ya da ziyaretçi takibi (analytics) yok."
+        ]
+      },
+      {
+        "title": "Neden kullanıyorum",
+        "body": [
+          "Bu bilgileri sadece mesajına dönüş yapabilmek ve mesajın kimden geldiğini bilmek için kullanıyorum. Pazarlama, bülten ya da başka bir amaçla kullanmıyorum ve kimseyle paylaşmıyorum."
+        ]
+      },
+      {
+        "title": "Nasıl saklanıyor",
+        "body": [
+          "Form bilgileri bir veritabanına kaydedilmez. Mesajın e-posta olarak doğrudan bana iletilir ve yalnızca e-posta kutumda, görüşmemiz için gerektiği sürece kalır. Silinmesini istersen yazman yeterli."
+        ]
+      },
+      {
+        "title": "Hizmet sağlayıcılar",
+        "body": [
+          "Site Vercel üzerinde yayınlanır. Form gönderilirken spam kontrolü için Cloudflare Turnstile kullanılır; mesaj Google (Gmail) altyapısıyla iletilir. Bu sağlayıcıların sunucuları yurt dışında olabilir; bilgiler yalnızca bu hizmetlerin çalışması için gerektiği kadar işlenir."
+        ]
+      },
+      {
+        "title": "Tarayıcında tutulanlar",
+        "body": [
+          "Seçtiğin tema (açık/koyu) yalnızca kendi tarayıcında saklanır. Site, çalışması için gerekli olmayan hiçbir çerez kullanmaz."
+        ]
+      },
+      {
+        "title": "Hakların",
+        "body": [
+          "KVKK’nın 11. maddesi kapsamında verilerinin işlenip işlenmediğini öğrenme, düzeltilmesini ya da silinmesini isteme gibi haklara sahipsin. Bunun için m.berkcertel@outlook.com adresine yazman yeterli."
+        ]
+      }
+    ]
+  }
+}
