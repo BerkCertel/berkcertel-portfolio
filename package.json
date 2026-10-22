@@ -12,7 +12,8 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "ui:add": "bun scripts/ui-add.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^6.0.0",

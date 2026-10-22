@@ -13,7 +13,7 @@ Personal portfolio of Mehmet Berk Certel (full-stack developer) — berkcertel.c
 ## Stack
 
 - Next.js (App Router, latest stable), React, TypeScript (strict), Bun as package manager and script runner.
-- Tailwind CSS v4 + shadcn/ui (new-york style, `lucide-react` icons). Add shadcn components with `bunx shadcn@latest add <name>`.
+- Tailwind CSS v4 + shadcn/ui (new-york style, `lucide-react` icons). Add shadcn components only with `bun run ui:add <name>` (the registry imports cn from the "cn" package; the script rewrites it to @/lib/utils).
 - next-intl (localized pathnames, see `src/i18n/routing.ts`). In this Next.js version the request interceptor file is `src/proxy.ts` (formerly `middleware.ts`).
 - Fonts via `next/font/google`: Bricolage Grotesque, Geist, Geist Mono. Put the font CSS variables (`--font-bricolage`, `--font-geist`, `--font-geist-mono`) on `<html>`, not `<body>`.
 - Theme: own tiny ThemeProvider + inline script in `<head>` that sets `.dark` before paint (no `next-themes`; it triggers a React script warning). Stores `theme` in localStorage, falls back to `prefers-color-scheme`.
