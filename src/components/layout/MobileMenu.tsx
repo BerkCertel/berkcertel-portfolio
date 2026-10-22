@@ -8,8 +8,11 @@ import { AppButton } from "@/components/common/AppButton";
 import { AppLink } from "@/components/common/AppLink";
 import { Container } from "@/components/common/Container";
 import { LanguageSwitch } from "@/components/common/LanguageSwitch";
+import { ACTIVE_MARKER_CLASS } from "@/components/common/RollingLabel";
 import { NAV_ITEMS } from "@/constants/navigation";
-import { navHref } from "@/lib/nav";
+import { usePathname as useI18nPathname } from "@/i18n/navigation";
+import { isNavActive, navHref } from "@/lib/nav";
+import { cn } from "@/lib/utils";
 
 /** Above this width the desktop nav is shown, so the menu must not stay open. */
 const DESKTOP_QUERY = "(min-width: 1080px)";
@@ -18,6 +21,7 @@ const DESKTOP_QUERY = "(min-width: 1080px)";
 export function MobileMenu() {
   const t = useTranslations("nav");
   const pathname = usePathname();
+  const i18nPathname = useI18nPathname();
   // The menu is open only on the page it was opened on, so any navigation
   // (links, logo, browser back/forward) closes it.
   const [openOn, setOpenOn] = useState<string | null>(null);
@@ -34,6 +38,8 @@ export function MobileMenu() {
     // Lock page scroll, hide the page behind the panel from focus / AT, focus the first link.
     const background = document.querySelectorAll<HTMLElement>("#main, body > footer");
     document.body.style.overflow = "hidden";
+    // Lets fixed UI (back-to-top button) hide while the menu covers the page.
+    document.documentElement.dataset.menuOpen = "";
     background.forEach((element) => (element.inert = true));
     panelRef.current?.querySelector("a")?.focus();
 
@@ -49,6 +55,7 @@ export function MobileMenu() {
     desktop.addEventListener("change", onBreakpoint);
     return () => {
       document.body.style.overflow = "";
+      delete document.documentElement.dataset.menuOpen;
       background.forEach((element) => (element.inert = false));
       document.removeEventListener("keydown", onKeyDown);
       desktop.removeEventListener("change", onBreakpoint);
@@ -97,11 +104,14 @@ export function MobileMenu() {
               <AppLink
                 key={item.key}
                 href={navHref(item)}
+                aria-current={isNavActive(item, i18nPathname) ? "page" : undefined}
                 onClick={close}
                 style={{ animationDelay: `${index * 0.05}s` }}
                 className="flex animate-[rise_0.55s_var(--ease-out-soft)_both] items-baseline justify-between font-display text-[44px] leading-[1.15] font-bold tracking-[-0.045em] text-ink"
               >
-                {t(item.key)}
+                <span className={cn(isNavActive(item, i18nPathname) && ACTIVE_MARKER_CLASS)}>
+                  {t(item.key)}
+                </span>
                 <span
                   aria-hidden="true"
                   className="font-mono text-xs font-medium tracking-[0.06em] text-subtle"

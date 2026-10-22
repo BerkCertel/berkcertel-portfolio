@@ -44,19 +44,25 @@ export function ExternalIcon({ className }: { className?: string }) {
   );
 }
 
-/** The three-layer brand mark (two ink layers + top layer). Top layer color via `topClassName`. */
+/** The three-layer brand mark. Extra classes per layer (top / bottom) for color and hover motion. */
 export function LayerMark({
   size,
   className,
   topClassName,
+  bottomClassName,
 }: {
   size: number;
   className?: string;
   topClassName?: string;
+  bottomClassName?: string;
 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true" className={className}>
-      <path d="M3 21.5L5.6 20.2L16 25.4L26.4 20.2L29 21.5L16 28Z" fill="currentColor" />
+      <path
+        d="M3 21.5L5.6 20.2L16 25.4L26.4 20.2L29 21.5L16 28Z"
+        fill="currentColor"
+        className={bottomClassName}
+      />
       <path d="M3 15.5L5.6 14.2L16 19.4L26.4 14.2L29 15.5L16 22Z" fill="currentColor" />
       <path d="M16 3L29 9.5L16 16L3 9.5Z" fill="currentColor" className={topClassName} />
     </svg>

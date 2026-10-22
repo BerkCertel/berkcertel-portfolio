@@ -6,11 +6,19 @@ import { cn } from "@/lib/utils";
 import { AppLink } from "./AppLink";
 import { LayerMark } from "./icons";
 
-const [FIRST_NAME, LAST_NAME] = SITE.name.split(" ");
+const [FIRST_NAME = "", LAST_NAME = ""] = SITE.name.split(" ");
 
-/** Layer mark + "Berk" (ink) + "Certel" (muted), linking to the home page. */
+const LAYER_MOTION = "transition-transform duration-500 ease-out-soft";
+
+/**
+ * Layer mark + "Berk" (ink) + "Certel" (muted), linking home. Hover: the top layer lifts, the
+ * bottom layer drops, and the name waves letter by letter while "Certel" turns ink.
+ */
 export function Logo({ className }: { className?: string }) {
   const t = useTranslations("common");
+  const letters = [...FIRST_NAME]
+    .map((char) => ({ char, muted: false }))
+    .concat([...LAST_NAME].map((char) => ({ char, muted: true })));
 
   return (
     <AppLink
@@ -23,12 +31,23 @@ export function Logo({ className }: { className?: string }) {
     >
       <LayerMark
         size={30}
-        topClassName="fill-brand"
-        className="flex-none transition-transform duration-500 ease-out-soft group-hover:-translate-y-0.5 group-hover:-rotate-6"
+        className="flex-none"
+        topClassName={cn("fill-brand group-hover:-translate-y-[3px]", LAYER_MOTION)}
+        bottomClassName={cn("group-hover:translate-y-[2.5px]", LAYER_MOTION)}
       />
-      <span>
-        {FIRST_NAME}
-        <span className="text-subtle">{LAST_NAME}</span>
+      <span aria-hidden="true" className="inline-flex">
+        {letters.map(({ char, muted }, i) => (
+          <i
+            key={i}
+            style={{ transitionDelay: `${i * 35}ms` }}
+            className={cn(
+              "inline-block not-italic transition-[translate,color] duration-450 ease-out-soft group-hover:-translate-y-1",
+              muted && "text-subtle group-hover:text-ink",
+            )}
+          >
+            {char}
+          </i>
+        ))}
       </span>
     </AppLink>
   );

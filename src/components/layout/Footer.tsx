@@ -5,7 +5,8 @@ import { AppLink } from "@/components/common/AppLink";
 import { Container } from "@/components/common/Container";
 import { Logo } from "@/components/common/Logo";
 import { SocialLinks } from "@/components/common/SocialLinks";
-import { NAV_ITEMS } from "@/constants/navigation";
+import { RollingLabel } from "@/components/common/RollingLabel";
+import { FOOTER_NAV_ITEMS } from "@/constants/navigation";
 import { SITE } from "@/constants/site";
 import { ALL_SOCIALS } from "@/constants/socials";
 import { navHref } from "@/lib/nav";
@@ -17,7 +18,7 @@ async function getCurrentYear() {
   return new Date().getFullYear();
 }
 
-/** Simple footer: logo + footer nav, dashed rule, copyright, email, all social profiles. */
+/** Footer: logo + footer nav, dashed rule, copyright, email, privacy link, social profiles. */
 export async function Footer() {
   const [t, year] = await Promise.all([getTranslations(), getCurrentYear()]);
 
@@ -28,10 +29,13 @@ export async function Footer() {
           <Logo />
           <nav aria-label={t("nav.footer")}>
             <ul className="flex flex-wrap gap-x-6.5 gap-y-3.5 text-[15px] text-subtle max-[760px]:gap-x-5">
-              {NAV_ITEMS.map((item) => (
+              {FOOTER_NAV_ITEMS.map((item) => (
                 <li key={item.key}>
-                  <AppLink href={navHref(item)} className="transition-colors hover:text-ink">
-                    {t(`nav.${item.key}`)}
+                  <AppLink
+                    href={navHref(item)}
+                    className="group block transition-colors hover:text-ink"
+                  >
+                    <RollingLabel label={t(`nav.${item.key}`)} />
                   </AppLink>
                 </li>
               ))}
@@ -42,6 +46,9 @@ export async function Footer() {
           <p>{t("footer.copyright", { year })}</p>
           <AppLink href={`mailto:${SITE.email}`} className="transition-colors hover:text-ink">
             {SITE.email}
+          </AppLink>
+          <AppLink href="/privacy" className="transition-colors hover:text-ink">
+            {t("footer.privacy")}
           </AppLink>
           <SocialLinks items={ALL_SOCIALS} size="sm" />
         </div>
