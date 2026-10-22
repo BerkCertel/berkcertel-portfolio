@@ -290,6 +290,28 @@
     color: var(--c-sun);
   }
 
+  /* Highlighter (components/common/Marker.tsx): paints left → right when it enters the view. */
+  .marker {
+    background: linear-gradient(
+        transparent 60%,
+        var(--c-sun) 60%,
+        var(--c-sun) 90%,
+        transparent 90%
+      )
+      no-repeat left / 100% 100%;
+    padding-inline: 0.04em;
+    transition: background-size 0.9s var(--ease-out-soft);
+  }
+  /* Dark: softer marker so the light text on top stays readable. */
+  .dark .marker {
+    background-image: linear-gradient(
+      transparent 62%,
+      color-mix(in srgb, var(--c-sun) 45%, transparent) 62%,
+      color-mix(in srgb, var(--c-sun) 45%, transparent) 92%,
+      transparent 92%
+    );
+  }
+
   /* small uppercase mono label */
   .eyebrow {
     font: 500 12px/1 var(--font-mono);
@@ -341,6 +363,10 @@
   .js [data-reveal] .reveal-bar::after {
     animation: grow-x 0.8s 0.3s var(--ease-out-soft) both;
     animation-play-state: paused;
+  }
+  /* Marker waits unpainted until it is in view. */
+  .js .marker:not([data-in]) {
+    background-size: 0% 100%;
   }
   /* `.reveal-wait`: element keeps its own animation (e.g. the process steps) but waits too. */
   .js [data-reveal] .reveal-wait,
