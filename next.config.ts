@@ -28,7 +28,8 @@ const nextConfig: NextConfig = {
   },
   turbopack: {
     rules: {
-      "*.css": {
+      // Only the Tailwind entry; *.module.css files must keep their CSS Modules handling.
+      "globals.css": {
         loaders: ["@tailwindcss/turbopack"],
         as: "*.css",
       },
