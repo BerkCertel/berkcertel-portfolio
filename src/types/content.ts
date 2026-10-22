@@ -29,5 +29,5 @@ export type SocialKey = "github" | "linkedin" | "upwork" | "bionluk" | "instagra
 export interface SocialLink {
   key: SocialKey;
   label: string;
-  href: string;
+  href: `https://${string}`;
 }
