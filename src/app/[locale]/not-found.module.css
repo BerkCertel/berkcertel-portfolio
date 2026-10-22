@@ -1,0 +1,76 @@
+/* Three layer planes falling into place (docs/design/canvas: .fall, .fp1–.fp3). */
+
+.fall {
+  position: relative;
+  height: 460px;
+}
+
+.plane {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+  border-radius: 20px;
+  animation: drop 1.4s cubic-bezier(0.3, 1.4, 0.5, 1) backwards;
+}
+
+.label {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.p1 {
+  left: 12%;
+  top: 58%;
+  background: var(--c-deep);
+  border-color: var(--c-deep-line);
+  transform: rotate(14deg) skewX(-12deg);
+  animation-delay: 0.1s;
+}
+.p1 .label {
+  color: var(--c-deep-muted);
+}
+
+.p2 {
+  left: 38%;
+  top: 28%;
+  background: var(--c-sunk);
+  transform: rotate(-24deg) skewX(10deg);
+  animation-delay: 0.25s;
+}
+
+/* The "missing" layer: outlined in brand color. */
+.p3 {
+  left: 20%;
+  top: 0;
+  background: var(--c-surface);
+  border-color: var(--c-accent);
+  transform: rotate(36deg) skewX(-6deg);
+  animation-delay: 0.4s;
+}
+.p3 .label {
+  color: var(--c-accent);
+}
+
+@media (max-width: 760px) {
+  .fall {
+    height: 320px;
+  }
+  .plane {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    translate: 0 -160px;
+  }
+}
