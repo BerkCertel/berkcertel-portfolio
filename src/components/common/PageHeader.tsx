@@ -1,5 +1,7 @@
 import { useTranslations } from "next-intl";
 
+import { cn } from "@/lib/utils";
+
 import { Breadcrumb } from "./Breadcrumb";
 import { Marker } from "./Marker";
 
@@ -12,10 +14,19 @@ interface PageHeaderProps {
   lead: React.ReactNode;
   /** Small animated visual on the right (V1, V3, V5 …); goes under the text below 1080px. */
   visual: React.ReactNode;
+  /** Extra classes for the visual column (e.g. a different max width under the text). */
+  visualClassName?: string;
 }
 
 /** Inner page header: breadcrumb, M1-marked h1, lead, and a visual on the right. */
-export function PageHeader({ id, title, crumb = title, lead, visual }: PageHeaderProps) {
+export function PageHeader({
+  id,
+  title,
+  crumb = title,
+  lead,
+  visual,
+  visualClassName,
+}: PageHeaderProps) {
   const t = useTranslations("common");
 
   return (
@@ -35,7 +46,7 @@ export function PageHeader({ id, title, crumb = title, lead, visual }: PageHeade
           {lead}
         </p>
       </div>
-      <div className="w-full max-[1080px]:max-w-[420px]">{visual}</div>
+      <div className={cn("w-full max-[1080px]:max-w-[420px]", visualClassName)}>{visual}</div>
     </section>
   );
 }
