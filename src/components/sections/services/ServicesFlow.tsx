@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 
+import { VISUAL_CELL_CLASS } from "@/components/common/styles";
 import { cn } from "@/lib/utils";
 
 import styles from "./ServicesFlow.module.css";
@@ -38,7 +39,7 @@ export function ServicesFlow() {
   const t = useTranslations("services.flow");
 
   return (
-    <div className={styles.cell} aria-hidden="true">
+    <div className={VISUAL_CELL_CLASS} aria-hidden="true">
       <svg className={styles.svg} viewBox="0 0 560 240">
         {WIRES.map((d, i) => (
           <path key={d} id={`services-flow-w${i}`} className={styles.wire} d={d} />

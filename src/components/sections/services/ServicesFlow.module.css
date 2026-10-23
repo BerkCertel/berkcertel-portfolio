@@ -1,13 +1,5 @@
 /* V1 "Veri akışı" (update-01 reference: .vcell, .flowsvg). */
 
-.cell {
-  position: relative;
-  padding: 22px;
-  border: 1px solid var(--c-line);
-  border-radius: 18px;
-  background: var(--c-bg);
-}
-
 .svg {
   display: block;
   width: 100%;

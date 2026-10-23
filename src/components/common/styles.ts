@@ -18,3 +18,6 @@ export const PROSE_CLASS = [
   "[&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2.5 [&_li]:flex [&_li]:gap-3",
   "[&_li]:before:mt-3 [&_li]:before:size-1.5 [&_li]:before:flex-none [&_li]:before:rounded-[2px] [&_li]:before:bg-brand [&_li]:before:content-['']",
 ].join(" ");
+
+/** Frame around the small animated visuals next to inner-page titles (V1, V3 …). */
+export const VISUAL_CELL_CLASS = "rounded-[18px] border border-line bg-bg p-[22px]";
