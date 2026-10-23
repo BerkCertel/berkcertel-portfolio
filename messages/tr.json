@@ -390,7 +390,8 @@
       "generic": "Mesaj gönderilemedi. Biraz sonra tekrar dene ya da doğrudan e-posta gönder."
     },
     "mail": {
-      "subjectPrefix": "Yeni mesaj"
+      "subjectPrefix": "Yeni mesaj",
+      "language": "Dil"
     },
     "privacyNote": "Ad ve e-posta bilgini yalnızca mesajına dönüş yapabilmek için kullanıyorum. Mesajın doğrudan e-posta kutuma gelir; bilgilerini bir veritabanında saklamıyor, başka bir amaçla kullanmıyorum. Ayrıntılar: <link>Gizlilik</link>."
   },

@@ -390,7 +390,8 @@
       "generic": "The message could not be sent. Try again in a moment or email me directly."
     },
     "mail": {
-      "subjectPrefix": "New message"
+      "subjectPrefix": "New message",
+      "language": "Language"
     },
     "privacyNote": "I use your name and email only to reply to your message. Your message comes straight to my inbox; I don’t store your details in a database or use them for anything else. Details: <link>Privacy</link>."
   },
