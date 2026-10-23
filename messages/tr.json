@@ -393,7 +393,10 @@
       "subjectPrefix": "Yeni mesaj",
       "language": "Dil"
     },
-    "privacyNote": "Ad ve e-posta bilgini yalnızca mesajına dönüş yapabilmek için kullanıyorum. Mesajın doğrudan e-posta kutuma gelir; bilgilerini bir veritabanında saklamıyor, başka bir amaçla kullanmıyorum. Ayrıntılar: <link>Gizlilik</link>."
+    "privacyNote": "Ad ve e-posta bilgini yalnızca mesajına dönüş yapabilmek için kullanıyorum. Mesajın doğrudan e-posta kutuma gelir; bilgilerini bir veritabanında saklamıyor, başka bir amaçla kullanmıyorum. Ayrıntılar: <link>Gizlilik</link>.",
+    "visual": {
+      "newMessage": "Yeni mesaj"
+    }
   },
   "footer": {
     "copyright": "© {year} Mehmet Berk Certel. Tüm hakları saklıdır.",

@@ -49,7 +49,7 @@ Order: Hero → Hakkımda → Teknolojiler → Deneyim → Projeler → Girişim
 - **Projeler page (step 06):** header with M1 title and **V3 "Commit grafiği"** on the right (main line draws, feature branch draws and merges back, commit dots pop in; 7s loop). Projects note + GitHub button under the list.
 - **Hakkımda page (step 06):** M1 title, texts `about.page.p1–p3`, Sunflow button (kept), CV links, code card, Experience with scroll progress.
 - **Blog page (step 08):** header with M1 title and **V4 "Web + mobil senkron"** on the right (a browser window and a phone; a highlighted card appears in both, phone slightly later; 4s loop).
-- **İletişim page (step 07):** M1 title, **V5 "Katmana düşen mesaj"** on the right (a blue message card drops onto two isometric layers; 3.2s loop; also replays once when the form is sent successfully). Under the submit button: `contact.privacyNote` (12.5px, muted, `<link>` → /gizlilik).
+- **İletişim page (step 07):** M1 title, **V6 "Bağlantı ağı" (reference/contact-visual.html)** on the right (visitor blocks send packets along the grid to the three-layer block; a packet is also sent right away when the form is sent successfully). Under the submit button: `contact.privacyNote` (12.5px, muted, `<link>` → /gizlilik).
 - V2 (terminal) is not used.
 
 ## 6. New page: Gizlilik (`/gizlilik`, `/en/privacy`)
