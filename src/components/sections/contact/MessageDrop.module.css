@@ -1,0 +1,81 @@
+/* V5 "Katmana düşen mesaj" (update-01 reference: .env, .sh, .msg). 3.2s loop. */
+
+.scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 240px;
+  margin-top: 10px;
+  perspective: 900px;
+}
+
+.sheet,
+.msg {
+  position: absolute;
+  transform: rotateX(60deg) rotateZ(-40deg);
+}
+
+.sheet {
+  width: 200px;
+  height: 120px;
+  border: 1px solid var(--c-line);
+  border-radius: 14px;
+  background: var(--c-surface);
+}
+.bottom {
+  transform: rotateX(60deg) rotateZ(-40deg) translateZ(0);
+  background: var(--c-deep);
+  border-color: var(--c-deep-line);
+}
+.top {
+  transform: rotateX(60deg) rotateZ(-40deg) translateZ(30px);
+  background: var(--c-sunk);
+}
+
+/* The blue message card drops onto the layers. */
+.msg {
+  width: 150px;
+  height: 60px;
+  border-radius: 12px;
+  background: var(--c-accent);
+  box-shadow: 0 0 30px -4px var(--c-accent);
+  transform: rotateX(60deg) rotateZ(-40deg) translateZ(160px);
+  animation: drop 3.2s var(--ease-out-soft) infinite;
+}
+.msg::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  width: 70px;
+  height: 8px;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 14px 0 -1px color-mix(in srgb, white 60%, transparent);
+}
+
+/* Reduced motion: the card simply rests on the layers. */
+@media (prefers-reduced-motion: reduce) {
+  .msg {
+    animation: none;
+    transform: rotateX(60deg) rotateZ(-40deg) translateZ(62px);
+  }
+}
+
+@keyframes drop {
+  0% {
+    transform: rotateX(60deg) rotateZ(-40deg) translateZ(170px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  70% {
+    transform: rotateX(60deg) rotateZ(-40deg) translateZ(62px);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(60deg) rotateZ(-40deg) translateZ(62px);
+    opacity: 0;
+  }
+}

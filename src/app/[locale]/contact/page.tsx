@@ -1,20 +1,27 @@
 import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/common/Container";
-import { Marker } from "@/components/common/Marker";
-import { Section } from "@/components/common/Section";
+import { PageHeader } from "@/components/common/PageHeader";
+import { ContactChannels } from "@/components/sections/contact/ContactChannels";
+import { ContactForm } from "@/components/sections/contact/ContactForm";
+import { MessageDrop } from "@/components/sections/contact/MessageDrop";
 
-// Skeleton only; the real content comes in a later step.
 export default function ContactPage() {
-  const t = useTranslations("contact");
+  const t = useTranslations();
 
   return (
-    <Section>
-      <Container>
-        <h1 className="font-display text-6xl font-bold tracking-[-0.045em]">
-          <Marker>{t("title")}</Marker>
-        </h1>
-      </Container>
-    </Section>
+    <Container>
+      <PageHeader
+        id="contact-title"
+        title={t("contact.title")}
+        crumb={t("nav.contact")}
+        lead={t("contact.lead")}
+        visual={<MessageDrop />}
+      />
+      <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] gap-14 pt-16 pb-28 max-[1080px]:grid-cols-1 max-[760px]:gap-10 max-[760px]:pt-10 max-[760px]:pb-[72px]">
+        <ContactChannels />
+        <ContactForm />
+      </div>
+    </Container>
   );
 }
