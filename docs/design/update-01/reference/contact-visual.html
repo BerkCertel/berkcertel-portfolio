@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>İletişim görseli · Bağlantı ağı</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#F1F3F6;--surface:#fff;--sunk:#E6E9EF;--ink:#0C1222;--muted:#515A6E;--line:#D3D8E2;--accent:#2747F0;--on-accent:#fff;--sun:#FFC43A;--deep:#0C1222;--deep-2:#1A2236;--ok:#13804A;
+--fd:'Bricolage Grotesque',system-ui,sans-serif;--fb:'Geist',system-ui,sans-serif;--fm:'Geist Mono',ui-monospace,monospace;--ease:cubic-bezier(.2,.8,.2,1)}
+html.dark{--bg:#070A12;--surface:#0E1320;--sunk:#141B2B;--ink:#E8ECF6;--muted:#9AA3B8;--line:#212A3C;--accent:#8096FF;--on-accent:#070A12;--sun:#FFD05C;--deep:#0B101C;--deep-2:#18213A;--ok:#3DD68C}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--fb);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 32px 80px}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.bar b{font:700 17px/1 var(--fd)}
+.tbtn{height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font:500 13.5px var(--fb)}
+.pgh{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:40px;align-items:center}
+.eyebrow{font:500 12px/1 var(--fm);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.pgt{font:700 clamp(48px,6.4vw,96px)/.95 var(--fd);letter-spacing:-.05em;margin:18px 0 0}
+.mk{background:linear-gradient(transparent 60%,var(--sun) 60%,var(--sun) 90%,transparent 90%);padding-inline:.04em}
+html.dark .mk{background:linear-gradient(transparent 62%,color-mix(in srgb,var(--sun) 45%,transparent) 62%,color-mix(in srgb,var(--sun) 45%,transparent) 92%,transparent 92%)}
+.pgl{font-size:18px;color:var(--muted);margin-top:16px;max-width:44ch}
+.note{margin-top:28px;font-size:14px;color:var(--muted);max-width:80ch}
+.replay{margin-top:14px}
+
+/* ===== VISUAL ===== */
+.net{position:relative;aspect-ratio:520/400;width:100%;max-width:620px;justify-self:end;cursor:pointer;user-select:none}
+.net svg{width:100%;height:100%;display:block;overflow:visible}
+.net .grid line{stroke:var(--line);stroke-width:1}
+.net .face-top{fill:var(--surface);stroke:var(--line);stroke-width:1}
+.net .face-l{fill:var(--sunk)}
+.net .face-r{fill:color-mix(in srgb,var(--sunk) 70%,var(--line))}
+.net .node.hot .face-top{fill:color-mix(in srgb,var(--accent) 16%,var(--surface));stroke:var(--accent)}
+.net .slab0 .face-top{fill:var(--deep);stroke:var(--deep-2)}.net .slab0 .face-l{fill:#05070D}.net .slab0 .face-r{fill:var(--deep-2)}
+html.dark .net .slab0 .face-l{fill:#03050A}
+.net .slab1 .face-top{fill:var(--sunk);stroke:var(--line)}
+.net .slab2 .face-top{fill:var(--accent);stroke:var(--accent)}.net .slab2 .face-l{fill:color-mix(in srgb,var(--accent) 75%,#000)}.net .slab2 .face-r{fill:color-mix(in srgb,var(--accent) 60%,#000)}
+.net .route{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.net .ghost{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 6;opacity:0;transition:opacity .4s}
+.net:hover .ghost{opacity:.35}
+.net .pkt{fill:var(--sun)}
+.net .pkt-glow{fill:var(--sun);opacity:.35}
+.net .ripple{fill:none;stroke:var(--accent);stroke-width:2}
+.card{position:absolute;left:50%;top:6%;translate:-50% 0;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:0 22px 40px -26px rgba(12,18,34,.55);white-space:nowrap;opacity:0;transform:translateY(14px) scale(.96);transition:opacity .45s,transform .6s var(--ease);pointer-events:none}
+.card.on{opacity:1;transform:none}
+.card .ic{width:32px;height:32px;border-radius:10px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center}
+.card b{display:block;font:600 14px/1.2 var(--fd)}
+.card span{font:500 11.5px/1.3 var(--fm);color:var(--muted)}
+.card .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);margin-left:6px}
+@media (max-width:900px){.pgh{grid-template-columns:minmax(0,1fr)}.net{justify-self:center;max-width:460px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="bar"><b>İletişim görseli · “Bağlantı ağı”</b><button class="tbtn" id="tg">Koyu / Açık</button></div>
+<div class="pgh">
+<div><p class="eyebrow">Ana sayfa / İletişim</p><h1 class="pgt"><span class="mk">Birlikte çalışalım</span></h1><p class="pgl">Projenden ya da pozisyondan bahset. Bir iş günü içinde dönüş yapıyorum.</p>
+<button class="tbtn replay" id="send">Formu gönderdin gibi oynat</button></div>
+<div class="net" id="net" aria-hidden="true">
+<svg viewBox="0 0 520 400"><g class="grid" id="grid"></g><g id="ghosts"></g><g id="nodes"></g><g id="fx"></g><g id="routeG"></g><g id="center"></g></svg>
+<div class="card" id="card"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><div><b>Yeni mesaj</b><span id="topic">Web uygulaması</span></div><i class="dot"></i></div>
+</div>
+</div>
+<p class="note">Izgaralı izometrik bir zemin, hero’daki katman dilini sürdürüyor. Kenardaki küçük bloklar ziyaretçiler, ortadaki üç katmanlı blok logodaki katmanların 3D hâli (sen). Sırayla bir bloktan sarı bir veri paketi çıkıyor, ızgara çizgileri boyunca mavi iz bırakarak merkeze geliyor; varınca üst katman parlayıp kalkıyor, zeminde dalga yayılıyor ve “Yeni mesaj” kartı belirip kayboluyor. Üzerine gelince tüm yollar kesik çizgiyle görünür ve merkezdeki katmanlar açılır. Form gönderilince hemen bir paket yollanır.</p>
+</div>
+<script>
+document.getElementById('tg').onclick=()=>document.documentElement.classList.toggle('dark');
+(function(){
+const NS="http://www.w3.org/2000/svg",S=35,OX=260,OY=212;
+const iso=(x,y,z=0)=>[OX+(x-y)*S*0.866,OY+(x+y)*S*0.5-z*S*0.9];
+const P=(pts)=>pts.map(p=>iso(...p).map(n=>n.toFixed(1)).join(',')).join(' ');
+const el=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const net=document.getElementById('net'),grid=document.getElementById('grid'),nodesG=document.getElementById('nodes'),routeG=document.getElementById('routeG'),center=document.getElementById('center'),fx=document.getElementById('fx'),ghosts=document.getElementById('ghosts'),card=document.getElementById('card'),topic=document.getElementById('topic');
+// grid
+for(let i=-4;i<=4;i++){const a=iso(i,-4),b=iso(i,4),c=iso(-4,i),d=iso(4,i);el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1]},grid);el('line',{x1:c[0],y1:c[1],x2:d[0],y2:d[1]},grid)}
+// cube
+function cube(g,x,y,z0,h,w){g.innerHTML='';
+ el('polygon',{class:'face-l',points:P([[x-w,y+w,z0],[x+w,y+w,z0],[x+w,y+w,z0+h],[x-w,y+w,z0+h]])},g);
+ el('polygon',{class:'face-r',points:P([[x+w,y-w,z0],[x+w,y+w,z0],[x+w,y+w,z0+h],[x+w,y-w,z0+h]])},g);
+ el('polygon',{class:'face-top',points:P([[x-w,y-w,z0+h],[x+w,y-w,z0+h],[x+w,y+w,z0+h],[x-w,y+w,z0+h]])},g)}
+// visitor nodes + manhattan routes to center edge
+const N=[[-3,-3],[3,-3],[-3,2],[2,3],[4,0],[-1,-4],[-4,0]];
+const nodes=N.map(([x,y])=>{const g=el('g',{class:'node'},nodesG);cube(g,x,y,0,0.45,0.32);return g});
+const routes=N.map(([x,y])=>{const pts=[[x,y],[x,0]];const ex=x>0?1.25:(x<0?-1.25:0);pts.push([ex,0]);if(x===0)pts.splice(1,1,[0,y>0?1.25:-1.25]);return pts});
+routes.forEach(r=>el('polyline',{class:'ghost',points:P(r.map(p=>[p[0],p[1],0.02]))},ghosts));
+// center slabs
+const slabs=[0,1,2].map(i=>el('g',{class:'slab'+i},center));
+let lift=0,liftT=0,hover=0,hoverT=0,glow=0;
+function drawCenter(){const gap=0.46+0.32*hover+0.08*lift;slabs.forEach((g,i)=>cube(g,0,0,i*gap+(i===2?0.4*lift:0),0.24,1.15))}
+// packet
+const route=el('polyline',{class:'route',points:''},routeG);
+const glowC=el('circle',{class:'pkt-glow',r:11},routeG),pkt=el('circle',{class:'pkt',r:5},routeG);
+function polyLen(pts){let L=0;for(let i=1;i<pts.length;i++)L+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);return L}
+function pointAt(pts,d){for(let i=1;i<pts.length;i++){const l=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);if(d<=l){const t=d/l;return [pts[i-1][0]+(pts[i][0]-pts[i-1][0])*t,pts[i-1][1]+(pts[i][1]-pts[i-1][1])*t]}d-=l}return pts[pts.length-1]}
+const topics=['Web uygulaması','Mobil uygulama','Backend / API','İş teklifi','Kurumsal site'];
+let cur=null,next=0,ti=0,timer=0,ripples=[];
+function launch(i){if(i==null){i=next;next=(next+1+Math.floor(Math.random()*2))%N.length}
+ const r=routes[i];cur={i,pts:r,len:polyLen(r),t:0};nodes.forEach((n,k)=>n.classList.toggle('hot',k===i))}
+function arrive(){lift=1;liftT=performance.now();ripples.push({t:performance.now()});topic.textContent=topics[ti++%topics.length];card.classList.add('on');clearTimeout(card._t);card._t=setTimeout(()=>card.classList.remove('on'),1900);nodes.forEach(n=>n.classList.remove('hot'))}
+let last=performance.now(),running=true;
+function frame(now){const dt=Math.min(50,now-last);last=now;
+ hover+=( (net.matches(':hover')?1:0)-hover)*0.12;
+ if(lift>0){lift=Math.max(0,1-(now-liftT)/900)}
+ drawCenter();
+ if(cur){cur.t+=dt/1600;const k=Math.min(1,cur.t),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+  const d=e*cur.len,pts=[];let acc=0;pts.push(cur.pts[0]);
+  for(let i=1;i<cur.pts.length;i++){const l=Math.hypot(cur.pts[i][0]-cur.pts[i-1][0],cur.pts[i][1]-cur.pts[i-1][1]);if(acc+l<d){pts.push(cur.pts[i]);acc+=l}else{pts.push(pointAt(cur.pts,d));break}}
+  route.setAttribute('points',P(pts.map(p=>[p[0],p[1],0.02])));route.style.opacity=1;
+  const [px,py]=iso(...pts[pts.length-1],0.15);pkt.setAttribute('cx',px);pkt.setAttribute('cy',py);glowC.setAttribute('cx',px);glowC.setAttribute('cy',py);pkt.style.opacity=glowC.style.opacity=1;
+  if(k>=1){arrive();cur=null;timer=now}}
+ else{route.style.opacity=Math.max(0,1-(now-timer)/700);pkt.style.opacity=glowC.style.opacity=0;if(now-timer>2600)launch()}
+ fx.innerHTML='';ripples=ripples.filter(r=>now-r.t<1400);ripples.forEach(r=>{const p=(now-r.t)/1400,R=1.3+p*2.6,[cx,cy]=iso(0,0,0);el('ellipse',{class:'ripple',cx,cy,rx:R*S*1.2247,ry:R*S*0.7071,opacity:(1-p)*0.8},fx)});
+ if(running)requestAnimationFrame(frame)}
+if(reduce){drawCenter();const r=routes[0];route.setAttribute('points',P(r.map(p=>[p[0],p[1],0.02])));card.classList.add('on');}
+else{launch(0);requestAnimationFrame(frame);
+ new IntersectionObserver(es=>es.forEach(e=>{const v=e.isIntersecting;if(v&&!running){running=true;last=performance.now();requestAnimationFrame(frame)}running=v}),{threshold:0}).observe(net)}
+document.getElementById('send').onclick=()=>{if(!reduce){launch(Math.floor(Math.random()*N.length))}};
+})();
+</script>
+</body>
+</html>
