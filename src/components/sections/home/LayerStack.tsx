@@ -1,13 +1,14 @@
 import { useTranslations } from "next-intl";
 
+import { HERO_SERVICES } from "@/constants/tech-stack";
 import { cn } from "@/lib/utils";
 
 import styles from "./LayerStack.module.css";
 
 /**
- * Hero visual (H3 "live system"): three isometric layers — data rows, service boxes, interface —
- * that float, with a cursor clicking the UI button, services lighting up and rows "querying".
- * Decorative; exposed to assistive tech as one labelled image.
+ * Hero visual (H3 "live system"): three isometric layers — database rows, API + service boxes,
+ * interface — that float, with a cursor clicking the UI button, services lighting up and rows
+ * "querying". Small mono labels sit on the layers. Decorative; exposed as one labelled image.
  */
 export function LayerStack() {
   const t = useTranslations("hero");
@@ -21,12 +22,13 @@ export function LayerStack() {
               <i key={i} />
             ))}
           </div>
+          <span className={cn(styles.tag, styles.dbTag)}>{t("layers.db")}</span>
         </div>
         <div className={cn(styles.lay, styles.l2)}>
           <div className={styles.svcs}>
-            <b className={styles.gw} />
-            {Array.from({ length: 6 }, (_, i) => (
-              <b key={i} />
+            <b className={styles.gw}>{t("layers.api")}</b>
+            {HERO_SERVICES.map((name) => (
+              <b key={name}>{name}</b>
             ))}
           </div>
         </div>
@@ -36,7 +38,9 @@ export function LayerStack() {
             <div className={styles.ln} />
             <div className={styles.btn} />
             <div className={styles.cd} />
-            <div className={styles.c2} />
+            <div className={styles.c2}>
+              <span className={styles.tag}>{t("layers.ui")}</span>
+            </div>
             <span className={styles.cursor}>
               <svg width="16" height="16" viewBox="0 0 24 24">
                 <path

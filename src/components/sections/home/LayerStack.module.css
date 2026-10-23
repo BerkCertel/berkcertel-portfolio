@@ -7,7 +7,8 @@
   position: relative;
   display: grid;
   place-items: center;
-  height: 440px;
+  /* 440px reference × 1.25 */
+  height: 550px;
   perspective: 1300px;
 }
 
@@ -17,6 +18,10 @@
   height: 250px;
   transform-style: preserve-3d;
   transform: rotateX(58deg) rotateZ(-42deg);
+  /* 25% larger than the reference; kept as `scale` so the inner layout stays 1:1. Read from a
+     variable: a literal value gets folded into `transform` by the CSS minifier, which breaks the
+     breakpoint overrides below. */
+  scale: var(--stack-scale, 1.25);
   animation: float-iso 9s ease-in-out infinite;
 }
 
@@ -104,6 +109,10 @@
   gap: 10px;
 }
 .svcs b {
+  display: grid;
+  place-items: center;
+  font: 500 10px/1 var(--font-mono);
+  color: var(--c-ink);
   border: 1px solid var(--c-line);
   border-radius: 8px;
   background: var(--c-surface);
@@ -111,6 +120,8 @@
 }
 .svcs .gw {
   grid-column: 1 / 4;
+  font-size: 11px;
+  color: var(--c-on-accent);
   background: var(--c-accent);
   border-color: var(--c-accent);
   animation: none;
@@ -177,6 +188,10 @@
   background: var(--c-sun);
 }
 .c2 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 10px 12px;
   position: absolute;
   left: 0;
   right: 0;
@@ -198,13 +213,46 @@
   display: block;
 }
 
-/* Narrow phones: shrink the stack so its rotated footprint fits the screen. */
-@media (max-width: 430px) {
+/* Mono labels on the layers (they lie flat on the plane, so they read isometric). */
+.tag {
+  font: 500 10.5px/1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+.dbTag {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  color: var(--c-deep-muted);
+}
+
+/*
+ * The rotated stack with perspective is ~370px wide at scale 1 (~462px at 1.25), so it steps
+ * down with the screen width to never cause horizontal scrolling (390px: 0.9, 320px: 0.74).
+ */
+@media (max-width: 760px) {
   .stage {
-    height: 380px;
+    height: 440px;
   }
   .iso {
-    scale: 0.85;
+    --stack-scale: 1;
+  }
+}
+@media (max-width: 430px) {
+  .stage {
+    height: 340px;
+  }
+  .iso {
+    --stack-scale: 0.9;
+  }
+}
+@media (max-width: 360px) {
+  .stage {
+    height: 300px;
+  }
+  .iso {
+    --stack-scale: 0.74;
   }
 }
 

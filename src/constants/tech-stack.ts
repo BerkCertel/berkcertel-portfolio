@@ -101,3 +101,6 @@ export const TECH_CATEGORIES: TechCategory[] = [
     ],
   },
 ];
+
+/** Service box names on the hero stack's middle layer (code names, not translated). */
+export const HERO_SERVICES = ["auth", "users", "orders", "mail", "queue", "cache"];

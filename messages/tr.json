@@ -83,7 +83,12 @@
     "lead": "Web ve mobil uygulamaları <mark>veritabanından arayüze</mark> kadar geliştiriyorum.",
     "ctaProjects": "Projelere göz at",
     "ctaContact": "İletişime geç",
-    "stackLabel": "Üç katman: arayüz, servisler ve veri"
+    "stackLabel": "Üç katman: arayüz, servisler ve veri",
+    "layers": {
+      "ui": "Arayüz",
+      "api": "API",
+      "db": "Veritabanı"
+    }
   },
   "about": {
     "title": "Hakkımda",

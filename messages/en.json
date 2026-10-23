@@ -83,7 +83,12 @@
     "lead": "I build web and mobile apps, <mark>from the database to the interface</mark>.",
     "ctaProjects": "See my projects",
     "ctaContact": "Get in touch",
-    "stackLabel": "Three layers: interface, services and data"
+    "stackLabel": "Three layers: interface, services and data",
+    "layers": {
+      "ui": "Interface",
+      "api": "API",
+      "db": "Database"
+    }
   },
   "about": {
     "title": "About",
