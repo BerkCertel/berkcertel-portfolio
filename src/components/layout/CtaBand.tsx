@@ -4,7 +4,6 @@ import { AppButton } from "@/components/common/AppButton";
 import { AppLink } from "@/components/common/AppLink";
 import { Container } from "@/components/common/Container";
 import { BrandIcon, LayerMark } from "@/components/common/icons";
-import { markTag } from "@/components/common/mark-tag";
 import { SITE } from "@/constants/site";
 
 /** Brand-blue "let's work together" block that closes Home, About and Projects. */
@@ -26,7 +25,7 @@ export function CtaBand() {
             {t("title")}
           </h2>
           <div className="relative flex flex-col items-start gap-[22px]">
-            <p className="max-w-[40ch] text-lg opacity-85">{t.rich("text", markTag)}</p>
+            <p className="max-w-[40ch] text-lg opacity-85">{t("text")}</p>
             <div className="flex flex-wrap gap-3">
               <AppButton asChild variant="inverted" rightIcon="arrow">
                 <AppLink href="/contact">{t("primary")}</AppLink>

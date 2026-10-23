@@ -23,7 +23,8 @@ Copy rules that apply everywhere: no company names in any "About" text (companie
 One reusable component (e.g. `common/Marker`) used in two ways; the marker paints from left to right (background-size 0 → 100%, 0.9s) when it enters the viewport, once. In dark mode the marker uses the sun color at ~45% opacity so light text stays readable. Without JS / reduced motion it is shown fully.
 
 - **M1 — whole title:** the `h1` of inner pages: Projeler, Hakkımda, Hizmetler, Blog, İletişim ("Birlikte çalışalım"). Home section headings keep the blue bar (`SectionHeading`). Privacy and 404 titles stay plain.
-- **M3 — key phrase:** only where the copy contains `<mark>`: hero lead, home About p1, services page lead, CTA band text. Max one per paragraph.
+- **M3 — key phrase:** only where the copy contains `<mark>`: hero lead, home About p1, services page lead. Max one per paragraph.
+- Never use the marker on dark or brand-colored backgrounds (e.g. the blue CTA band).
 
 ## 3. Home page
 
