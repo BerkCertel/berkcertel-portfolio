@@ -22,7 +22,8 @@ export function Experience({ className }: { className?: string }) {
 
   return (
     <Section aria-labelledby="experience-title" className={className}>
-      <Container className="grid grid-cols-[minmax(0,240px)_minmax(0,1fr)] gap-12 max-[1080px]:grid-cols-1 max-[1080px]:gap-8">
+      {/* Title column grows with the heading ("Experience" is wider than "Deneyim"), never under it. */}
+      <Container className="grid grid-cols-[minmax(240px,max-content)_minmax(0,1fr)] gap-12 max-[1080px]:grid-cols-1 max-[1080px]:gap-8">
         <div className="sticky top-25 self-start max-[1080px]:static">
           <h2
             id="experience-title"
