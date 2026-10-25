@@ -1,0 +1,56 @@
+export const metadata = {
+  title: "Better Auth, Clerk ya da düz JWT?",
+  summary: "Üçünü de kendi projelerimde kullandım. Hangisini ne zaman seçtiğimi anlatıyorum.",
+  category: "engineering",
+  date: "2026-11-01",
+  readingMinutes: 5,
+  translationKey: "auth-choice",
+};
+
+Her yeni projede aynı soruyla başlıyorum: kullanıcı girişini kim yönetecek? Bu soruya üç farklı cevap verdim. Spotlight’ta Clerk, miChat ve Note App’te Better Auth, Expense Tracker’da düz JWT kullandım. Her birinin doğru olduğu bir yer var.
+
+## Hazır servis: Clerk
+
+Clerk, giriş ekranlarını, oturumları ve kullanıcı yönetimini dışarıdan hazır veriyor. Spotlight bir React Native + Expo uygulamasıydı ve girişi Clerk ile yaptım.
+
+Clerk şu durumlarda mantıklı:
+
+- Hızlı başlamak istiyorsan.
+- Aynı kullanıcılar hem web’de hem mobilde giriş yapacaksa.
+- Kendi kullanıcı tablonu yönetmek istemiyorsan.
+
+Karşılığında kullanıcı verisi başka bir serviste duruyor ve o servise bağımlı oluyorsun. Küçük bir proje için bu çoğu zaman sorun değil.
+
+## Kendi veritabanında: Better Auth
+
+Better Auth bir kütüphane. Kullanıcılar, oturumlar ve hesaplar senin veritabanında, senin tablolarında duruyor. miChat’te ve Note App’te PostgreSQL ve Drizzle kullanıyordum. Better Auth’un tabloları da aynı şemanın parçası oldu.
+
+Better Auth şu durumlarda mantıklı:
+
+- Kullanıcı verisinin sende kalmasını istiyorsan.
+- Zaten bir veritabanın ve şeman varsa.
+- Oturumları sunucu tarafında kontrol etmek istiyorsan.
+
+<Callout title="Not">
+  Kütüphane işin çoğunu yapıyor, ama veritabanı ve sunucu senin sorumluluğunda. Hazır servise göre biraz daha kurulum işi var.
+</Callout>
+
+## Düz JWT
+
+Expense Tracker’da Express ve MongoDB ile küçük bir API yazdım. Orada giriş için düz JWT yetti: kullanıcı giriş yapar, sunucu imzalı bir token verir, sonraki isteklerde bu token kontrol edilir.
+
+Basit görünüyor, ama bazı işleri kendin çözmen gerekiyor:
+
+- **Yenileme:** Token’ın süresi dolunca kullanıcıyı nasıl giriş ekranına atmadan yenileyeceğin.
+- **İptal:** Çıkış yapan ya da engellenen bir kullanıcının token’ını nasıl geçersiz sayacağın.
+- **Saklama:** Token’ı tarayıcıda nerede tutacağın.
+
+Küçük bir API için bu iş yükü kabul edilebilir. Proje büyüdükçe bu parçaları tekrar tekrar yazmak yerine bir kütüphane kullanmayı tercih ediyorum.
+
+## Kısa karar listesi
+
+- Hızlı başlamak ve hem web’de hem mobilde giriş istiyorsan: **Clerk**.
+- Kullanıcı verisinin kendi veritabanında olmasını istiyorsan: **Better Auth**.
+- Küçük bir API’n varsa ve yenileme ile iptali kendin yönetebileceksen: **düz JWT**.
+
+Hangisini seçersen seç, ilk gün karar vermek önemli. Giriş sistemini sonradan değiştirmek, baştan seçmekten daha zor.

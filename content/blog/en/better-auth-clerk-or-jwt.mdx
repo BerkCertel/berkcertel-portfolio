@@ -1,0 +1,56 @@
+export const metadata = {
+  title: "Better Auth, Clerk or plain JWT?",
+  summary: "I have used all three in my own projects. Here is when I pick each one.",
+  category: "engineering",
+  date: "2026-11-01",
+  readingMinutes: 5,
+  translationKey: "auth-choice",
+};
+
+Every new project starts with the same question for me: who handles sign-in? I have given three different answers. I used Clerk in Spotlight, Better Auth in miChat and Note App, and plain JWT in Expense Tracker. Each one is right somewhere.
+
+## A hosted service: Clerk
+
+Clerk gives you sign-in screens, sessions and user management as a ready service. Spotlight was a React Native + Expo app, and I handled sign-in with Clerk.
+
+Clerk makes sense when:
+
+- You want to start fast.
+- The same users sign in on both web and mobile.
+- You do not want to manage your own user table.
+
+In return, your user data lives in another service and you depend on it. For a small project, that is usually fine.
+
+## In your own database: Better Auth
+
+Better Auth is a library. Users, sessions and accounts live in your database, in your tables. In miChat and Note App I was already using PostgreSQL and Drizzle, so Better Auth’s tables became part of the same schema.
+
+Better Auth makes sense when:
+
+- You want to own your user data.
+- You already have a database and a schema.
+- You want to control sessions on the server.
+
+<Callout title="Note">
+  The library does most of the work, but the database and the server are yours to run. There is a bit more setup than with a hosted service.
+</Callout>
+
+## Plain JWT
+
+In Expense Tracker I wrote a small API with Express and MongoDB. Plain JWT was enough there: the user signs in, the server returns a signed token, and later requests are checked with that token.
+
+It looks simple, but some jobs are yours to solve:
+
+- **Refresh:** how to renew an expired token without sending the user back to the sign-in screen.
+- **Revoke:** how to invalidate the token of a user who signed out or was blocked.
+- **Storage:** where to keep the token in the browser.
+
+For a small API, that work is acceptable. As a project grows, I prefer a library over writing these pieces again and again.
+
+## A short checklist
+
+- You want a fast start and sign-in on both web and mobile: **Clerk**.
+- You want user data in your own database: **Better Auth**.
+- You have a small API and can handle refresh and revoke yourself: **plain JWT**.
+
+Whichever you pick, decide on day one. Changing the auth system later is harder than choosing at the start.
