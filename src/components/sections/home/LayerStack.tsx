@@ -4,17 +4,19 @@ import { HERO_SERVICES } from "@/constants/tech-stack";
 import { cn } from "@/lib/utils";
 
 import styles from "./LayerStack.module.css";
+import { StackIntro } from "./StackIntro";
 
 /**
  * Hero visual (H3 "live system"): three isometric layers — database rows, API + service boxes,
  * interface — that float, with a cursor clicking the UI button, services lighting up and rows
  * "querying". Small mono labels sit on the layers. Decorative; exposed as one labelled image.
+ * On the first load the stack builds up layer by layer first (StackIntro).
  */
 export function LayerStack() {
   const t = useTranslations("hero");
 
   return (
-    <div role="img" aria-label={t("stackLabel")} className={styles.stage}>
+    <StackIntro role="img" aria-label={t("stackLabel")} className={styles.stage}>
       <div className={styles.iso} aria-hidden="true">
         <div className={cn(styles.lay, styles.l1)}>
           <div className={styles.rows}>
@@ -54,6 +56,6 @@ export function LayerStack() {
           </div>
         </div>
       </div>
-    </div>
+    </StackIntro>
   );
 }
