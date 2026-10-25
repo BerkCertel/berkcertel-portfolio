@@ -1,0 +1,95 @@
+export const metadata = {
+  title: "Docker Compose ile yerel geliştirme ortamı: PostgreSQL, Redis, RabbitMQ",
+  summary: "miChat’in ihtiyaç duyduğu altyapıyı bilgisayarıma tek tek kurmadan, tek bir komutla nasıl çalıştırdığım.",
+  category: "guides",
+  date: "2026-12-06",
+  readingMinutes: 5,
+  translationKey: "docker-compose-local",
+};
+
+miChat’in servisleri üç altyapı parçasına ihtiyaç duyuyor: veriler için PostgreSQL, önbellek için Redis, servisler arası mesajlar için RabbitMQ. Bunları bilgisayarıma tek tek kurmak yerine Docker Compose ile çalıştırıyorum.
+
+## Neden Docker Compose
+
+Her aracı ayrı ayrı kurmak zaman alıyor. Sürümler de bilgisayardan bilgisayara farklı olabiliyor. Docker Compose ile bütün altyapı tek bir dosyada tanımlı:
+
+- Tek komutla hepsi başlıyor, tek komutla hepsi duruyor.
+- Sürümler dosyada yazılı, herkes aynı ortamı kullanıyor.
+- Bilgisayarıma bir şey kurmam gerekmiyor, her şey container içinde.
+
+## Dosya
+
+miChat’te bu dosya `infra/docker-compose.yaml` yolunda. Aşağıdaki, aynı üç servisi gösteren sadeleştirilmiş bir örnek:
+
+```yaml
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  postgres-data:
+```
+
+## Her parçanın işi
+
+- **PostgreSQL:** kullanıcılar, odalar ve mesajlar gibi kalıcı veriler burada.
+- **Redis:** sık okunan verileri hızlıca getirmek için önbellek.
+- **RabbitMQ:** servisler arasında mesaj kuyruğu. Bir servis bir iş bırakıyor, diğeri sırası gelince alıyor.
+
+RabbitMQ’nun `management` imajı, `15672` portunda bir yönetim paneli de açıyor. Kuyrukları ve mesajları tarayıcıdan görmek geliştirmeyi kolaylaştırır.
+
+## Temel komutlar
+
+```bash
+docker compose -f infra/docker-compose.yaml up -d   # başlat
+docker compose -f infra/docker-compose.yaml ps      # durumları gör
+docker compose -f infra/docker-compose.yaml logs -f # logları izle
+docker compose -f infra/docker-compose.yaml down    # durdur
+```
+
+`-d`, container’ların arka planda çalışması demek. Terminal boşta kalıyor ve servisler başlatılmaya devam edilebiliyor.
+
+## Veriler nerede kalıyor
+
+Örnekteki `postgres-data` bir volume. Container silinse bile veritabanındaki veriler bu volume’da kalıyor.
+
+<Callout title="Not">
+  `docker compose down -v` volume’ları da siler. Veritabanını sıfırlamak istediğinde işe yarar, ama verilerin geri gelmez.
+</Callout>
+
+## Servisler altyapıya nasıl bağlanıyor
+
+Servisler bu altyapıya bağlantı adresleriyle ulaşıyor. Adresleri kodun içine yazmak yerine ortam değişkenlerinde tutmak gerekir:
+
+```bash
+DATABASE_URL=postgres://app:app@localhost:5432/app
+REDIS_URL=redis://localhost:6379
+RABBITMQ_URL=amqp://localhost:5672
+```
+
+Böylece aynı kod, yerelde Docker’daki servislere, canlı ortamda ise gerçek sunuculara bağlanabiliyor.
+
+## Dikkat edilecekler
+
+- Örnekteki kullanıcı adı ve şifreler sadece yerel geliştirme için. Canlı ortamda asla bunları kullanma.
+- Bir port bilgisayarında başka bir uygulama tarafından kullanılıyorsa container başlamaz. Bu durumda soldaki port numarasını değiştirmen yeterli.
+- İmaj sürümlerini sabitlemek, ortamın zamanla kendiliğinden değişmesini engelliyor.

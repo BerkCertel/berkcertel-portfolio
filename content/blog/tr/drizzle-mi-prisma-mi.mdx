@@ -1,0 +1,79 @@
+export const metadata = {
+  title: "Drizzle mı, Prisma mı?",
+  summary: "İkisini de kullandım. TypeScript projelerinde hangisini ne zaman seçtiğimi genel hatlarıyla anlatıyorum.",
+  category: "engineering",
+  date: "2026-12-20",
+  readingMinutes: 5,
+  translationKey: "drizzle-vs-prisma",
+};
+
+TypeScript ile bir veritabanına bağlanırken en sık karşılaştığım iki seçenek Drizzle ve Prisma. İkisini de kullandım. miChat ve Note App’te Drizzle var. Bu yazıda ikisini genel hatlarıyla karşılaştırıyorum.
+
+## Şema nerede yazılıyor
+
+En büyük fark burada.
+
+Drizzle’da şema düz TypeScript:
+
+```ts
+import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+```
+
+Prisma’da ise şema, kendi dilinde yazılan ayrı bir dosyada:
+
+```prisma
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+```
+
+Prisma’nın şema dili kısa ve okunaklı. Drizzle’ın şeması ise sıradan bir TypeScript dosyası olduğu için başka kodlarla aynı yerde durabiliyor ve içe aktarılabiliyor.
+
+## Sorgular
+
+Drizzle’ın sorguları SQL’e çok yakın:
+
+```ts
+const result = await db.select().from(users).where(eq(users.email, email));
+```
+
+Prisma’nın sorguları ise nesne tabanlı:
+
+```ts
+const user = await prisma.user.findUnique({ where: { email } });
+```
+
+SQL biliyorsan Drizzle tanıdık geliyor. SQL ile daha az uğraşmak istiyorsan Prisma’nın yazımı daha rahat olabilir. İkisinde de sonuçlar tam tipli.
+
+## Kod üretimi
+
+Prisma, şemadan bir istemci üretiyor. Şemayı değiştirdikten sonra istemciyi yeniden üretmek gerekiyor.
+
+Drizzle’da böyle bir adım yok. Tipler doğrudan TypeScript şemasından geliyor, şemayı değiştirdiğin anda editör yeni tipleri görüyor.
+
+## Migration’lar
+
+İkisinde de şemadan migration üreten bir araç var: Drizzle’da `drizzle-kit`, Prisma’da `prisma migrate`. İkisi de değişiklikleri SQL dosyaları olarak saklıyor, böylece veritabanında ne değiştiğini görebiliyorsun.
+
+<Callout title="Not">
+  Hangisini seçersen seç, üretilen migration dosyalarını çalıştırmadan önce okumak iyi bir alışkanlık.
+</Callout>
+
+## Monorepo’da paylaşım
+
+miChat’te veritabanı şeması `packages/database` altında, ortak bir pakette duruyor. Drizzle şeması TypeScript olduğu için her servis onu normal bir paket gibi içe aktarıyor ve aynı tipleri kullanıyor. Bu, monorepo’larda Drizzle’ın güçlü yanlarından biri.
+
+## Ne zaman hangisi
+
+- SQL’e yakın kalmak, ek bir üretim adımı olmadan çalışmak ve şemayı TypeScript içinde tutmak istiyorsan: **Drizzle**.
+- Okunaklı ayrı bir şema dosyası, nesne tabanlı sorgular ve olgun bir araç seti istiyorsan: **Prisma**.
+
+İkisi de sağlam seçenekler. Seçerken ekibin SQL’e ne kadar yakın olduğuna ve projenin yapısına bakmak gerekir.

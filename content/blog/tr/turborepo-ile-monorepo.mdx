@@ -1,0 +1,95 @@
+export const metadata = {
+  title: "Turborepo ile monorepo: neden ve nasıl",
+  summary: "miChat’in web uygulamasını, servislerini ve ortak paketlerini tek bir repoda nasıl düzenlediğim.",
+  category: "engineering",
+  date: "2026-11-29",
+  readingMinutes: 5,
+  translationKey: "turborepo-monorepo",
+};
+
+miChat’te bir web uygulaması, bir API gateway ve üç servis var: user, chat ve mail. Hepsini ayrı repolarda tutabilirdim. Bunun yerine tek bir monorepo kurdum ve Turborepo ile yönettim.
+
+## Monorepo ne demek
+
+Monorepo, birden fazla uygulamanın ve paketin tek bir repoda durması demek. Her uygulama yine kendi `package.json` dosyasına sahip. Ama hepsi aynı repoda, aynı araçlarla ve aynı tiplerle çalışıyor.
+
+## Neden tek repo
+
+Tek reponun üç faydası var:
+
+- **Ortak kod tek yerde.** Auth, cache ve veritabanı kodu her serviste ayrı ayrı kopyalanmıyor.
+- **Tipler paylaşılıyor.** Veritabanı şeması değişince, onu kullanan her servis aynı anda hata veriyor. Sorun daha çalıştırmadan görünüyor.
+- **Tek komut.** Bütün uygulamalar tek bir komutla geliştirme modunda başlatılabiliyor.
+
+<Callout title="Not">
+  Monorepo her proje için gerekli değil. Tek bir uygulaman varsa normal bir repo daha sade.
+</Callout>
+
+## miChat’in yapısı
+
+Repo, uygulamalar ve paketler olarak ikiye ayrılıyor:
+
+```txt
+apps/
+  web/              # Next.js istemci
+  server/
+    api-gateway/
+    user/
+    chat/
+    mail/
+packages/
+  auth/
+  cache/
+  database/         # Drizzle şeması
+infra/
+  docker-compose.yaml
+```
+
+`apps/` altındakiler çalışan uygulamalar. `packages/` altındakiler ise uygulamaların içe aktardığı ortak kod. Bir paket tek başına çalışmıyor, sadece başka bir yerde kullanılıyor.
+
+## Paketleri kullanmak
+
+Workspace’ler sayesinde bir servis, ortak paketi npm’den inmiş gibi içe aktarıyor. Aşağıdaki sadeleştirilmiş bir örnek:
+
+```ts
+// apps/server/chat içinde
+import { db } from "@repo/database";
+import { messages } from "@repo/database/schema";
+
+const latest = await db.select().from(messages).limit(20);
+```
+
+Paket repoda olduğu için yaptığım değişiklik hemen bütün servislere yansıyor. Ayrı bir sürüm yayınlamam gerekmiyor.
+
+## Turborepo ne yapıyor
+
+Turborepo, repodaki görevleri (build, dev, lint gibi) doğru sırayla ve paralel çalıştırıyor. Ayarları `turbo.json` dosyasında. Genel bir örnek:
+
+```json
+{
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
+```
+
+`"^build"`, bir uygulamayı derlemeden önce kullandığı paketlerin derlenmesi demek. Birbirine bağlı olmayan görevler ise aynı anda çalışıyor.
+
+## Önbellek
+
+Turborepo her görevin sonucunu önbelleğe alıyor. Bir paketin dosyaları değişmediyse, onun build’ini tekrar çalıştırmıyor ve önceki sonucu kullanıyor.
+
+Bu yüzden sadece bir servis değiştiğinde, değişmeyen paketler yeniden derlenmiyor.
+
+## Dikkat edilecekler
+
+- Paket isimlerini tutarlı tutmak gerekir; böylece hangi kodun ortak olduğu adından belli olur.
+- Bir kodu ancak iki yerde gerçekten kullanılınca pakete taşımak daha doğrudur. Her şeyi baştan paylaşmaya çalışmak gereksiz karmaşa yaratır.
+- Servislerin birbirinin içini doğrudan içe aktarmaması gerekir. Ortak olan her şey `packages/` altında durmalıdır.

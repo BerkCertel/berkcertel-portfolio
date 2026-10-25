@@ -1,0 +1,95 @@
+export const metadata = {
+  title: "A monorepo with Turborepo: why and how",
+  summary: "How I organised miChat’s web app, services and shared packages in one repository.",
+  category: "engineering",
+  date: "2026-11-29",
+  readingMinutes: 5,
+  translationKey: "turborepo-monorepo",
+};
+
+miChat has a web app, an API gateway and three services: user, chat and mail. I could have kept each of them in its own repository. Instead, I set up one monorepo and managed it with Turborepo.
+
+## What a monorepo is
+
+A monorepo means several apps and packages living in one repository. Each app still has its own `package.json`. But they all live in the same repository and work with the same tools and the same types.
+
+## Why one repository
+
+One repository has three benefits:
+
+- **Shared code in one place.** Auth, cache and database code are not copied into every service.
+- **Shared types.** When the database schema changes, every service that uses it shows an error at once. The problem shows up before anything runs.
+- **One command.** Every app can start in development mode with a single command.
+
+<Callout title="Note">
+  Not every project needs a monorepo. If you have a single app, a normal repository is simpler.
+</Callout>
+
+## miChat’s layout
+
+The repository splits into apps and packages:
+
+```txt
+apps/
+  web/              # Next.js client
+  server/
+    api-gateway/
+    user/
+    chat/
+    mail/
+packages/
+  auth/
+  cache/
+  database/         # Drizzle schema
+infra/
+  docker-compose.yaml
+```
+
+Everything under `apps/` is a running application. Everything under `packages/` is shared code that the apps import. A package does not run on its own; it is only used somewhere else.
+
+## Using the packages
+
+Thanks to workspaces, a service imports a shared package as if it came from npm. A simplified example:
+
+```ts
+// inside apps/server/chat
+import { db } from "@repo/database";
+import { messages } from "@repo/database/schema";
+
+const latest = await db.select().from(messages).limit(20);
+```
+
+Because the package lives in the repository, a change I make reaches every service right away. I do not need to publish a new version.
+
+## What Turborepo does
+
+Turborepo runs the tasks in the repository (build, dev, lint and so on) in the right order and in parallel. Its settings live in `turbo.json`. A general example:
+
+```json
+{
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
+```
+
+`"^build"` means the packages an app uses are built before the app itself. Tasks that do not depend on each other run at the same time.
+
+## Caching
+
+Turborepo caches the result of each task. If a package’s files have not changed, it does not run its build again and reuses the previous result.
+
+So when only one service changes, the packages that did not change are not rebuilt.
+
+## Things to watch
+
+- Package names should stay consistent, so the name tells you which code is shared.
+- It is better to move code into a package only when two places really use it. Trying to share everything up front adds needless complexity.
+- Services should not import each other’s internals directly. Everything shared should live under `packages/`.

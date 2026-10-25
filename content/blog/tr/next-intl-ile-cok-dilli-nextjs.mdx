@@ -1,0 +1,81 @@
+export const metadata = {
+  title: "next-intl ile çok dilli bir Next.js sitesi",
+  summary: "Bu sitenin Türkçe ve İngilizce sürümlerini nasıl kurduğum: yerelleştirilmiş adresler, varsayılan dil ve dil anahtarı.",
+  category: "engineering",
+  date: "2026-11-22",
+  readingMinutes: 5,
+  translationKey: "next-intl",
+};
+
+Bu site iki dilde: Türkçe ve İngilizce. Çeviriler, adresler ve dil anahtarı için next-intl kullanıyorum. Bu yazıda kurulumu bu sitedeki gerçek ayarlarla anlatıyorum.
+
+## Tek yerde yönlendirme ayarları
+
+next-intl’de dillerle ilgili her şey tek bir yönlendirme dosyasında duruyor. Bu sitede şöyle:
+
+```ts
+export const routing = defineRouting({
+  locales: ["tr", "en"],
+  defaultLocale: "tr",
+  localePrefix: "as-needed",
+  localeDetection: false,
+  localeCookie: false,
+  pathnames: {
+    "/": "/",
+    "/about": { tr: "/hakkimda", en: "/about" },
+    "/projects": { tr: "/projeler", en: "/projects" },
+    "/blog": "/blog",
+    "/blog/[slug]": "/blog/[slug]",
+  },
+});
+```
+
+Kod içinde sayfalara hep aynı iç adla ulaşıyorum, örneğin `/about`. Kullanıcının gördüğü adres ise dile göre değişiyor.
+
+## Türkçe varsayılan, İngilizce önekli
+
+`localePrefix: "as-needed"` sayesinde varsayılan dil olan Türkçe kök adreste duruyor: `/hakkimda`. İngilizce sayfalar `/en` önekiyle açılıyor: `/en/about`.
+
+Bu, Türkçe ziyaretçiler için kısa ve temiz adresler demek. İngilizce sayfalar da ayrı ve tutarlı bir yerde duruyor.
+
+## Dili adres belirliyor
+
+`localeDetection: false` ve `localeCookie: false` ile tarayıcı dili ya da bir çerez sayfayı başka bir dile yönlendirmiyor. Dil sadece adresten okunuyor ve sadece dil anahtarıyla değişiyor.
+
+Bunu bilerek seçtim. Bir bağlantıyı paylaştığında karşı taraf aynı dildeki aynı sayfayı görüyor. Arama motorları da her adresin tek bir dili olduğunu biliyor.
+
+<Callout title="Not">
+  Bu Next.js sürümünde istekleri yakalayan dosyanın adı `proxy.ts`. Eskiden `middleware.ts` idi. next-intl’in yönlendirmesi bu dosyada çalışıyor.
+</Callout>
+
+## Yerelleştirilmiş linkler
+
+Sayfalar arasında hep next-intl’in `Link` bileşenini kullanıyorum. İç adı veriyorum, doğru adresi o üretiyor:
+
+```tsx
+<Link href="/about">{t("nav.about")}</Link>
+// Türkçe: /hakkimda
+// İngilizce: /en/about
+```
+
+Böylece bir adresi değiştirmek istediğimde sadece yönlendirme dosyasını düzenliyorum. Linklerin hiçbirine dokunmam gerekmiyor.
+
+## Dil anahtarı
+
+Dil anahtarı, kullanıcı hangi sayfadaysa o sayfanın diğer dildeki adresine gidiyor. Bunun için `getPathname` ile hedef adresi kendim hesaplıyorum:
+
+```tsx
+router.replace(getPathname({ href: { pathname, params }, locale: next }));
+```
+
+Blog yazılarında bir adım daha var. Her yazının slug’ı kendi dilinde, bu yüzden iki dil arasında bir eşleme gerekiyor. Her yazı aynı `translationKey` değerini taşıyor. Dil anahtarı bu anahtar üzerinden diğer dildeki yazının slug’ını buluyor.
+
+## Çeviriler tek dosyada
+
+Arayüzdeki bütün metinler `messages/tr.json` ve `messages/en.json` dosyalarında. Bileşenlerde metni doğrudan yazmıyorum, `useTranslations` ile okuyorum.
+
+Bu sayede iki dosyayı yan yana açıp eksik bir çeviri olup olmadığını kolayca görebiliyorum. Mesaj tiplerini de TypeScript’e tanıttım; olmayan bir anahtarı kullanırsam derleme hata veriyor.
+
+## Arama motorları için
+
+Her sayfa kendi dilindeki adresini canonical olarak gösteriyor. Ayrıca `hreflang` ile diğer dildeki karşılığını bildiriyor. Bu bağlantıları da aynı yönlendirme ayarlarından üretiyorum, böylece adresler hiçbir yerde elle yazılmıyor.

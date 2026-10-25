@@ -24,3 +24,21 @@ The site launches with 4 posts, each in TR and EN (same `translationKey`). The m
 
 ## 4 · Oteller QR siparişten aslında ne bekliyor? (~4 min)
 - Written from Berk's answers only (ask first). Possible angles: multilingual menus (TR, EN, DE, FR, RU), orders reaching the right bar/kitchen, staff screens, reporting.
+
+## Weekly posts after launch (scheduled)
+
+Same rules: TR + EN with the same `translationKey`, first person, short sentences, only general technical knowledge and what really exists in Berk's projects (this repo, `src/constants/projects.ts`, miChat's structure). Code that is not copied from a real repo is labelled as a simplified or general example.
+
+| # | Date | translationKey | Category | TR slug | EN slug |
+|---|---|---|---|---|---|
+| 5 | 2026-11-22 | next-intl | engineering | next-intl-ile-cok-dilli-nextjs | multilingual-nextjs-with-next-intl |
+| 6 | 2026-11-29 | turborepo-monorepo | engineering | turborepo-ile-monorepo | monorepo-with-turborepo |
+| 7 | 2026-12-06 | docker-compose-local | guides | docker-compose-ile-yerel-gelistirme | local-development-with-docker-compose |
+| 8 | 2026-12-13 | react-native-expo | guides | react-native-expo-ile-mobil-uygulama | building-mobile-apps-with-react-native-expo |
+| 9 | 2026-12-20 | drizzle-vs-prisma | engineering | drizzle-mi-prisma-mi | drizzle-or-prisma |
+
+- **5 · next-intl:** this site's real routing settings (`localePrefix: "as-needed"`, TR default, no locale detection or cookie, localized pathnames), `Link`, the language switch with `getPathname`, `translationKey` for posts, typed messages, canonical + hreflang.
+- **6 · Turborepo:** why one repo for miChat, its `apps/` + `packages/` layout, using workspace packages, a general `turbo.json`, caching.
+- **7 · Docker Compose:** miChat's `infra/docker-compose.yaml` idea (PostgreSQL, Redis, RabbitMQ) as a simplified example, commands, volumes, env URLs.
+- **8 · React Native + Expo:** Spotlight's stack (Expo, Convex, Clerk, NativeWind); general points: real devices, both platforms, secure token storage, live queries, safe areas.
+- **9 · Drizzle or Prisma:** general comparison (schema, queries, code generation, migrations), Drizzle in miChat and Note App, shared schema package.

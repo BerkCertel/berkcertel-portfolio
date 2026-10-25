@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "React Native ve Expo ile mobil uygulama geliştirirken dikkat edilecekler",
+  summary: "Spotlight’ı Expo, Convex, Clerk ve NativeWind ile yazdım. Bu yığında dikkat edilmesi gereken noktalar.",
+  category: "guides",
+  date: "2026-12-13",
+  readingMinutes: 5,
+  translationKey: "react-native-expo",
+};
+
+Spotlight, Instagram benzeri bir sosyal medya uygulaması. React Native ve Expo ile yazdım. Veri için Convex, giriş için Clerk, stil için NativeWind kullandım. Bu yazıda bu yığında dikkat edilmesi gereken noktaları anlatıyorum.
+
+## Neden Expo
+
+Expo, React Native ile uygulama geliştirmeyi kolaylaştıran bir araç seti. Native projeyle uğraşmadan başlayabiliyorsun:
+
+- Uygulamayı telefonda hemen deneyebiliyorsun.
+- Kamera, bildirim, dosya gibi özellikler için hazır paketler var.
+- iOS ve Android için derlemeyi Expo’nun araçlarıyla yapabiliyorsun.
+
+Tek kod tabanından iki platforma uygulama çıkıyor. Bu, tek başına geliştiren biri için büyük kolaylık.
+
+## Gerçek cihazda dene
+
+Simülatör hızlı ama her şeyi göstermiyor. Klavyenin ekranı nasıl kapattığı, kaydırmanın nasıl hissettirdiği ve kameranın nasıl çalıştığı ancak gerçek bir telefonda görülür.
+
+İki platformu da denemek önemli. Aynı kod iOS ve Android’de küçük farklarla görünebiliyor; gölgeler ve klavye davranışı bunların başında geliyor.
+
+## NativeWind ile stil
+
+NativeWind, Tailwind sınıflarını React Native’de kullanmamı sağlıyor. Web’deki yazım şekli mobilde de geçerli:
+
+```tsx
+<View className="flex-1 items-center justify-center bg-white">
+  <Text className="text-lg font-semibold">Merhaba</Text>
+</View>
+```
+
+Web ve mobil arasında geçiş yaparken farklı bir stil sistemi öğrenmek gerekmiyor.
+
+<Callout title="Not">
+  React Native’de her CSS özelliği yok. NativeWind, Tailwind sınıflarını React Native’in desteklediği stillere çeviriyor; desteklenmeyen bir şey yazarsan etkisi olmuyor.
+</Callout>
+
+## Clerk ile giriş
+
+Giriş ekranlarını ve oturumları Clerk’e bıraktım. Clerk’in Expo paketi, oturum bilgisini saklamak için bir token önbelleği istiyor. Bunu cihazın güvenli depolama alanında tutmak için `expo-secure-store` kullanılabiliyor.
+
+Böylece kullanıcı uygulamayı kapatıp açtığında tekrar giriş yapmak zorunda kalmıyor.
+
+## Convex ile canlı veri
+
+Convex, veritabanı ve backend fonksiyonlarını bir arada veriyor. Öne çıkan yanı, sorguların canlı olması:
+
+```tsx
+const posts = useQuery(api.posts.list);
+```
+
+Veri değişince ekran kendiliğinden güncelleniyor. Bir sosyal medya akışında yeni bir gönderinin ya da beğeninin hemen görünmesi için ek bir kod yazmak gerekmiyor.
+
+## Ekran kenarları
+
+Telefonlarda çentik, durum çubuğu ve alt çubuk gibi alanlar var. İçeriğin bunların altında kalmaması için güvenli alanlara dikkat etmek gerekir. `react-native-safe-area-context` bu alanların nerede olduğunu verir.
+
+## Kısa liste
+
+- Erken ve sık gerçek cihazda dene.
+- iOS ve Android’i ayrı ayrı kontrol et.
+- Giriş bilgisini güvenli depolamada tut.
+- Güvenli alanları unutma.
+- Mağaza hesaplarını ve inceleme süresini baştan hesaba kat.

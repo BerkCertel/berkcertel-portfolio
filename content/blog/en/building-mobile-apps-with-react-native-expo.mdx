@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "What to watch when building mobile apps with React Native and Expo",
+  summary: "I built Spotlight with Expo, Convex, Clerk and NativeWind. The points worth watching with this stack.",
+  category: "guides",
+  date: "2026-12-13",
+  readingMinutes: 5,
+  translationKey: "react-native-expo",
+};
+
+Spotlight is an Instagram-like social media app. I built it with React Native and Expo. I used Convex for data, Clerk for sign-in and NativeWind for styling. In this post I share the points worth watching with this stack.
+
+## Why Expo
+
+Expo is a toolkit that makes building React Native apps easier. You can start without touching the native projects:
+
+- You can try the app on your phone right away.
+- There are ready packages for features like the camera, notifications and files.
+- You can build for iOS and Android with Expo’s tools.
+
+One codebase gives you an app for both platforms. For someone building alone, that is a big help.
+
+## Test on a real device
+
+The simulator is fast, but it does not show everything. How the keyboard covers the screen, how scrolling feels and how the camera works only show on a real phone.
+
+Testing both platforms matters. The same code can look slightly different on iOS and Android; shadows and keyboard behaviour are the usual suspects.
+
+## Styling with NativeWind
+
+NativeWind lets me use Tailwind classes in React Native. The way you write styles on the web works on mobile too:
+
+```tsx
+<View className="flex-1 items-center justify-center bg-white">
+  <Text className="text-lg font-semibold">Hello</Text>
+</View>
+```
+
+Switching between web and mobile, there is no different styling system to learn.
+
+<Callout title="Note">
+  React Native does not have every CSS feature. NativeWind turns Tailwind classes into the styles React Native supports; if you write something unsupported, it has no effect.
+</Callout>
+
+## Sign-in with Clerk
+
+I left the sign-in screens and sessions to Clerk. Clerk’s Expo package asks for a token cache to keep the session. You can use `expo-secure-store` to keep it in the device’s secure storage.
+
+That way, users do not have to sign in again every time they reopen the app.
+
+## Live data with Convex
+
+Convex brings the database and backend functions together. Its standout feature is that queries are live:
+
+```tsx
+const posts = useQuery(api.posts.list);
+```
+
+When the data changes, the screen updates by itself. In a social feed, a new post or like shows up right away without extra code.
+
+## Screen edges
+
+Phones have areas like the notch, the status bar and the home indicator. Content should respect the safe areas so it does not end up under them. `react-native-safe-area-context` tells you where they are.
+
+## A short list
+
+- Test on a real device early and often.
+- Check iOS and Android separately.
+- Keep sign-in data in secure storage.
+- Do not forget the safe areas.
+- Plan for store accounts and review times from the start.

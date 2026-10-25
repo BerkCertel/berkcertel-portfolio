@@ -1,0 +1,79 @@
+export const metadata = {
+  title: "Drizzle or Prisma?",
+  summary: "I have used both. A general look at which one I pick for TypeScript projects, and when.",
+  category: "engineering",
+  date: "2026-12-20",
+  readingMinutes: 5,
+  translationKey: "drizzle-vs-prisma",
+};
+
+When I connect to a database with TypeScript, the two options I meet most often are Drizzle and Prisma. I have used both; miChat and Note App use Drizzle. In this post I compare them in general terms.
+
+## Where the schema lives
+
+This is the biggest difference.
+
+In Drizzle, the schema is plain TypeScript:
+
+```ts
+import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+```
+
+In Prisma, the schema lives in a separate file written in its own language:
+
+```prisma
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+```
+
+Prisma’s schema language is short and easy to read. Drizzle’s schema is an ordinary TypeScript file, so it can sit next to other code and be imported like it.
+
+## Queries
+
+Drizzle’s queries stay very close to SQL:
+
+```ts
+const result = await db.select().from(users).where(eq(users.email, email));
+```
+
+Prisma’s queries are object-based:
+
+```ts
+const user = await prisma.user.findUnique({ where: { email } });
+```
+
+If you know SQL, Drizzle feels familiar. If you would rather deal with SQL less, Prisma’s style can feel more comfortable. Both give you fully typed results.
+
+## Code generation
+
+Prisma generates a client from the schema. After changing the schema, you need to generate the client again.
+
+Drizzle has no such step. The types come straight from the TypeScript schema, so the editor sees the new types as soon as you change it.
+
+## Migrations
+
+Both have a tool that creates migrations from the schema: `drizzle-kit` for Drizzle and `prisma migrate` for Prisma. Both keep the changes as SQL files, so you can see what changes in the database.
+
+<Callout title="Note">
+  Whichever you choose, reading the generated migration files before running them is a good habit.
+</Callout>
+
+## Sharing in a monorepo
+
+In miChat, the database schema lives in a shared package under `packages/database`. Because the Drizzle schema is TypeScript, every service imports it like a normal package and uses the same types. That is one of Drizzle’s strengths in a monorepo.
+
+## When to pick which
+
+- You want to stay close to SQL, skip an extra generation step and keep the schema in TypeScript: **Drizzle**.
+- You want a separate, readable schema file, object-based queries and a mature toolset: **Prisma**.
+
+Both are solid options. The choice should depend on how close the team is to SQL and on the structure of the project.

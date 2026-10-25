@@ -1,0 +1,81 @@
+export const metadata = {
+  title: "A multilingual Next.js site with next-intl",
+  summary: "How I set up the Turkish and English versions of this site: localized URLs, a default language and the language switch.",
+  category: "engineering",
+  date: "2026-11-22",
+  readingMinutes: 5,
+  translationKey: "next-intl",
+};
+
+This site is in two languages: Turkish and English. I use next-intl for translations, URLs and the language switch. In this post I walk through the setup with the real settings of this site.
+
+## Routing settings in one place
+
+In next-intl, everything about languages lives in one routing file. On this site it looks like this:
+
+```ts
+export const routing = defineRouting({
+  locales: ["tr", "en"],
+  defaultLocale: "tr",
+  localePrefix: "as-needed",
+  localeDetection: false,
+  localeCookie: false,
+  pathnames: {
+    "/": "/",
+    "/about": { tr: "/hakkimda", en: "/about" },
+    "/projects": { tr: "/projeler", en: "/projects" },
+    "/blog": "/blog",
+    "/blog/[slug]": "/blog/[slug]",
+  },
+});
+```
+
+In the code, I always refer to a page by the same internal name, for example `/about`. The URL the visitor sees changes with the language.
+
+## Turkish by default, English with a prefix
+
+With `localePrefix: "as-needed"`, Turkish, the default language, lives at the root: `/hakkimda`. English pages open with an `/en` prefix: `/en/about`.
+
+That means short, clean URLs for Turkish visitors, and English pages in their own consistent place.
+
+## The URL decides the language
+
+With `localeDetection: false` and `localeCookie: false`, neither the browser language nor a cookie sends the page to another language. The language is read only from the URL, and it only changes through the language switch.
+
+I chose this on purpose. When you share a link, the other person sees the same page in the same language. Search engines also know that each URL has exactly one language.
+
+<Callout title="Note">
+  In this version of Next.js, the file that intercepts requests is called `proxy.ts`. It used to be `middleware.ts`. next-intl’s routing runs in this file.
+</Callout>
+
+## Localized links
+
+Between pages I always use next-intl’s `Link` component. I pass the internal name, and it builds the right URL:
+
+```tsx
+<Link href="/about">{t("nav.about")}</Link>
+// Turkish: /hakkimda
+// English: /en/about
+```
+
+So when I want to change a URL, I only edit the routing file. None of the links need to change.
+
+## The language switch
+
+The language switch goes to the same page in the other language, wherever the visitor is. For that, I build the target URL myself with `getPathname`:
+
+```tsx
+router.replace(getPathname({ href: { pathname, params }, locale: next }));
+```
+
+Blog posts need one more step. Each post has a slug in its own language, so the two languages need a mapping. Every post carries the same `translationKey`, and the language switch uses it to find the post’s slug in the other language.
+
+## Translations in one file
+
+All interface text lives in `messages/tr.json` and `messages/en.json`. I never write text directly in components; I read it with `useTranslations`.
+
+This way I can open the two files side by side and quickly see if a translation is missing. I also told TypeScript about the message types, so using a key that does not exist breaks the build.
+
+## For search engines
+
+Every page points to its own URL in its own language as the canonical one. It also lists its counterpart in the other language with `hreflang`. I build these links from the same routing settings, so no URL is ever typed by hand.

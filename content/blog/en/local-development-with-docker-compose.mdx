@@ -1,0 +1,95 @@
+export const metadata = {
+  title: "A local development setup with Docker Compose: PostgreSQL, Redis, RabbitMQ",
+  summary: "How I run the infrastructure miChat needs with one command, without installing each tool on my machine.",
+  category: "guides",
+  date: "2026-12-06",
+  readingMinutes: 5,
+  translationKey: "docker-compose-local",
+};
+
+miChat’s services need three pieces of infrastructure: PostgreSQL for data, Redis for caching and RabbitMQ for messages between services. Instead of installing them one by one on my machine, I run them with Docker Compose.
+
+## Why Docker Compose
+
+Installing every tool separately takes time, and versions can differ from one machine to another. With Docker Compose, the whole infrastructure is defined in one file:
+
+- One command starts everything, one command stops everything.
+- Versions are written in the file, so everyone uses the same setup.
+- Nothing is installed on my machine; everything runs in containers.
+
+## The file
+
+In miChat this file lives at `infra/docker-compose.yaml`. Below is a simplified example with the same three services:
+
+```yaml
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  postgres-data:
+```
+
+## What each piece does
+
+- **PostgreSQL:** persistent data such as users, rooms and messages.
+- **Redis:** a cache for fast access to data that is read often.
+- **RabbitMQ:** a message queue between services. One service drops off a job, another picks it up when it is ready.
+
+RabbitMQ’s `management` image also opens an admin panel on port `15672`. Seeing queues and messages in the browser makes development easier.
+
+## Basic commands
+
+```bash
+docker compose -f infra/docker-compose.yaml up -d   # start
+docker compose -f infra/docker-compose.yaml ps      # see the status
+docker compose -f infra/docker-compose.yaml logs -f # follow the logs
+docker compose -f infra/docker-compose.yaml down    # stop
+```
+
+`-d` means the containers run in the background. The terminal stays free, so you can go on and start the services.
+
+## Where the data lives
+
+`postgres-data` in the example is a volume. Even if the container is removed, the database data stays in this volume.
+
+<Callout title="Note">
+  `docker compose down -v` removes the volumes too. That is useful when you want a fresh database, but the data does not come back.
+</Callout>
+
+## How the services connect
+
+The services reach this infrastructure through connection URLs. Instead of writing them in the code, they should live in environment variables:
+
+```bash
+DATABASE_URL=postgres://app:app@localhost:5432/app
+REDIS_URL=redis://localhost:6379
+RABBITMQ_URL=amqp://localhost:5672
+```
+
+This way the same code connects to the containers locally and to the real servers in production.
+
+## Things to watch
+
+- The usernames and passwords in the example are for local development only. Never use them in production.
+- If another app on your machine already uses a port, the container will not start. Changing the port number on the left is enough.
+- Pinning image versions keeps your setup from changing on its own over time.
