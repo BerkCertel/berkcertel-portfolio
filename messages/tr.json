@@ -37,8 +37,12 @@
         "description": "Web uygulamaları, mobil uygulamalar, backend ve API, kurumsal ve e-ticaret siteleri."
       },
       "privacy": {
-        "title": "Gizlilik",
-        "description": "Bu sitede hangi bilgilerin neden ve nasıl kullanıldığı (KVKK)."
+        "title": "Gizlilik ve KVKK Aydınlatma Metni",
+        "description": "Bu sitede hangi kişisel verilerin, hangi amaçla ve hangi hukuki sebeple işlendiği; KVKK kapsamındaki haklarınız."
+      },
+      "cookies": {
+        "title": "Çerez Politikası",
+        "description": "Bu sitede reklam, analiz ya da takip çerezi yok. Tarayıcınızda tutulan tek tercih ve spam koruması hakkında bilgi."
       }
     }
   },
@@ -246,25 +250,41 @@
         "eyebrow": "Web",
         "title": "Web uygulamaları",
         "description": "Yönetim panelleri, SaaS ürünleri ve şirket içi araçlar. Hızlı, güvenli ve büyümeye hazır web uygulamaları geliştiriyorum.",
-        "points": ["Yönetim panelleri", "SaaS ürünleri", "Şirket içi araçlar"]
+        "points": [
+          "Yönetim panelleri",
+          "SaaS ürünleri",
+          "Şirket içi araçlar"
+        ]
       },
       "mobile": {
         "eyebrow": "Mobil",
         "title": "Mobil uygulamalar",
         "description": "iOS ve Android’de çalışan, hızlı ve kullanımı kolay mobil uygulamalar; tek kod tabanıyla iki platform.",
-        "points": ["iOS + Android", "Tek kod tabanı", "Bildirimler"]
+        "points": [
+          "iOS + Android",
+          "Tek kod tabanı",
+          "Bildirimler"
+        ]
       },
       "backend": {
         "eyebrow": "Backend",
         "title": "Backend ve API",
         "description": "Kimlik doğrulama, veritabanı tasarımı ve API’ler: uygulamanın görünmeyen ama en önemli kısmı.",
-        "points": ["REST API", "Kimlik doğrulama", "Veritabanı tasarımı"]
+        "points": [
+          "REST API",
+          "Kimlik doğrulama",
+          "Veritabanı tasarımı"
+        ]
       },
       "websites": {
         "eyebrow": "Web sitesi",
         "title": "Kurumsal ve e-ticaret siteleri",
         "description": "Hızlı açılan, arama motorlarında bulunan, çok dilli kurumsal siteler ve e-ticaret mağazaları.",
-        "points": ["SEO", "Çok dilli", "Hızlı açılış"]
+        "points": [
+          "SEO",
+          "Çok dilli",
+          "Hızlı açılış"
+        ]
       }
     },
     "viewAll": "Tümünü gör",
@@ -373,7 +393,10 @@
       "messagePlaceholder": "Projenden ya da pozisyondan kısaca bahset.",
       "submit": "Mesajı gönder",
       "sending": "Gönderiliyor…",
-      "spamProtection": "Spam koruması"
+      "spamProtection": "Spam koruması",
+      "consent": "Mesajımın iletilebilmesi için ad, e-posta ve mesaj bilgilerimin yurt dışında bulunan e-posta ve güvenlik hizmet sağlayıcılarına aktarılmasına açık rıza veriyorum.",
+      "notice": "Ad, e-posta ve mesaj bilgilerin yalnızca sana e-postayla dönüş yapabilmem için kullanılır; hiçbir veritabanında saklanmaz. Ayrıntılar: <link>Aydınlatma Metni</link>.",
+      "noConsent": "Onay vermek istemezsen bana doğrudan <mail>{email}</mail> adresinden yazabilirsin."
     },
     "success": {
       "titleWithName": "Teşekkürler, {name}.",
@@ -387,20 +410,22 @@
       "messageShort": "Mesaj en az 10 karakter olmalı.",
       "messageLong": "Mesaj en fazla 2000 karakter olabilir.",
       "turnstile": "Spam doğrulaması tamamlanmadı. Sayfayı yenileyip tekrar dene.",
-      "generic": "Mesaj gönderilemedi. Biraz sonra tekrar dene ya da doğrudan e-posta gönder."
+      "generic": "Mesaj gönderilemedi. Biraz sonra tekrar dene ya da doğrudan e-posta gönder.",
+      "consentRequired": "Formu göndermek için onay kutusunu işaretle."
     },
     "mail": {
       "subjectPrefix": "Yeni mesaj",
-      "language": "Dil"
+      "language": "Dil",
+      "consentLine": "Açık rıza (yurt dışına aktarım): verildi · {date} · Aydınlatma Metni sürümü {version}"
     },
-    "privacyNote": "Ad ve e-posta bilgini yalnızca mesajına dönüş yapabilmek için kullanıyorum. Mesajın doğrudan e-posta kutuma gelir; bilgilerini bir veritabanında saklamıyor, başka bir amaçla kullanmıyorum. Ayrıntılar: <link>Gizlilik</link>.",
     "visual": {
       "newMessage": "Yeni mesaj"
     }
   },
   "footer": {
     "copyright": "© {year} Mehmet Berk Certel. Tüm hakları saklıdır.",
-    "privacy": "Gizlilik"
+    "privacy": "Gizlilik ve KVKK",
+    "cookies": "Çerez Politikası"
   },
   "notFound": {
     "eyebrow": "Hata 404 · Katman bulunamadı",
@@ -414,50 +439,131 @@
     }
   },
   "privacy": {
-    "title": "Gizlilik",
+    "title": "Gizlilik ve KVKK Aydınlatma Metni",
     "updated": "Son güncelleme: {date}",
     "sections": [
       {
         "title": "Veri sorumlusu",
         "body": [
-          "Bu site Mehmet Berk Certel’e aittir. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında veri sorumlusu benim. Sorularını m.berkcertel@outlook.com adresine iletebilirsin."
+          "Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu’nun (KVKK) 10. maddesi ve Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ kapsamında hazırlanmıştır.",
+          "Veri sorumlusu Mehmet Berk Certel’dir. İletişim: m.berkcertel@outlook.com"
         ]
       },
       {
-        "title": "Hangi bilgileri topluyorum",
+        "title": "İşlenen kişisel veriler",
         "body": [
-          "Yalnızca iletişim formunu doldurduğunda yazdığın ad, e-posta adresi, konu, zaman planı ve mesaj.",
-          "Sitede üyelik, reklam ya da ziyaretçi takibi (analytics) yok."
+          "İletişim formunu gönderdiğinizde şu veriler işlenir:"
+        ],
+        "list": [
+          "Kimlik ve iletişim: adınız ve e-posta adresiniz.",
+          "Talep bilgileri: seçtiğiniz konu, zaman planı, mesajınız ve formu gönderdiğiniz dil.",
+          "İşlem güvenliği: IP adresiniz ve Cloudflare Turnstile doğrulama verisi."
         ]
       },
       {
-        "title": "Neden kullanıyorum",
+        "title": "Site ziyareti",
         "body": [
-          "Bu bilgileri sadece mesajına dönüş yapabilmek ve mesajın kimden geldiğini bilmek için kullanıyorum. Pazarlama, bülten ya da başka bir amaçla kullanmıyorum ve kimseyle paylaşmıyorum."
+          "Siteyi ziyaret eden herkesin IP adresi ve tarayıcı bilgisi, barındırma sağlayıcısı Vercel’in sunucu kayıtlarında, güvenlik ve sitenin çalışması amacıyla işlenir.",
+          "Tarayıcınızda tutulan bilgiler için <cookies>Çerez Politikası</cookies>’na bakabilirsiniz."
         ]
       },
       {
-        "title": "Nasıl saklanıyor",
-        "body": [
-          "Form bilgileri bir veritabanına kaydedilmez. Mesajın e-posta olarak doğrudan bana iletilir ve yalnızca e-posta kutumda, görüşmemiz için gerektiği sürece kalır. Silinmesini istersen yazman yeterli."
+        "title": "Amaçlar ve hukuki sebepler",
+        "body": [],
+        "list": [
+          "Mesajınıza dönüş yapmak ve talebinizi değerlendirmek (ad, e-posta, konu, zaman planı, mesaj, dil): KVKK m.5/2-c, bir sözleşmenin kurulmasıyla doğrudan ilgili olması.",
+          "Formu spam ve kötüye kullanıma karşı korumak (IP adresi, Turnstile doğrulama verisi): KVKK m.5/2-f, meşru menfaat.",
+          "Siteyi güvenli ve çalışır şekilde sunmak (ziyaretçilerin IP adresi ve tarayıcı bilgisi, Vercel sunucu kayıtları): KVKK m.5/2-f, meşru menfaat.",
+          "Form verilerinin yurt dışında bulunan hizmet sağlayıcılara aktarılması: KVKK m.9 kapsamında, formdaki ayrı onay kutusuyla verdiğiniz açık rıza."
         ]
       },
       {
-        "title": "Hizmet sağlayıcılar",
+        "title": "Toplama yöntemi",
         "body": [
-          "Site Vercel üzerinde yayınlanır. Form gönderilirken spam kontrolü için Cloudflare Turnstile kullanılır; mesaj Google (Gmail) altyapısıyla iletilir. Bu sağlayıcıların sunucuları yurt dışında olabilir; bilgiler yalnızca bu hizmetlerin çalışması için gerektiği kadar işlenir."
+          "Veriler, bu sitedeki iletişim formunu doldurup göndermenizle elektronik ortamda toplanır. IP adresiniz ve doğrulama verisi form gönderilirken, sunucu kayıtları ise siteyi ziyaret ettiğinizde otomatik olarak oluşur.",
+          "Verilerinizi pazarlama, bülten ya da profil oluşturma amacıyla kullanmıyorum.",
+          "Formun üzerindeki kısa bilgi notu bu metnin özetidir. Yurt dışına aktarım için açık rıza, ondan ayrı bir onay kutusuyla alınır. Açık rıza vermek zorunda değilsiniz; vermek istemezseniz formu kullanmadan doğrudan m.berkcertel@outlook.com adresine yazabilirsiniz."
         ]
       },
       {
-        "title": "Tarayıcında tutulanlar",
+        "title": "Aktarım",
         "body": [
-          "Seçtiğin tema (açık/koyu) yalnızca kendi tarayıcında saklanır. Site, çalışması için gerekli olmayan hiçbir çerez kullanmaz."
+          "Verileriniz yalnızca aşağıdaki hizmet sağlayıcılara, ilgili hizmetin çalışması için gerektiği kadar aktarılır. Bu sağlayıcıların sunucuları yurt dışında bulunabilir (KVKK m.9)."
+        ],
+        "list": [
+          "Google (Gmail): mesajınızın e-posta olarak bana iletilmesi ve e-posta kutumda saklanması.",
+          "Cloudflare (Turnstile): spam kontrolü; IP adresiniz ve doğrulama verisi Cloudflare’a iletilir.",
+          "Vercel: sitenin barındırılması; ziyaretçilerin IP adresi ve tarayıcı bilgisi sunucu kayıtlarında işlenir, form verileri de gönderilirken Vercel sunucuları üzerinden geçer."
         ]
       },
       {
-        "title": "Hakların",
+        "title": "Saklama süresi",
         "body": [
-          "KVKK’nın 11. maddesi kapsamında verilerinin işlenip işlenmediğini öğrenme, düzeltilmesini ya da silinmesini isteme gibi haklara sahipsin. Bunun için m.berkcertel@outlook.com adresine yazman yeterli."
+          "Form verileri bir veritabanına kaydedilmez. Mesajınız yalnızca e-posta kutumda, görüşmemiz için gerektiği süre boyunca saklanır. Silinmesini istediğinizde silerim."
+        ]
+      },
+      {
+        "title": "KVKK m.11 kapsamındaki haklarınız",
+        "body": [
+          "Veri sorumlusuna başvurarak şu haklarınızı kullanabilirsiniz:"
+        ],
+        "list": [
+          "Kişisel verilerinizin işlenip işlenmediğini öğrenme.",
+          "İşlenmişse buna ilişkin bilgi talep etme.",
+          "İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme.",
+          "Yurt içinde ya da yurt dışında aktarıldığı üçüncü kişileri bilme.",
+          "Eksik ya da yanlış işlenmişse düzeltilmesini isteme.",
+          "KVKK m.7 kapsamında silinmesini ya da yok edilmesini isteme.",
+          "Düzeltme, silme ya da yok etme işlemlerinin aktarıldığı üçüncü kişilere bildirilmesini isteme.",
+          "Yalnızca otomatik sistemlerle analiz edilmesi sonucu aleyhine bir sonuç çıkmasına itiraz etme.",
+          "Kanuna aykırı işleme nedeniyle zarara uğramanız hâlinde zararın giderilmesini talep etme."
+        ]
+      },
+      {
+        "title": "Başvuru yolu",
+        "body": [
+          "Haklarınızı kullanmak ya da açık rızanızı geri almak için m.berkcertel@outlook.com adresine adınızı ve talebinizi içeren bir e-posta gönderebilirsiniz. Talebinizi en geç 30 gün içinde sonuçlandırırım.",
+          "Açık rızanızı geri almanız, geri almadan önce yapılan işlemleri etkilemez."
+        ]
+      }
+    ]
+  },
+  "cookies": {
+    "title": "Çerez Politikası",
+    "updated": "Son güncelleme: {date}",
+    "sections": [
+      {
+        "title": "Kısaca",
+        "body": [
+          "Bu sitede reklam, analiz ya da takip çerezi kullanılmaz. Site kendi çerezini oluşturmaz; bu yüzden çerez onayı istenmez.",
+          "Siteyi ziyaret ettiğinizde IP adresiniz ve tarayıcı bilginiz, çerez kullanılmadan, barındırma sağlayıcısı Vercel’in sunucu kayıtlarında güvenlik ve sitenin çalışması amacıyla işlenir.",
+          "Kişisel verilerin nasıl işlendiği <privacy>Gizlilik ve KVKK Aydınlatma Metni</privacy>’nde anlatılır."
+        ]
+      },
+      {
+        "title": "Tarayıcınızda tutulan tercih",
+        "body": [
+          "Tema düğmesiyle açık ya da koyu temayı seçerseniz, tercihiniz tarayıcınızın yerel depolama alanında (localStorage) “theme” adıyla saklanır. Bu bilgi sunucuya gönderilmez; yalnızca site bir sonraki ziyaretinizde aynı temayla açılsın diye kullanılır.",
+          "Tema seçmezseniz hiçbir şey saklanmaz ve cihazınızın ayarı kullanılır."
+        ]
+      },
+      {
+        "title": "Spam koruması (Cloudflare Turnstile)",
+        "body": [
+          "İletişim sayfasındaki form, spam kontrolü için Cloudflare Turnstile kullanır. Turnstile yalnızca iletişim sayfasında yüklenir. İnsan olduğunuzu doğrulamak için IP adresiniz ve tarayıcınıza ait teknik bilgiler gibi verileri güvenlik amacıyla işler.",
+          "Bu veriler Cloudflare tarafından işlenir ve Cloudflare’in kendi gizlilik politikasına tabidir."
+        ]
+      },
+      {
+        "title": "Nasıl silebilirsiniz",
+        "body": [
+          "Tema tercihinizi tema düğmesiyle istediğiniz zaman değiştirebilirsiniz. Tamamen silmek için tarayıcınızın ayarlarından bu sitenin site verilerini temizlemeniz yeterlidir; çoğu tarayıcıda bu ayar Gizlilik ya da Site verileri bölümündedir."
+        ]
+      },
+      {
+        "title": "Değişiklikler",
+        "body": [
+          "Sitede analiz ya da pazarlama amaçlı bir araç kullanmaya başlarsam bu sayfayı güncellerim ve bu araçlar için önce onayınızı isterim."
         ]
       }
     ]

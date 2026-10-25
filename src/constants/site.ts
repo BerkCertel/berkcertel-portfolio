@@ -16,5 +16,12 @@ export const SITE = {
   sunflowUrl: "https://sunflowapp.com",
 } as const;
 
-/** Date of the current privacy notice (shown as "Last updated"). */
-export const PRIVACY_UPDATED = "2026-10-23";
+/** Turkey time: post publish dates and the consent timestamp in contact mails. */
+export const SITE_TIME_ZONE = "Europe/Istanbul";
+
+/**
+ * Dates of the current privacy notice and cookie policy (shown as "Last updated").
+ * PRIVACY_UPDATED is also the notice version recorded with each consent in the contact mail.
+ */
+export const PRIVACY_UPDATED = "2026-10-25";
+export const COOKIE_POLICY_UPDATED = "2026-10-25";

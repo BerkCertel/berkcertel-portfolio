@@ -20,6 +20,7 @@ export const routing = defineRouting({
     "/contact": { tr: "/iletisim", en: "/contact" },
     "/services": { tr: "/hizmetler", en: "/services" },
     "/privacy": { tr: "/gizlilik", en: "/privacy" },
+    "/cookies": { tr: "/cerez-politikasi", en: "/cookie-policy" },
   },
 });
 

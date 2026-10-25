@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { cacheLife } from "next/cache";
 
-import { PRIVACY_UPDATED } from "@/constants/site";
+import { COOKIE_POLICY_UPDATED, PRIVACY_UPDATED } from "@/constants/site";
 import { type AppLocale, routing } from "@/i18n/routing";
 import { getAllPosts } from "@/lib/blog";
 import type { StaticPathname } from "@/lib/nav";
@@ -17,7 +17,14 @@ const PAGES: StaticPathname[] = [
   "/blog",
   "/contact",
   "/privacy",
+  "/cookies",
 ];
+
+/** Legal pages: indexable, but not pages worth promoting. */
+const LEGAL_UPDATED: Partial<Record<StaticPathname, string>> = {
+  "/privacy": PRIVACY_UPDATED,
+  "/cookies": COOKIE_POLICY_UPDATED,
+};
 
 /** Every page and published post in both languages, with hreflang alternates. Refreshed daily. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -28,8 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     PAGES.map((pathname) => ({
       url: absoluteUrl(locale, pathname),
       alternates: { languages: languageAlternates({ tr: pathname, en: pathname }) },
-      // The privacy notice is indexable but not a page worth promoting.
-      ...(pathname === "/privacy" && { lastModified: PRIVACY_UPDATED, priority: 0.3 }),
+      ...(LEGAL_UPDATED[pathname] && { lastModified: LEGAL_UPDATED[pathname], priority: 0.3 }),
     })),
   );
 

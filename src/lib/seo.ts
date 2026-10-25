@@ -14,7 +14,15 @@ export type Href = Parameters<typeof getPathname>[0]["href"];
 
 /** Pages with a title and description in messages.metadata.pages. */
 export type SeoPage =
-  "home" | "about" | "projects" | "michat" | "blog" | "contact" | "services" | "privacy";
+  | "home"
+  | "about"
+  | "projects"
+  | "michat"
+  | "blog"
+  | "contact"
+  | "services"
+  | "privacy"
+  | "cookies";
 
 /** Open Graph locale names. */
 export const OG_LOCALES: Record<AppLocale, string> = { tr: "tr_TR", en: "en_US" };

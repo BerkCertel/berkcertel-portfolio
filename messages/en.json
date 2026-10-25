@@ -37,8 +37,12 @@
         "description": "Web apps, mobile apps, backend and APIs, corporate and e-commerce websites."
       },
       "privacy": {
-        "title": "Privacy",
-        "description": "What information this site uses, why and how (KVKK)."
+        "title": "Privacy Notice",
+        "description": "Which personal data the contact form processes, why and on which legal basis, and your rights under the KVKK."
+      },
+      "cookies": {
+        "title": "Cookie Policy",
+        "description": "No advertising, analytics or tracking cookies. The one preference kept in your browser, and the spam protection."
       }
     }
   },
@@ -246,25 +250,41 @@
         "eyebrow": "Web",
         "title": "Web apps",
         "description": "Admin dashboards, SaaS products and internal tools. I build fast, secure web apps that are ready to grow.",
-        "points": ["Admin dashboards", "SaaS products", "Internal tools"]
+        "points": [
+          "Admin dashboards",
+          "SaaS products",
+          "Internal tools"
+        ]
       },
       "mobile": {
         "eyebrow": "Mobile",
         "title": "Mobile apps",
         "description": "Fast, easy-to-use mobile apps for iOS and Android, built from a single codebase.",
-        "points": ["iOS + Android", "Single codebase", "Push notifications"]
+        "points": [
+          "iOS + Android",
+          "Single codebase",
+          "Push notifications"
+        ]
       },
       "backend": {
         "eyebrow": "Backend",
         "title": "Backend & APIs",
         "description": "Authentication, database design and APIs: the part of an app you don’t see, but the most important one.",
-        "points": ["REST APIs", "Authentication", "Database design"]
+        "points": [
+          "REST APIs",
+          "Authentication",
+          "Database design"
+        ]
       },
       "websites": {
         "eyebrow": "Website",
         "title": "Corporate & e-commerce sites",
         "description": "Fast-loading, multilingual corporate sites and online stores that people can find on search engines.",
-        "points": ["SEO", "Multilingual", "Fast loading"]
+        "points": [
+          "SEO",
+          "Multilingual",
+          "Fast loading"
+        ]
       }
     },
     "viewAll": "View all",
@@ -373,7 +393,10 @@
       "messagePlaceholder": "Tell me briefly about your project or the role.",
       "submit": "Send message",
       "sending": "Sending…",
-      "spamProtection": "Spam protection"
+      "spamProtection": "Spam protection",
+      "consent": "I give my explicit consent to my name, email and message being transferred to email and security service providers located abroad so my message can be delivered.",
+      "notice": "Your name, email and message are used only so I can reply to you by email; they are not stored in any database. Details: <link>Privacy Notice</link>.",
+      "noConsent": "If you’d rather not give consent, you can write to me directly at <mail>{email}</mail>."
     },
     "success": {
       "titleWithName": "Thank you, {name}.",
@@ -387,20 +410,22 @@
       "messageShort": "The message must be at least 10 characters.",
       "messageLong": "The message can be at most 2000 characters.",
       "turnstile": "The spam check did not complete. Refresh the page and try again.",
-      "generic": "The message could not be sent. Try again in a moment or email me directly."
+      "generic": "The message could not be sent. Try again in a moment or email me directly.",
+      "consentRequired": "Please tick the box to send the form."
     },
     "mail": {
       "subjectPrefix": "New message",
-      "language": "Language"
+      "language": "Language",
+      "consentLine": "Explicit consent (transfer abroad): given · {date} · Privacy Notice version {version}"
     },
-    "privacyNote": "I use your name and email only to reply to your message. Your message comes straight to my inbox; I don’t store your details in a database or use them for anything else. Details: <link>Privacy</link>.",
     "visual": {
       "newMessage": "New message"
     }
   },
   "footer": {
     "copyright": "© {year} Mehmet Berk Certel. All rights reserved.",
-    "privacy": "Privacy"
+    "privacy": "Privacy Notice",
+    "cookies": "Cookie Policy"
   },
   "notFound": {
     "eyebrow": "Error 404 · Layer not found",
@@ -414,50 +439,131 @@
     }
   },
   "privacy": {
-    "title": "Privacy",
+    "title": "Privacy Notice",
     "updated": "Last updated: {date}",
     "sections": [
       {
         "title": "Data controller",
         "body": [
-          "This site belongs to Mehmet Berk Certel. Under the Turkish Personal Data Protection Law No. 6698 (KVKK), I am the data controller. You can send your questions to m.berkcertel@outlook.com."
+          "This notice is provided under Article 10 of the Turkish Personal Data Protection Law No. 6698 (KVKK) and the Communiqué on the Procedures and Principles for Fulfilling the Obligation to Inform.",
+          "The data controller is Mehmet Berk Certel. Contact: m.berkcertel@outlook.com"
         ]
       },
       {
-        "title": "What I collect",
+        "title": "Personal data processed",
         "body": [
-          "Only what you write when you fill in the contact form: your name, email address, topic, timeline and message.",
-          "There are no accounts, ads or visitor tracking (analytics) on this site."
+          "When you send the contact form, the following data is processed:"
+        ],
+        "list": [
+          "Identity and contact: your name and email address.",
+          "Request details: the subject and timeline you choose, your message and the language of the form.",
+          "Transaction security: your IP address and Cloudflare Turnstile verification data."
         ]
       },
       {
-        "title": "Why I use it",
+        "title": "Visiting the site",
         "body": [
-          "I use this information only to reply to your message and to know who it is from. I don’t use it for marketing, newsletters or anything else, and I don’t share it with anyone."
+          "The IP address and browser information of everyone who visits the site are processed in the server logs of the hosting provider Vercel, for security and to keep the site running.",
+          "For what is kept in your browser, see the <cookies>Cookie Policy</cookies>."
         ]
       },
       {
-        "title": "How it is kept",
-        "body": [
-          "Form data is not saved in a database. Your message is sent to me as an email and stays only in my inbox for as long as our conversation needs it. If you want it deleted, just write to me."
+        "title": "Purposes and legal bases",
+        "body": [],
+        "list": [
+          "Replying to your message and assessing your request (name, email, subject, timeline, message, language): KVKK Art. 5/2-c, directly related to the establishment of a contract.",
+          "Protecting the form against spam and abuse (IP address, Turnstile verification data): KVKK Art. 5/2-f, legitimate interest.",
+          "Serving the site securely and keeping it running (visitors’ IP address and browser information, Vercel server logs): KVKK Art. 5/2-f, legitimate interest.",
+          "Transferring form data to service providers located abroad: your explicit consent under KVKK Art. 9, given with a separate checkbox on the form."
         ]
       },
       {
-        "title": "Service providers",
+        "title": "Method of collection",
         "body": [
-          "The site is hosted on Vercel. Cloudflare Turnstile checks for spam when the form is sent, and the message is delivered through Google (Gmail). These providers may have servers outside Türkiye; the information is processed only as much as these services need to work."
+          "The data is collected electronically when you fill in and send the contact form on this site. Your IP address and the verification data are created automatically when the form is sent, and server logs when you visit the site.",
+          "I do not use your data for marketing, newsletters or profiling.",
+          "The short note above the form summarises this notice. Consent to the transfer abroad is asked separately, with its own checkbox. You do not have to give it; if you would rather not, you can write to me directly at m.berkcertel@outlook.com instead of using the form."
         ]
       },
       {
-        "title": "Stored in your browser",
+        "title": "Transfers",
         "body": [
-          "Your theme choice (light/dark) is stored only in your own browser. The site uses no cookies that are not needed for it to work."
+          "Your data is shared only with the service providers below, and only as far as each service needs it. Their servers may be located abroad (KVKK Art. 9)."
+        ],
+        "list": [
+          "Google (Gmail): delivering your message to me by email and keeping it in my inbox.",
+          "Cloudflare (Turnstile): spam checks; your IP address and the verification data are sent to Cloudflare.",
+          "Vercel: hosting the site; visitors’ IP address and browser information are processed in server logs, and form data passes through Vercel’s servers when it is sent."
         ]
       },
       {
-        "title": "Your rights",
+        "title": "Retention",
         "body": [
-          "Under Article 11 of KVKK, you have rights such as learning whether your data is processed and asking for it to be corrected or deleted. To do so, just write to m.berkcertel@outlook.com."
+          "Form data is not stored in a database. Your message is kept only in my inbox, for as long as our conversation needs it. I delete it when you ask me to."
+        ]
+      },
+      {
+        "title": "Your rights under KVKK Art. 11",
+        "body": [
+          "By contacting the data controller, you can:"
+        ],
+        "list": [
+          "Learn whether your personal data is processed.",
+          "Request information about it if it is.",
+          "Learn the purpose of the processing and whether the data is used for that purpose.",
+          "Know the third parties in Türkiye or abroad to whom it is transferred.",
+          "Ask for it to be corrected if it is incomplete or inaccurate.",
+          "Ask for it to be erased or destroyed under KVKK Art. 7.",
+          "Ask for third parties who received the data to be notified of any correction, erasure or destruction.",
+          "Object to a result against you that arises only from analysis by automated systems.",
+          "Claim compensation if you suffer damage from unlawful processing."
+        ]
+      },
+      {
+        "title": "How to apply",
+        "body": [
+          "To use your rights or withdraw your consent, send an email with your name and request to m.berkcertel@outlook.com. I will resolve your request within 30 days at the latest.",
+          "Withdrawing your consent does not affect processing carried out before the withdrawal."
+        ]
+      }
+    ]
+  },
+  "cookies": {
+    "title": "Cookie Policy",
+    "updated": "Last updated: {date}",
+    "sections": [
+      {
+        "title": "In short",
+        "body": [
+          "This site uses no advertising, analytics or tracking cookies. The site does not set cookies of its own, so it does not ask for cookie consent.",
+          "When you visit the site, your IP address and browser information are processed without cookies in the server logs of the hosting provider Vercel, for security and to keep the site running.",
+          "How personal data is processed is explained in the <privacy>Privacy Notice</privacy>."
+        ]
+      },
+      {
+        "title": "The preference kept in your browser",
+        "body": [
+          "If you choose the light or dark theme with the theme button, your choice is kept in your browser’s local storage (localStorage) under the name “theme”. It is never sent to the server; it is only used to open the site with the same theme next time.",
+          "If you never choose a theme, nothing is stored and your device setting is used."
+        ]
+      },
+      {
+        "title": "Spam protection (Cloudflare Turnstile)",
+        "body": [
+          "The form on the contact page uses Cloudflare Turnstile for spam checks. Turnstile loads only on the contact page. To confirm that you are human, it processes data such as your IP address and technical information about your browser, for security purposes.",
+          "This data is processed by Cloudflare and is subject to Cloudflare’s own privacy policy."
+        ]
+      },
+      {
+        "title": "How to delete it",
+        "body": [
+          "You can change your theme at any time with the theme button. To remove it completely, clear this site’s data in your browser settings; in most browsers this is under Privacy or Site data."
+        ]
+      },
+      {
+        "title": "Changes",
+        "body": [
+          "If I start using an analytics or marketing tool on this site, I will update this page and ask for your consent before those tools are used."
         ]
       }
     ]

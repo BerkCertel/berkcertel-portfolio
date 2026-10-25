@@ -29,3 +29,11 @@ export interface SocialLink {
   label: string;
   href: `https://${string}`;
 }
+
+/** One section of a legal page (privacy notice, cookie policy) in messages. */
+export interface LegalSection {
+  title: string;
+  body: string[];
+  /** Optional bullet list after the paragraphs. */
+  list?: string[];
+}

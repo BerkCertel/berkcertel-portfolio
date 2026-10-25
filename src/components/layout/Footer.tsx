@@ -18,7 +18,7 @@ async function getCurrentYear() {
   return new Date().getFullYear();
 }
 
-/** Footer: logo + footer nav, dashed rule, copyright, email, privacy link, social profiles. */
+/** Footer: logo + footer nav, dashed rule, copyright, email, legal links, social profiles. */
 export async function Footer() {
   const [t, year] = await Promise.all([getTranslations(), getCurrentYear()]);
 
@@ -49,6 +49,9 @@ export async function Footer() {
           </AppLink>
           <AppLink href="/privacy" className="transition-colors hover:text-ink">
             {t("footer.privacy")}
+          </AppLink>
+          <AppLink href="/cookies" className="transition-colors hover:text-ink">
+            {t("footer.cookies")}
           </AppLink>
           <SocialLinks items={ALL_SOCIALS} size="sm" />
         </div>
