@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
+import { PRIVACY_UPDATED, SITE_TIME_ZONE } from "@/constants/site";
 import { routing } from "@/i18n/routing";
 import { sendContactMail } from "@/lib/mail";
 import { verifyTurnstile } from "@/lib/turnstile";
@@ -59,6 +60,15 @@ export async function sendContact(input: unknown, locale: string): Promise<Conta
         { label: t("mail.language"), value: senderLocale.toUpperCase() },
       ],
       message: { label: t("form.message"), value: data.message },
+      // Record of the explicit consent (the schema only lets the form through when it is given).
+      footer: t("mail.consentLine", {
+        date: new Intl.DateTimeFormat("tr-TR", {
+          dateStyle: "short",
+          timeStyle: "short",
+          timeZone: SITE_TIME_ZONE,
+        }).format(new Date()),
+        version: PRIVACY_UPDATED,
+      }),
     });
     return { ok: true };
   } catch {

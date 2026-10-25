@@ -16,6 +16,8 @@ interface ContactMail {
   replyTo: string;
   fields: MailField[];
   message: { label: string; value: string };
+  /** Last line of the mail (record of the sender's consent). */
+  footer: string;
 }
 
 // Created once on first use (env values are only required when a mail is actually sent).
@@ -35,7 +37,7 @@ function getTransporter() {
 }
 
 /** Sends the contact form to the owner as plain text + simple HTML (user input escaped). */
-export async function sendContactMail({ subject, replyTo, fields, message }: ContactMail) {
+export async function sendContactMail({ subject, replyTo, fields, message, footer }: ContactMail) {
   const { user, to } = getMailEnv();
 
   const text = [
@@ -43,6 +45,8 @@ export async function sendContactMail({ subject, replyTo, fields, message }: Con
     "",
     `${message.label}:`,
     message.value,
+    "",
+    footer,
   ].join("\n");
 
   const rows = fields
@@ -53,7 +57,8 @@ export async function sendContactMail({ subject, replyTo, fields, message }: Con
     .join("");
   const html = `<table style="font:14px/1.5 sans-serif;border-collapse:collapse">${rows}</table>
 <p style="font:14px/1.5 sans-serif;color:#515a6e;margin:20px 0 6px">${escapeHtml(message.label)}</p>
-<p style="font:15px/1.6 sans-serif;white-space:pre-wrap;margin:0">${escapeHtml(message.value)}</p>`;
+<p style="font:15px/1.6 sans-serif;white-space:pre-wrap;margin:0">${escapeHtml(message.value)}</p>
+<p style="font:12px/1.5 sans-serif;color:#515a6e;margin:24px 0 0">${escapeHtml(footer)}</p>`;
 
   await getTransporter().sendMail({ from: user, to, replyTo, subject, text, html });
 }

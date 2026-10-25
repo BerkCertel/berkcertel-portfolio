@@ -10,6 +10,7 @@ import { toast } from "sonner";
 
 import { sendContact } from "@/actions/contact";
 import { AppButton } from "@/components/common/AppButton";
+import { AppCheckbox } from "@/components/common/AppCheckbox";
 import { AppChip, ChipGroup } from "@/components/common/AppChip";
 import { AppField } from "@/components/common/AppField";
 import { AppInput } from "@/components/common/AppInput";
@@ -17,6 +18,7 @@ import { AppLink } from "@/components/common/AppLink";
 import { AppSelect } from "@/components/common/AppSelect";
 import { AppTextarea } from "@/components/common/AppTextarea";
 import { CONTACT_LIMITS, CONTACT_SUBJECTS, CONTACT_TIMELINES } from "@/constants/contact";
+import { SITE } from "@/constants/site";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { env } from "@/lib/env";
 import { useTheme } from "@/providers/theme-provider";
@@ -31,6 +33,7 @@ const DEFAULTS: ContactInput = {
   timeline: CONTACT_TIMELINES[0],
   message: "",
   turnstileToken: "",
+  consent: false,
   website: "",
 };
 
@@ -216,6 +219,36 @@ export function ContactForm() {
             )}
           </div>
 
+          <div className="flex flex-col gap-3">
+            {/* Notice (KVKK art. 10): information only, kept apart from the consent box. */}
+            <p className="text-[12.5px] leading-[1.5] text-subtle">
+              {t.rich("form.notice", {
+                link: (chunks) => (
+                  <AppLink
+                    href="/privacy"
+                    className="text-ink underline underline-offset-2 hover:text-brand"
+                  >
+                    {chunks}
+                  </AppLink>
+                ),
+              })}
+            </p>
+            {/* Explicit consent (KVKK art. 9): only for the transfer abroad. */}
+            <Controller
+              control={control}
+              name="consent"
+              render={({ field }) => (
+                <AppCheckbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  error={errorText(errors.consent?.message)}
+                >
+                  {t("form.consent")}
+                </AppCheckbox>
+              )}
+            />
+          </div>
+
           <div className="flex flex-col items-start gap-3">
             <AppButton
               type="submit"
@@ -225,10 +258,14 @@ export function ContactForm() {
             >
               {isSubmitting ? t("form.sending") : t("form.submit")}
             </AppButton>
-            <p className="max-w-[60ch] text-[12.5px] leading-[1.5] text-subtle">
-              {t.rich("privacyNote", {
-                link: (chunks) => (
-                  <AppLink href="/privacy" className="underline underline-offset-2 hover:text-ink">
+            <p className="text-[12.5px] leading-[1.5] text-subtle">
+              {t.rich("form.noConsent", {
+                email: SITE.email,
+                mail: (chunks) => (
+                  <AppLink
+                    href={`mailto:${SITE.email}`}
+                    className="text-ink underline underline-offset-2 hover:text-brand"
+                  >
                     {chunks}
                   </AppLink>
                 ),

@@ -23,6 +23,8 @@ export const contactSchema = z.object({
     .min(CONTACT_LIMITS.messageMin, error("messageShort"))
     .max(CONTACT_LIMITS.messageMax, error("messageLong")),
   turnstileToken: z.string().min(1, error("turnstile")),
+  /** Explicit consent (KVKK art. 9) to processing by service providers abroad; must be given. */
+  consent: z.boolean().refine((value) => value, error("consentRequired")),
   /** Honeypot: hidden from people, so it must stay empty. */
   website: z.string().max(0, error("generic")),
 });

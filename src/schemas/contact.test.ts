@@ -9,6 +9,7 @@ const valid = {
   timeline: "asap",
   message: "Merhaba, bir proje için yazıyorum.",
   turnstileToken: "token",
+  consent: true,
   website: "",
 };
 
@@ -28,6 +29,11 @@ describe("contactSchema", () => {
     expect(errorsOf({ ...valid, message: "short" })).toEqual(["messageShort"]);
     expect(errorsOf({ ...valid, message: "x".repeat(2001) })).toEqual(["messageLong"]);
     expect(errorsOf({ ...valid, turnstileToken: "" })).toEqual(["turnstile"]);
+  });
+
+  it("requires explicit consent", () => {
+    expect(errorsOf({ ...valid, consent: false })).toEqual(["consentRequired"]);
+    expect(contactSchema.safeParse({ ...valid, consent: undefined }).success).toBe(false);
   });
 
   it("rejects unknown subjects and timelines", () => {
