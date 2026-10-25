@@ -1,20 +1,38 @@
-import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
+import { Suspense } from "react";
 
 import { Container } from "@/components/common/Container";
-import { Marker } from "@/components/common/Marker";
-import { Section } from "@/components/common/Section";
+import { PageHeader } from "@/components/common/PageHeader";
+import { BlogBrowser, parseBlogFilter } from "@/components/sections/blog/BlogBrowser";
+import { DeviceSync } from "@/components/sections/blog/DeviceSync";
+import type { AppLocale } from "@/i18n/routing";
+import { getAllPosts } from "@/lib/blog";
+import type { PostMeta } from "@/types/blog";
 
-// Skeleton only; the real content comes in a later step.
-export default function BlogPage() {
-  const t = useTranslations("blog");
+interface BlogPageProps {
+  searchParams: Promise<{ category?: string | string[] }>;
+}
+
+/** Reads `?category=` per request; kept inside <Suspense> so the rest of the page stays static. */
+async function FilteredPosts({
+  posts,
+  searchParams,
+}: BlogPageProps & { posts: PostMeta[] }) {
+  const { category } = await searchParams;
+  return <BlogBrowser posts={posts} filter={parseBlogFilter(category)} />;
+}
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const t = await getTranslations("blog");
+  const posts = await getAllPosts((await getLocale()) as AppLocale);
 
   return (
-    <Section>
-      <Container>
-        <h1 className="font-display text-6xl font-bold tracking-[-0.045em]">
-          <Marker>{t("title")}</Marker>
-        </h1>
-      </Container>
-    </Section>
+    <Container>
+      <PageHeader id="blog-title" title={t("title")} lead={t("pageLead")} visual={<DeviceSync />} />
+      {/* Static fallback = every post, so crawlers and no-JS visitors see the full list. */}
+      <Suspense fallback={<BlogBrowser posts={posts} filter="all" />}>
+        <FilteredPosts posts={posts} searchParams={searchParams} />
+      </Suspense>
+    </Container>
   );
 }
