@@ -1,3 +1,4 @@
+import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
@@ -7,6 +8,8 @@ import { routing } from "./src/i18n/routing";
 const RESERVED_SEGMENTS = [...routing.locales, "_next", "api"].join("|");
 
 const nextConfig: NextConfig = {
+  // Blog posts are MDX files (content/blog/{locale}/*.mdx), imported by the blog pages.
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   cacheComponents: true,
   partialPrefetching: true,
   experimental: {
@@ -39,4 +42,6 @@ const nextConfig: NextConfig = {
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-export default withNextIntl(nextConfig);
+const withMDX = createMDX();
+
+export default withNextIntl(withMDX(nextConfig));
