@@ -202,7 +202,8 @@
 }
 .cursor {
   position: absolute;
-  left: 30%;
+  /* Resting on the button; the loop moves it with `translate` (no layout work). */
+  left: 22%;
   top: 52%;
   width: 16px;
   height: 16px;
@@ -372,18 +373,14 @@
     background: var(--c-sun);
   }
 }
+/* From the bottom-right corner (78% / 85% of the 214px UI) to the button and back. */
 @keyframes cursor {
-  0% {
-    left: 78%;
-    top: 85%;
+  0%,
+  100% {
+    translate: 120px 71px;
   }
   55%,
   70% {
-    left: 22%;
-    top: 52%;
-  }
-  100% {
-    left: 78%;
-    top: 85%;
+    translate: 0 0;
   }
 }

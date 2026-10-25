@@ -51,7 +51,7 @@ export function ProjectRow({
   const rest = project.tech.slice(PROJECT_VISIBLE_TECH).map((tech) => tech.label);
 
   return (
-    <article className="group relative grid grid-cols-[64px_minmax(0,1fr)_auto] items-center gap-7 border-b border-line px-3 py-8 transition-[background] duration-300 before:absolute before:-top-px before:left-0 before:h-0.5 before:w-0 before:bg-brand before:transition-[width] before:duration-550 before:ease-out-soft hover:bg-[linear-gradient(90deg,color-mix(in_srgb,var(--c-accent)_7%,transparent),transparent_70%)] hover:before:w-full max-[760px]:grid-cols-1 max-[760px]:gap-[18px] max-[760px]:px-0 max-[760px]:py-7 max-[760px]:hover:bg-none">
+    <article className="group relative grid grid-cols-[64px_minmax(0,1fr)_auto] items-center gap-7 border-b border-line px-3 py-8 transition-[background] duration-300 before:absolute before:-top-px before:left-0 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-brand before:transition-transform before:duration-550 before:ease-out-soft hover:bg-[linear-gradient(90deg,color-mix(in_srgb,var(--c-accent)_7%,transparent),transparent_70%)] hover:before:scale-x-100 max-[760px]:grid-cols-1 max-[760px]:gap-[18px] max-[760px]:px-0 max-[760px]:py-7 max-[760px]:hover:bg-none">
       <span className="self-start pt-2 font-mono text-[13px] leading-none font-medium text-subtle transition-colors duration-300 group-hover:text-brand max-[760px]:pt-0">
         {String(index + 1).padStart(2, "0")}
       </span>
