@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 const DESKTOP_QUERY = "(min-width: 1080px)";
 
 /** Burger button (<1080px) + full-width panel under the header with big numbered links. */
-export function MobileMenu() {
+export function MobileMenu({ blogSlugs }: { blogSlugs: Record<string, string> }) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const i18nPathname = useI18nPathname();
@@ -126,7 +126,7 @@ export function MobileMenu() {
                   {t("cta")}
                 </AppLink>
               </AppButton>
-              <LanguageSwitch />
+              <LanguageSwitch blogSlugs={blogSlugs} />
             </div>
           </Container>
         </nav>

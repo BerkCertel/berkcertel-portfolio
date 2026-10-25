@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import { AppButton } from "@/components/common/AppButton";
 import { AppLink } from "@/components/common/AppLink";
@@ -6,13 +6,15 @@ import { Container } from "@/components/common/Container";
 import { LanguageSwitch } from "@/components/common/LanguageSwitch";
 import { Logo } from "@/components/common/Logo";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
+import { getTranslatedSlugs } from "@/lib/blog";
 
 import { MobileMenu } from "./MobileMenu";
 import { NavLinks } from "./NavLinks";
 
 /** Sticky, blurred site header: logo, nav, language + theme switches, contact button, burger. */
-export function Header() {
-  const t = useTranslations("nav");
+export async function Header() {
+  const t = await getTranslations("nav");
+  const blogSlugs = await getTranslatedSlugs();
 
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-bg/84 backdrop-blur-[14px]">
@@ -20,12 +22,12 @@ export function Header() {
         <Logo className="shrink-0" />
         <NavLinks />
         <div className="flex shrink-0 items-center gap-2.5">
-          <LanguageSwitch className="shrink-0 max-[1080px]:hidden" />
+          <LanguageSwitch blogSlugs={blogSlugs} className="shrink-0 max-[1080px]:hidden" />
           <ThemeToggle />
           <AppButton asChild rightIcon="arrow" className="shrink-0 max-[1080px]:hidden">
             <AppLink href="/contact">{t("cta")}</AppLink>
           </AppButton>
-          <MobileMenu />
+          <MobileMenu blogSlugs={blogSlugs} />
         </div>
       </Container>
     </header>

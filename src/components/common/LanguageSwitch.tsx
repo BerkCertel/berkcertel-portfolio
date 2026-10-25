@@ -8,8 +8,14 @@ import { getPathname, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
+interface LanguageSwitchProps {
+  /** Blog slug → slug of the same post in the other language (posts have localized slugs). */
+  blogSlugs: Record<string, string>;
+  className?: string;
+}
+
 /** TR / EN pill with a sliding ink thumb; switches language and keeps the current page. */
-export function LanguageSwitch({ className }: { className?: string }) {
+export function LanguageSwitch({ blogSlugs, className }: LanguageSwitchProps) {
   const t = useTranslations("common");
   const locale = useLocale();
   const pathname = usePathname();
@@ -24,6 +30,17 @@ export function LanguageSwitch({ className }: { className?: string }) {
       // router.replace({ locale }) forces a "/tr" prefix to update its cookie, which the proxy then
       // redirects (307) back to "/"; without locale detection that cookie is not needed.
       // `pathname` is the internal template (e.g. /blog/[slug]); params fill it in.
+      // A post opens its translation, or the blog list if it has none.
+      if (pathname === "/blog/[slug]") {
+        const slug = blogSlugs[String(params.slug)];
+        router.replace(
+          getPathname({
+            href: slug ? { pathname, params: { slug } } : "/blog",
+            locale: next,
+          }),
+        );
+        return;
+      }
       // @ts-expect-error -- params always match the current pathname
       router.replace(getPathname({ href: { pathname, params }, locale: next }));
     });
