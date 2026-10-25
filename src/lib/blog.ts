@@ -38,7 +38,11 @@ export async function getAllPosts(locale: AppLocale): Promise<PostMeta[]> {
   "use cache";
   cacheLife("days");
   const posts = await Promise.all(
-    getAllSlugs(locale).map(async (slug) => ({ ...(await importPost(locale, slug)).metadata, slug, locale })),
+    getAllSlugs(locale).map(async (slug) => ({
+      ...(await importPost(locale, slug)).metadata,
+      slug,
+      locale,
+    })),
   );
   return posts
     .filter((post) => isPublished(post.date))
@@ -61,7 +65,12 @@ export async function getTranslatedSlugs(): Promise<Record<string, string>> {
   const [tr, en] = await Promise.all([getAllPosts("tr"), getAllPosts("en")]);
   const pairs = tr.flatMap((post) => {
     const other = en.find((candidate) => candidate.translationKey === post.translationKey);
-    return other ? [[post.slug, other.slug], [other.slug, post.slug]] : [];
+    return other
+      ? [
+          [post.slug, other.slug],
+          [other.slug, post.slug],
+        ]
+      : [];
   });
   return Object.fromEntries(pairs);
 }

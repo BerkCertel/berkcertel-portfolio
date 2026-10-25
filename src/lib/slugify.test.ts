@@ -9,6 +9,8 @@ describe("slugify", () => {
   });
 
   it("drops punctuation and extra dashes", () => {
-    expect(slugify("  Better Auth, Clerk ya da düz JWT?  ")).toBe("better-auth-clerk-ya-da-duz-jwt");
+    expect(slugify("  Better Auth, Clerk ya da düz JWT?  ")).toBe(
+      "better-auth-clerk-ya-da-duz-jwt",
+    );
   });
 });

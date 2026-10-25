@@ -48,7 +48,8 @@ export function FeaturedPost({ post }: { post: PostMeta }) {
             {t("featured")}
           </span>
           <span className="eyebrow">
-            {t(`categories.${post.category}`)} · {t("readingTime", { minutes: post.readingMinutes })}
+            {t(`categories.${post.category}`)} ·{" "}
+            {t("readingTime", { minutes: post.readingMinutes })}
           </span>
         </div>
         <h2 className="font-display text-[clamp(30px,3.3vw,46px)] leading-[1.05] font-bold tracking-[-0.045em]">
