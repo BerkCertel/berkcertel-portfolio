@@ -5,6 +5,7 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { CtaBand } from "@/components/layout/CtaBand";
 import { AboutPreview } from "@/components/sections/home/AboutPreview";
+import { BlogPreview } from "@/components/sections/home/BlogPreview";
 import { Experience } from "@/components/sections/home/Experience";
 import { Hero } from "@/components/sections/home/Hero";
 import { Process } from "@/components/sections/home/Process";
@@ -39,7 +40,7 @@ export default function HomePage() {
       <SunflowPromo />
       <Services />
       <Process />
-      {/* TODO(step 08): blog preview */}
+      <BlogPreview />
       <CtaBand />
     </>
   );
