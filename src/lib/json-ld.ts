@@ -4,7 +4,7 @@ import { SITE } from "@/constants/site";
 import { ALL_SOCIALS, SOCIALS } from "@/constants/socials";
 import type { AppLocale } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
-import { env } from "@/lib/env";
+import { siteUrl } from "@/lib/env.server";
 import type { PostMeta } from "@/types/blog";
 
 import { absoluteUrl, type Href } from "./seo";
@@ -22,7 +22,7 @@ export function personSchema() {
     name: SITE.fullName,
     alternateName: SITE.name,
     jobTitle: SITE.jobTitle,
-    url: env.NEXT_PUBLIC_SITE_URL,
+    url: siteUrl,
     email: SITE.email,
     sameAs: ALL_SOCIALS.map((key) => SOCIALS[key].href),
     worksFor: { "@type": "Organization", name: "ROCR Digital" },

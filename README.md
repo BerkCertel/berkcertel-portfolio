@@ -67,7 +67,7 @@ See [`.env.example`](.env.example) for details. Variables are validated in `src/
 
 | Variable | Purpose | Required |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Public URL for canonical links, sitemap and Open Graph | No (defaults to `https://berkcertel.com`) |
+| `SITE_URL` | Site URL for canonical links, sitemap and Open Graph | No (defaults to `https://berkcertel.com`) |
 | `SMTP_HOST` | SMTP server | No (defaults to `smtp.gmail.com`) |
 | `SMTP_PORT` | SMTP port | No (defaults to `465`) |
 | `SMTP_SECURE` | Use SSL/TLS | No (defaults to `true`) |

@@ -10,6 +10,8 @@ import { emptyToUndefined } from "./env";
  * Values that ARE set must still be well-formed.
  */
 const serverEnvSchema = z.object({
+  /** Site URL without trailing slash (canonical URLs, hreflang, sitemap, Open Graph). */
+  SITE_URL: z.preprocess(emptyToUndefined, z.url().default("https://berkcertel.com")),
   SMTP_HOST: z.preprocess(emptyToUndefined, z.string().default("smtp.gmail.com")),
   SMTP_PORT: z.preprocess(emptyToUndefined, z.coerce.number().int().positive().default(465)),
   SMTP_SECURE: z.preprocess(emptyToUndefined, z.stringbool().default(true)),
@@ -20,6 +22,9 @@ const serverEnvSchema = z.object({
 });
 
 const serverEnv = serverEnvSchema.parse(process.env);
+
+/** Site URL, e.g. "https://berkcertel.com" (server only; defaults to the live address). */
+export const siteUrl = serverEnv.SITE_URL;
 
 /** Reads a value that is optional at build time but required at runtime. */
 function required<K extends keyof typeof serverEnv>(key: K): NonNullable<(typeof serverEnv)[K]> {

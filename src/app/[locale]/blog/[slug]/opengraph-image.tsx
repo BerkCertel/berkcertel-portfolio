@@ -5,7 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { SITE } from "@/constants/site";
 import type { AppLocale } from "@/i18n/routing";
 import { getPost } from "@/lib/blog";
-import { env } from "@/lib/env";
+import { siteUrl } from "@/lib/env.server";
 import { loadDisplayFont, OG_COLORS, OG_SIZE, OgMark, siteHost } from "@/lib/og";
 
 export const alt = SITE.name;
@@ -25,7 +25,7 @@ export default async function Image({
   const t = await getTranslations({ locale: locale as AppLocale, namespace: "blog" });
   // Locale-aware uppercase: "Mühendislik" → "MÜHENDİSLİK" in Turkish.
   const category = t(`categories.${post.category}`).toLocaleUpperCase(locale);
-  const host = siteHost(env.NEXT_PUBLIC_SITE_URL);
+  const host = siteHost(siteUrl);
 
   return new ImageResponse(
     <div

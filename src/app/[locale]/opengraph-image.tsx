@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { SITE } from "@/constants/site";
 import type { AppLocale } from "@/i18n/routing";
-import { env } from "@/lib/env";
+import { siteUrl } from "@/lib/env.server";
 import { loadDisplayFont, OG_COLORS, OG_SIZE, OgMark, siteHost } from "@/lib/og";
 
 export const alt = `${SITE.name} · ${SITE.jobTitle}`;
@@ -16,7 +16,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
   const t = await getTranslations({ locale: locale as AppLocale, namespace: "hero" });
   // The hero line marks a phrase with <mark>; the image shows it as plain text.
   const lead = t.markup("lead", { mark: (chunks) => chunks });
-  const host = siteHost(env.NEXT_PUBLIC_SITE_URL);
+  const host = siteHost(siteUrl);
 
   return new ImageResponse(
     <div

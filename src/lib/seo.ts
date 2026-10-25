@@ -5,7 +5,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { getPathname } from "@/i18n/navigation";
 import { type AppLocale, routing } from "@/i18n/routing";
-import { env } from "@/lib/env";
+import { siteUrl } from "@/lib/env.server";
 import { OG_SIZE } from "@/lib/og";
 import type { StaticPathname } from "@/lib/nav";
 
@@ -29,7 +29,7 @@ export const OG_LOCALES: Record<AppLocale, string> = { tr: "tr_TR", en: "en_US" 
 
 /** Absolute URL of an internal page in a locale, e.g. ("en", "/about") → https://berkcertel.com/en/about. */
 export function absoluteUrl(locale: AppLocale, href: Href) {
-  return new URL(getPathname({ href, locale }), env.NEXT_PUBLIC_SITE_URL).toString();
+  return new URL(getPathname({ href, locale }), siteUrl).toString();
 }
 
 /** hreflang map (tr, en, x-default → tr) for the locales a page exists in. */

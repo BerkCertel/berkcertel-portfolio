@@ -12,6 +12,7 @@ import { Toasts } from "@/components/layout/Toasts";
 import { SITE } from "@/constants/site";
 import { routing } from "@/i18n/routing";
 import { env } from "@/lib/env";
+import { siteUrl } from "@/lib/env.server";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 import { fontVariables } from "../fonts";
@@ -25,11 +26,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata");
 
   return {
-    metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
+    metadataBase: new URL(siteUrl),
     title: { default: t("defaultTitle"), template: t("titleTemplate") },
     description: t("description"),
     applicationName: t("siteName"),
-    authors: [{ name: SITE.fullName, url: env.NEXT_PUBLIC_SITE_URL }],
+    authors: [{ name: SITE.fullName, url: siteUrl }],
     creator: SITE.fullName,
     ...(env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
       verification: { google: env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION },
