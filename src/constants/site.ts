@@ -3,7 +3,6 @@ export const SITE = {
   name: "Berk Certel",
   fullName: "Mehmet Berk Certel",
   jobTitle: "Full-Stack Developer",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://berkcertel.com",
   email: "m.berkcertel@outlook.com",
   phone: "+90 546 546 5857",
   phoneHref: "tel:+905465465857",
