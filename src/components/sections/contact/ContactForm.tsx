@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { Check, Send } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -17,6 +17,7 @@ import { AppLink } from "@/components/common/AppLink";
 import { AppSelect } from "@/components/common/AppSelect";
 import { AppTextarea } from "@/components/common/AppTextarea";
 import { CONTACT_LIMITS, CONTACT_SUBJECTS, CONTACT_TIMELINES } from "@/constants/contact";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { env } from "@/lib/env";
 import { useTheme } from "@/providers/theme-provider";
 import { contactSchema, type ContactErrorKey, type ContactInput } from "@/schemas/contact";
@@ -39,6 +40,8 @@ export function ContactForm() {
   const locale = useLocale();
   const { theme } = useTheme();
   const turnstileRef = useRef<TurnstileInstance>(undefined);
+  // The flexible widget is at least 300px wide; very narrow screens get the compact one.
+  const turnstileSize = useMediaQuery("(max-width: 359px)") ? "compact" : "flexible";
   const [sentName, setSentName] = useState<string | null>(null);
   const [serverError, setServerError] = useState<ContactErrorKey | null>(null);
 
@@ -50,6 +53,11 @@ export function ContactForm() {
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<ContactInput>({ resolver: zodResolver(contactSchema), defaultValues: DEFAULTS });
+
+  // A new size re-creates the widget (see `key` below), so the previous token is no longer valid.
+  useEffect(() => {
+    setValue("turnstileToken", "");
+  }, [turnstileSize, setValue]);
 
   /** Field error text: schema messages are keys of contact.errors. */
   const errorText = (key?: string) => (key ? t(`errors.${key as ContactErrorKey}`) : undefined);
@@ -194,9 +202,10 @@ export function ContactForm() {
           <div aria-label={t("form.spamProtection")} className="flex flex-col gap-2">
             {env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
               <Turnstile
+                key={turnstileSize}
                 ref={turnstileRef}
                 siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-                options={{ theme, language: locale, size: "flexible" }}
+                options={{ theme, language: locale, size: turnstileSize }}
                 onSuccess={(token) => setValue("turnstileToken", token, { shouldValidate: true })}
                 onExpire={() => setValue("turnstileToken", "")}
                 onError={() => setValue("turnstileToken", "")}
