@@ -20,13 +20,17 @@ export function ServiceList() {
           tabIndex={0}
           className="group relative grid grid-cols-[90px_minmax(0,1fr)_56px] items-start gap-6 border-b border-line px-2 py-[30px] outline-offset-0 before:absolute before:-top-px before:left-0 before:h-0.5 before:w-0 before:bg-brand before:transition-[width] before:duration-550 before:ease-out-soft first:border-t hover:before:w-full focus-visible:before:w-full max-[760px]:grid-cols-[44px_minmax(0,1fr)_44px] max-[760px]:gap-4"
         >
-          <span className="font-display text-[44px] leading-none font-bold tracking-[-0.04em] text-line transition-colors duration-300 group-hover:text-brand group-focus-visible:text-brand max-[760px]:text-[30px]">
+          {/* Decorative number: the <ol> already gives the order to assistive tech. */}
+          <span
+            aria-hidden="true"
+            className="font-display text-[44px] leading-none font-bold tracking-[-0.04em] text-line transition-colors duration-300 group-hover:text-brand group-focus-visible:text-brand max-[760px]:text-[30px]"
+          >
             {String(i + 1).padStart(2, "0")}
           </span>
           <div>
-            <h3 className="font-display text-[30px] leading-[1.05] font-bold tracking-[-0.04em] max-[760px]:text-2xl">
+            <h2 className="font-display text-[30px] leading-[1.05] font-bold tracking-[-0.04em] max-[760px]:text-2xl">
               {t(`${key}.title`)}
-            </h3>
+            </h2>
             <p className="mt-2 max-w-[60ch] text-subtle">{t(`${key}.description`)}</p>
             <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-450 ease-out-soft group-hover:grid-rows-[1fr] group-focus-visible:grid-rows-[1fr] [@media(hover:none)]:grid-rows-[1fr]">
               <div className="overflow-hidden">

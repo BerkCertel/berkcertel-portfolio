@@ -27,7 +27,7 @@ export function ProjectsBrowser({ filter }: { filter: ProjectFilter }) {
         </span>
       </div>
       <div className="pt-12 pb-30 max-[760px]:pb-20">
-        <ProjectList projects={projects} />
+        <ProjectList projects={projects} heading="h2" />
         <ProjectsMore />
       </div>
     </>

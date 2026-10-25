@@ -199,7 +199,7 @@ export function ContactForm() {
             <AppInput tabIndex={-1} autoComplete="off" {...register("website")} />
           </div>
 
-          <div aria-label={t("form.spamProtection")} className="flex flex-col gap-2">
+          <div role="group" aria-label={t("form.spamProtection")} className="flex flex-col gap-2">
             {env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
               <Turnstile
                 key={turnstileSize}

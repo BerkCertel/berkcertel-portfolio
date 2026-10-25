@@ -36,7 +36,16 @@ function ProjectAction({ link, label }: { link: ProjectLink; label: string }) {
 }
 
 /** One project in the list: index, kind, name, description, tech chips, actions. */
-export function ProjectRow({ project, index }: { project: Project; index: number }) {
+export function ProjectRow({
+  project,
+  index,
+  heading: Heading = "h3",
+}: {
+  project: Project;
+  index: number;
+  /** h3 under a section heading (home); h2 right under the page h1 (Projects page). */
+  heading?: "h2" | "h3";
+}) {
   const t = useTranslations("projects");
   const visible = project.tech.slice(0, PROJECT_VISIBLE_TECH);
   const rest = project.tech.slice(PROJECT_VISIBLE_TECH).map((tech) => tech.label);
@@ -51,9 +60,9 @@ export function ProjectRow({ project, index }: { project: Project; index: number
         <div className="mb-2.5 flex flex-wrap items-center gap-2.5">
           <KindPill kind={project.kind} />
         </div>
-        <h3 className="font-display text-[clamp(28px,3vw,40px)] leading-none font-bold tracking-[-0.045em]">
+        <Heading className="font-display text-[clamp(28px,3vw,40px)] leading-none font-bold tracking-[-0.045em]">
           {project.name}
-        </h3>
+        </Heading>
         <p className="mt-2 max-w-[58ch] text-subtle">{t(`items.${project.key}`)}</p>
         <ul className="mt-[18px] flex flex-wrap gap-2">
           {visible.map((tech) => (
