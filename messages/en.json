@@ -118,7 +118,9 @@
       "database": "Database & ORM",
       "auth": "Authentication",
       "devops": "DevOps & Tools"
-    }
+    },
+    "tabsLabel": "Technology categories",
+    "count": "{count, plural, one {# technology} other {# technologies}}"
   },
   "experience": {
     "title": "Experience",

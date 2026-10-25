@@ -118,7 +118,9 @@
       "database": "Veritabanı & ORM",
       "auth": "Kimlik doğrulama",
       "devops": "DevOps & Araçlar"
-    }
+    },
+    "tabsLabel": "Teknoloji kategorileri",
+    "count": "{count} teknoloji"
   },
   "experience": {
     "title": "Deneyim",
