@@ -1,18 +1,24 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
+import type { AppLocale } from "@/i18n/routing";
+import { breadcrumbSchema } from "@/lib/json-ld";
+import type { Href } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 import { AppLink } from "./AppLink";
+import { JsonLd } from "./JsonLd";
 
 export interface BreadcrumbItem {
   label: string;
   /** Omit for the current page (always the last item). */
-  href?: React.ComponentProps<typeof AppLink>["href"];
+  href?: Href;
 }
 
-/** Mono uppercase trail: "Ana sayfa / Projeler / miChat"; the last item is the current page. */
+/** Mono uppercase trail: "Ana sayfa / Projeler / miChat"; the last item is the current page.
+ * Also emits the matching BreadcrumbList structured data. */
 export function Breadcrumb({ items, className }: { items: BreadcrumbItem[]; className?: string }) {
   const t = useTranslations("common");
+  const locale = useLocale() as AppLocale;
 
   return (
     <nav aria-label={t("breadcrumb")} className={className}>
@@ -38,6 +44,7 @@ export function Breadcrumb({ items, className }: { items: BreadcrumbItem[]; clas
           );
         })}
       </ol>
+      <JsonLd data={breadcrumbSchema(locale, items)} />
     </nav>
   );
 }

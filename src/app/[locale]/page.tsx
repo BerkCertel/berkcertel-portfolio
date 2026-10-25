@@ -1,6 +1,7 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { Container } from "@/components/common/Container";
+import { JsonLd } from "@/components/common/JsonLd";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { CtaBand } from "@/components/layout/CtaBand";
@@ -15,12 +16,19 @@ import { Services } from "@/components/sections/home/Services";
 import { SunflowPromo } from "@/components/sections/home/SunflowPromo";
 import { TechStack } from "@/components/sections/home/TechStack";
 import { PROJECTS } from "@/constants/projects";
+import type { AppLocale } from "@/i18n/routing";
+import { homeSchema } from "@/lib/json-ld";
+import { pageMetadata } from "@/lib/seo";
+
+export const generateMetadata = () => pageMetadata("home", "/");
 
 export default function HomePage() {
   const t = useTranslations();
+  const locale = useLocale() as AppLocale;
 
   return (
     <>
+      <JsonLd data={homeSchema(locale)} />
       <Hero />
       <AboutPreview />
       <TechStack />

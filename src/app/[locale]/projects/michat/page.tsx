@@ -1,16 +1,22 @@
-import { useMessages, useTranslations } from "next-intl";
+import { useLocale, useMessages, useTranslations } from "next-intl";
 
 import { AppButton } from "@/components/common/AppButton";
 import { AppLink } from "@/components/common/AppLink";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
 import { ArrowIcon, BrandIcon } from "@/components/common/icons";
+import { JsonLd } from "@/components/common/JsonLd";
 import { PROSE_CLASS } from "@/components/common/styles";
 import { TechChip } from "@/components/common/TechChip";
 import { MichatDiagram } from "@/components/sections/projects/MichatDiagram";
 import { PROJECTS } from "@/constants/projects";
 import { SITE } from "@/constants/site";
+import type { AppLocale } from "@/i18n/routing";
+import { michatSchema } from "@/lib/json-ld";
 import { cn } from "@/lib/utils";
+import { pageMetadata } from "@/lib/seo";
+
+export const generateMetadata = () => pageMetadata("michat", "/projects/michat");
 
 const MICHAT = PROJECTS.find((project) => project.key === "michat")!;
 const GITHUB_URL = MICHAT.links.find((link) => link.type === "github")!.href as `https://${string}`;
@@ -31,9 +37,11 @@ export default function MichatPage() {
   const t = useTranslations();
   // Array messages (build.list) are read raw; next-intl's t() only returns strings.
   const buildList = useMessages().michat.build.list;
+  const locale = useLocale() as AppLocale;
 
   return (
     <Container>
+      <JsonLd data={michatSchema(locale, t("metadata.pages.michat.description"), GITHUB_URL)} />
       <section className="flex flex-col gap-[22px] pt-[72px] pb-10 max-[760px]:pt-11">
         <Breadcrumb
           items={[

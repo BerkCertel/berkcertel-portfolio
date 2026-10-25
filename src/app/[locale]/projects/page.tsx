@@ -9,6 +9,9 @@ import {
   parseProjectFilter,
   ProjectsBrowser,
 } from "@/components/sections/projects/ProjectsBrowser";
+import { pageMetadata } from "@/lib/seo";
+
+export const generateMetadata = () => pageMetadata("projects", "/projects");
 
 interface ProjectsPageProps {
   searchParams: Promise<{ filter?: string | string[] }>;

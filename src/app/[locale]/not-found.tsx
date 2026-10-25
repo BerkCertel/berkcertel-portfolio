@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import { AppButton } from "@/components/common/AppButton";
 import { AppLink } from "@/components/common/AppLink";
@@ -6,6 +8,11 @@ import { Container } from "@/components/common/Container";
 import { cn } from "@/lib/utils";
 
 import styles from "./not-found.module.css";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("metadata.pages.notFound");
+  return { title: t("title"), robots: { index: false, follow: true } };
+}
 
 /** Localized 404 for unknown paths and notFound() calls (via the [...rest] catch-all). */
 export default function NotFound() {

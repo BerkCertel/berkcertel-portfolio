@@ -1,6 +1,4 @@
-import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
 
 import { Container } from "@/components/common/Container";
 import { markTag } from "@/components/common/mark-tag";
@@ -9,11 +7,9 @@ import { CtaBand } from "@/components/layout/CtaBand";
 import { Process } from "@/components/sections/home/Process";
 import { ServiceList } from "@/components/sections/services/ServiceList";
 import { ServicesFlow } from "@/components/sections/services/ServicesFlow";
+import { pageMetadata } from "@/lib/seo";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("metadata.pages.services");
-  return { title: t("title"), description: t("description") };
-}
+export const generateMetadata = () => pageMetadata("services", "/services");
 
 export default function ServicesPage() {
   const t = useTranslations();

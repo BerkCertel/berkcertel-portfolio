@@ -1,13 +1,24 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
+import { JsonLd } from "@/components/common/JsonLd";
 import { PostGrid } from "@/components/sections/blog/PostGrid";
 import { TableOfContents } from "@/components/sections/blog/TableOfContents";
 import { BLOG_PREVIEW_COUNT } from "@/constants/blog";
-import type { AppLocale } from "@/i18n/routing";
-import { getAllPosts, getAllSlugs, getHeadings, getPost, getPostContent } from "@/lib/blog";
+import { type AppLocale, routing } from "@/i18n/routing";
+import {
+  getAllPosts,
+  getAllSlugs,
+  getAlternateSlug,
+  getHeadings,
+  getPost,
+  getPostContent,
+} from "@/lib/blog";
+import { blogPostingSchema } from "@/lib/json-ld";
+import { buildMetadata, type Href } from "@/lib/seo";
 
 interface PostPageProps {
   params: Promise<{ slug: string }>;
@@ -19,6 +30,31 @@ interface PostPageProps {
  */
 export function generateStaticParams({ params }: { params: { locale: string } }) {
   return getAllSlugs(params.locale as AppLocale).map((slug) => ({ slug }));
+}
+
+/** Title and summary from the post; hreflang points to the translated post (when published). */
+export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const locale = (await getLocale()) as AppLocale;
+  const post = await getPost(locale, slug);
+  // Unknown or scheduled post: the page renders the 404.
+  if (!post) return { robots: { index: false } };
+
+  const hrefs: Partial<Record<AppLocale, Href>> = {};
+  for (const other of routing.locales) {
+    const otherSlug = other === locale ? slug : await getAlternateSlug(post.translationKey, other);
+    if (otherSlug) hrefs[other] = { pathname: "/blog/[slug]", params: { slug: otherSlug } };
+  }
+
+  return buildMetadata({
+    locale,
+    hrefs,
+    title: post.title,
+    description: post.summary,
+    type: "article",
+    publishedTime: post.date,
+    ownImage: true,
+  });
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -38,6 +74,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <>
+      <JsonLd data={blogPostingSchema(post)} />
       <article>
         <Container>
           <header className="flex max-w-[900px] flex-col gap-6 pt-16 pb-12 max-[760px]:pt-10 max-[760px]:pb-8">

@@ -1,20 +1,16 @@
-import type { Metadata } from "next";
 import { useFormatter, useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
 
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Container } from "@/components/common/Container";
 import { PRIVACY_UPDATED } from "@/constants/site";
+import { pageMetadata } from "@/lib/seo";
 
 interface PrivacySection {
   title: string;
   body: string[];
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("metadata.pages.privacy");
-  return { title: t("title"), description: t("description") };
-}
+export const generateMetadata = () => pageMetadata("privacy", "/privacy");
 
 /** Privacy notice (KVKK): plain title, last-updated date, then the sections from messages. */
 export default function PrivacyPage() {

@@ -9,6 +9,9 @@ import { StartupCard } from "@/components/common/StartupCard";
 import { PROSE_CLASS } from "@/components/common/styles";
 import { CtaBand } from "@/components/layout/CtaBand";
 import { Experience } from "@/components/sections/home/Experience";
+import { pageMetadata } from "@/lib/seo";
+
+export const generateMetadata = () => pageMetadata("about", "/about");
 
 export default function AboutPage() {
   const t = useTranslations();

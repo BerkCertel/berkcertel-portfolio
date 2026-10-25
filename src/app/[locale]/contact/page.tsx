@@ -5,6 +5,9 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { ContactChannels } from "@/components/sections/contact/ContactChannels";
 import { ContactNetwork } from "@/components/sections/contact/ContactNetwork";
 import { ContactForm } from "@/components/sections/contact/ContactForm";
+import { pageMetadata } from "@/lib/seo";
+
+export const generateMetadata = () => pageMetadata("contact", "/contact");
 
 export default function ContactPage() {
   const t = useTranslations();

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { locale as rootLocale } from "next/root-params";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -9,7 +9,9 @@ import { BackToTop } from "@/components/layout/BackToTop";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Toasts } from "@/components/layout/Toasts";
+import { SITE } from "@/constants/site";
 import { routing } from "@/i18n/routing";
+import { env } from "@/lib/env";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 import { fontVariables } from "../fonts";
@@ -23,10 +25,25 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata");
 
   return {
+    metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
     title: { default: t("defaultTitle"), template: t("titleTemplate") },
     description: t("description"),
+    applicationName: t("siteName"),
+    authors: [{ name: SITE.fullName, url: env.NEXT_PUBLIC_SITE_URL }],
+    creator: SITE.fullName,
+    ...(env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
+      verification: { google: env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION },
+    }),
   };
 }
+
+/** Browser UI color per theme (the page background: --c-bg light / dark). */
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F1F3F6" },
+    { media: "(prefers-color-scheme: dark)", color: "#070A12" },
+  ],
+};
 
 // Root layout. The locale is a root param (next/root-params), not read from `params`, so every
 // page keeps a static, locale-specific App Shell (no URL data outside <Suspense>).

@@ -8,16 +8,16 @@ import { DeviceSync } from "@/components/sections/blog/DeviceSync";
 import type { AppLocale } from "@/i18n/routing";
 import { getAllPosts } from "@/lib/blog";
 import type { PostMeta } from "@/types/blog";
+import { pageMetadata } from "@/lib/seo";
+
+export const generateMetadata = () => pageMetadata("blog", "/blog");
 
 interface BlogPageProps {
   searchParams: Promise<{ category?: string | string[] }>;
 }
 
 /** Reads `?category=` per request; kept inside <Suspense> so the rest of the page stays static. */
-async function FilteredPosts({
-  posts,
-  searchParams,
-}: BlogPageProps & { posts: PostMeta[] }) {
+async function FilteredPosts({ posts, searchParams }: BlogPageProps & { posts: PostMeta[] }) {
   const { category } = await searchParams;
   return <BlogBrowser posts={posts} filter={parseBlogFilter(category)} />;
 }
