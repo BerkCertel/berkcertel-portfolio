@@ -23,7 +23,8 @@ export function Logo({ className }: { className?: string }) {
   return (
     <AppLink
       href="/"
-      aria-label={`${SITE.name}, ${t("home")}`}
+      // Starts with the visible text ("BerkCertel"), so voice control can target the link.
+      aria-label={`${FIRST_NAME}${LAST_NAME}, ${t("home")}`}
       className={cn(
         "group inline-flex items-center gap-2.5 font-display text-[21px] font-bold tracking-[-0.045em] text-ink",
         className,
