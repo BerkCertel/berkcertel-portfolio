@@ -54,9 +54,6 @@
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.035em;
-  transition:
-    opacity 0.5s,
-    transform 0.5s var(--ease-out-soft);
 }
 .title span {
   color: var(--c-muted);
@@ -65,11 +62,11 @@
 .text {
   max-width: 60ch;
   color: var(--c-muted);
-  transition: opacity 0.5s;
 }
 
 /*
- * With JS the fill grows with the scroll and items light up as it passes them. Without JS
+ * With JS the fill grows with the scroll and items light up as it passes them (dot, date and line
+ * only; title and text always keep their normal, AA-contrast colors). Without JS
  * (and with reduced motion, see ExperienceTimeline) everything stays filled and lit.
  */
 :global(.js) .fill {
@@ -83,13 +80,6 @@
 }
 :global(.js) .item:not([data-lit]) .when {
   color: var(--c-muted);
-}
-:global(.js) .item:not([data-lit]) .title {
-  opacity: 0.45;
-  transform: translateX(-6px);
-}
-:global(.js) .item:not([data-lit]) .text {
-  opacity: 0.45;
 }
 
 @media (max-width: 760px) {
