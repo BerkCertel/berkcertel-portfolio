@@ -1,0 +1,54 @@
+export const metadata = {
+  title: "Web app or mobile app?",
+  summary: "The questions I ask before deciding, and a short list to prepare before asking for a quote.",
+  category: "guides",
+  date: "2026-11-08",
+  readingMinutes: 5,
+  translationKey: "web-or-mobile",
+};
+
+One of the first questions about an idea is this: should we build for the web or for mobile? My answer does not start with technology. It starts with the users.
+
+## Start from the users
+
+Before deciding, I look at these questions:
+
+- **Where are the users?** At a desk, on the move, inside a venue?
+- **How often will they use it?** An app they open every day, or a page they visit once a month?
+- **Do they need the phone’s features?** Things like the camera, notifications or working offline.
+
+If someone does a task once a month, asking them to download something from an app store is hard. If they will open it every day, an app on their phone makes sense.
+
+## The fastest way to test an idea: web
+
+A web app that also works well on phones is the fastest way to test an idea. You share a link and the user opens it right away. You do not wait for store reviews, and you can ship a change the same day.
+
+On the web I use Next.js. For most ideas, releasing the first version on the web is enough to see what works.
+
+## When the phone is the product: React Native + Expo
+
+For some products, the phone is not just a screen, it is the product. Sharing photos with the camera, being called back by a notification, or opening the app every day. In that case I build a mobile app.
+
+I built Spotlight with React Native and Expo. With React Native, one codebase can give you an app for both iOS and Android.
+
+<Callout title="Note">
+  A mobile app brings extra work, like store accounts, review processes and version updates. It is worth planning for that from the start.
+</Callout>
+
+## Building both
+
+Web and mobile do not have to be separate worlds. When both are written in TypeScript, you can share types and business logic. Both clients talk to the same backend and the same API.
+
+That way you can start with the web and add a mobile app on top of the same backend when the need appears.
+
+## A short list before asking for a quote
+
+Preparing these before asking a developer for a quote makes the first meeting more useful:
+
+- Who will use the app and where they will use it.
+- Whether you need a phone feature like the camera, notifications or offline use.
+- The three or four features the first version must have.
+- Apps or sites you find similar.
+- A rough timeline.
+
+With this list ready, the web-or-mobile question is much easier to discuss.

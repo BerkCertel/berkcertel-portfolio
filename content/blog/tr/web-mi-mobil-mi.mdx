@@ -1,0 +1,54 @@
+export const metadata = {
+  title: "Web uygulaması mı, mobil uygulama mı?",
+  summary: "Karar vermeden önce sorduğum sorular ve teklif istemeden önce hazırlanabilecek kısa bir liste.",
+  category: "guides",
+  date: "2026-11-08",
+  readingMinutes: 5,
+  translationKey: "web-or-mobile",
+};
+
+Bir fikir için ilk sorulardan biri şu: web mi yapalım, mobil mi? Benim cevabım teknolojiyle değil, kullanıcılarla başlıyor.
+
+## Önce kullanıcılar
+
+Karar vermeden önce şu sorulara bakıyorum:
+
+- **Kullanıcılar nerede?** Masa başında mı, yolda mı, bir mekânın içinde mi?
+- **Ne sıklıkla kullanacaklar?** Her gün açılan bir uygulama mı, ayda bir girilen bir sayfa mı?
+- **Telefonun özelliklerine ihtiyaç var mı?** Kamera, bildirimler, internet yokken çalışmak gibi.
+
+Kullanıcı bir şeyi ayda bir kez yapacaksa, uygulama mağazasından bir şey indirmesini istemek zor. Her gün açacağı bir şeyse, telefonunda bir uygulama olması mantıklı.
+
+## Fikri denemenin en hızlı yolu: web
+
+Telefona da uyumlu bir web uygulaması, bir fikri denemenin en hızlı yolu. Bir bağlantı paylaşırsın, kullanıcı hemen açar. Mağaza onayı beklemezsin, bir değişikliği aynı gün yayına alırsın.
+
+Ben web tarafında Next.js kullanıyorum. Çoğu fikir için ilk sürümü web olarak çıkarmak, neyin işe yaradığını görmek için yeterli oluyor.
+
+## Telefon ürünün kendisiyse: React Native + Expo
+
+Bazı ürünlerde telefon sadece bir ekran değil, ürünün kendisi. Kamera ile fotoğraf paylaşmak, bildirimle geri çağrılmak ya da uygulamanın her gün açılması gibi. Bu durumda mobil uygulama yapıyorum.
+
+Spotlight’ı React Native ve Expo ile yazdım. React Native ile tek kod tabanından hem iOS hem Android uygulaması çıkarılabiliyor.
+
+<Callout title="Not">
+  Mobil uygulama, mağaza hesapları, inceleme süreçleri ve sürüm güncellemeleri gibi ek işler getiriyor. Bunu baştan hesaba katmak gerekiyor.
+</Callout>
+
+## İkisini birlikte yapmak
+
+Web ve mobili ayrı dünyalar olarak düşünmek zorunda değilsin. İkisini de TypeScript ile yazınca tipleri ve iş mantığını paylaşabiliyorsun. İki istemci de aynı backend’e, aynı API’ye bağlanıyor.
+
+Böylece önce web ile başlayıp, ihtiyaç doğduğunda aynı backend’in üzerine bir mobil uygulama ekleyebiliyorsun.
+
+## Teklif istemeden önce kısa liste
+
+Bir geliştiriciden teklif istemeden önce şunları hazırlamak ilk görüşmeyi daha verimli yapar:
+
+- Uygulamayı kimin kullanacağı ve nerede kullanacağı.
+- Telefonun kamera, bildirim ya da çevrimdışı çalışma gibi bir özelliğine ihtiyaç olup olmadığı.
+- İlk sürümde mutlaka olması gereken üç ya da dört özellik.
+- Benzer bulduğun uygulamalar ya da siteler.
+- Kabaca bir zaman planı.
+
+Bu liste hazırsa, web mi mobil mi sorusunu konuşmak çok daha kolay olur.
