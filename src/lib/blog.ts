@@ -3,9 +3,12 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 
+import { cacheLife } from "next/cache";
+
 import type { AppLocale } from "@/i18n/routing";
 import type { PostFrontmatter, PostMeta } from "@/types/blog";
 
+import { isPublished } from "./publish-date";
 import { slugify } from "./slugify";
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "blog");
@@ -18,18 +21,28 @@ interface PostModule {
 const importPost = (locale: AppLocale, slug: string): Promise<PostModule> =>
   import(`../../content/blog/${locale}/${slug}.mdx`);
 
-/** All posts of a locale (from content/blog/{locale}/*.mdx), newest first. Build/server only. */
-export async function getAllPosts(locale: AppLocale): Promise<PostMeta[]> {
-  "use cache";
-  const slugs = fs
+/** Slugs of every post of a locale, scheduled ones included (files in content/blog/{locale}). */
+export function getAllSlugs(locale: AppLocale) {
+  return fs
     .readdirSync(path.join(CONTENT_DIR, locale))
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => file.replace(/\.mdx$/, ""));
+}
 
+/**
+ * Published posts of a locale (from content/blog/{locale}/*.mdx), newest first. Build/server only.
+ * Posts dated in the future stay hidden everywhere (list, home, static params, language switch)
+ * until their day; the daily cache lifetime makes them appear without a new deploy.
+ */
+export async function getAllPosts(locale: AppLocale): Promise<PostMeta[]> {
+  "use cache";
+  cacheLife("days");
   const posts = await Promise.all(
-    slugs.map(async (slug) => ({ ...(await importPost(locale, slug)).metadata, slug, locale })),
+    getAllSlugs(locale).map(async (slug) => ({ ...(await importPost(locale, slug)).metadata, slug, locale })),
   );
-  return posts.sort((a, b) => b.date.localeCompare(a.date));
+  return posts
+    .filter((post) => isPublished(post.date))
+    .sort((a, b) => b.date.localeCompare(a.date));
 }
 
 /** One post's metadata, or undefined for an unknown slug. */

@@ -7,15 +7,18 @@ import { PostGrid } from "@/components/sections/blog/PostGrid";
 import { TableOfContents } from "@/components/sections/blog/TableOfContents";
 import { BLOG_PREVIEW_COUNT } from "@/constants/blog";
 import type { AppLocale } from "@/i18n/routing";
-import { getAllPosts, getHeadings, getPost, getPostContent } from "@/lib/blog";
+import { getAllPosts, getAllSlugs, getHeadings, getPost, getPostContent } from "@/lib/blog";
 
 interface PostPageProps {
   params: Promise<{ slug: string }>;
 }
 
-/** Every post of each locale, under its own (localized) slug. */
-export async function generateStaticParams({ params }: { params: { locale: string } }) {
-  return (await getAllPosts(params.locale as AppLocale)).map(({ slug }) => ({ slug }));
+/**
+ * Every post of each locale, under its own (localized) slug. Scheduled posts are listed too: Cache
+ * Components needs at least one param at build time, and the page still 404s until their date.
+ */
+export function generateStaticParams({ params }: { params: { locale: string } }) {
+  return getAllSlugs(params.locale as AppLocale).map((slug) => ({ slug }));
 }
 
 export default async function PostPage({ params }: PostPageProps) {

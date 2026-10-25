@@ -8,10 +8,12 @@ import { BLOG_PREVIEW_COUNT } from "@/constants/blog";
 import type { AppLocale } from "@/i18n/routing";
 import { getAllPosts } from "@/lib/blog";
 
-/** Home "Blog" section: heading + "All posts →" and the newest posts. */
+/** Home "Blog" section: heading + "All posts →" and the newest posts; hidden while none is live. */
 export async function BlogPreview() {
   const t = await getTranslations("blog");
   const posts = (await getAllPosts((await getLocale()) as AppLocale)).slice(0, BLOG_PREVIEW_COUNT);
+
+  if (posts.length === 0) return null;
 
   return (
     <Section aria-labelledby="blog-title">
