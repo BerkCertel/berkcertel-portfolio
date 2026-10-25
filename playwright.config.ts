@@ -1,9 +1,11 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const baseURL = "http://localhost:3000";
+// Not 3000: that port is reserved for the local dev server (`bun dev`).
+const port = Number(process.env.E2E_PORT ?? 3100);
+const baseURL = `http://localhost:${port}`;
 
 export default defineConfig({
-  testDir: "./e2e",
+  testDir: "./tests/e2e",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -14,7 +16,7 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: "bun run build && bun run start",
+    command: `bun run build && bun run start -p ${port}`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 300_000,
