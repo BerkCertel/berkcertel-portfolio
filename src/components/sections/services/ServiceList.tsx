@@ -20,10 +20,10 @@ export function ServiceList() {
           tabIndex={0}
           className="group relative grid grid-cols-[90px_minmax(0,1fr)_56px] items-start gap-6 border-b border-line px-2 py-[30px] outline-offset-0 before:absolute before:-top-px before:left-0 before:h-0.5 before:w-0 before:bg-brand before:transition-[width] before:duration-550 before:ease-out-soft first:border-t hover:before:w-full focus-visible:before:w-full max-[760px]:grid-cols-[44px_minmax(0,1fr)_44px] max-[760px]:gap-4"
         >
-          {/* Decorative number: the <ol> already gives the order to assistive tech. */}
+          {/* Decorative number (the <ol> gives the order); 75% muted keeps ≥3:1 in both themes. */}
           <span
             aria-hidden="true"
-            className="font-display text-[44px] leading-none font-bold tracking-[-0.04em] text-line transition-colors duration-300 group-hover:text-brand group-focus-visible:text-brand max-[760px]:text-[30px]"
+            className="font-display text-[44px] leading-none font-bold tracking-[-0.04em] text-subtle/75 transition-colors duration-300 group-hover:text-brand group-focus-visible:text-brand max-[760px]:text-[30px]"
           >
             {String(i + 1).padStart(2, "0")}
           </span>
