@@ -25,7 +25,6 @@ export function personSchema() {
     url: siteUrl,
     email: SITE.email,
     sameAs: ALL_SOCIALS.map((key) => SOCIALS[key].href),
-    worksFor: { "@type": "Organization", name: "ROCR Digital" },
     knowsAbout: KNOWS_ABOUT,
     address: {
       "@type": "PostalAddress",
