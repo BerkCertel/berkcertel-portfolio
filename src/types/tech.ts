@@ -65,3 +65,13 @@ export interface TechCategory {
   span: 1 | 2 | 3;
   items: TechItem[];
 }
+
+export type TechBandKey = "interface" | "services" | "data" | "tools";
+
+/** About page layer: a group of categories shown as one band of chips. */
+export interface TechBand {
+  key: TechBandKey;
+  categories: TechCategoryKey[];
+  /** Dark (deep) band, like the hero stack's data layer. */
+  dark?: boolean;
+}

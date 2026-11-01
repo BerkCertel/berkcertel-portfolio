@@ -8,6 +8,7 @@ import { Marker } from "@/components/common/Marker";
 import { StartupCard } from "@/components/common/StartupCard";
 import { PROSE_CLASS } from "@/components/common/styles";
 import { CtaBand } from "@/components/layout/CtaBand";
+import { TechBands } from "@/components/sections/about/TechBands";
 import { Experience } from "@/components/sections/home/Experience";
 import { pageMetadata } from "@/lib/seo";
 
@@ -41,6 +42,7 @@ export default function AboutPage() {
           <CodeCard />
         </section>
       </Container>
+      <TechBands />
       <Experience />
       <CtaBand />
     </>

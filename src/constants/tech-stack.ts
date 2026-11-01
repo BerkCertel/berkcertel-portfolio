@@ -7,7 +7,7 @@ import {
   Smartphone,
   SquareTerminal,
 } from "lucide-react";
-import type { TechCategory } from "@/types/tech";
+import type { TechBand, TechCategory } from "@/types/tech";
 
 /** Order and spans match the design (3-column grid on desktop). */
 export const TECH_CATEGORIES: TechCategory[] = [
@@ -100,6 +100,14 @@ export const TECH_CATEGORIES: TechCategory[] = [
       { key: "figma", label: "Figma" },
     ],
   },
+];
+
+/** About page layers (top → bottom); chips come from the listed TECH_CATEGORIES. */
+export const TECH_BANDS: TechBand[] = [
+  { key: "interface", categories: ["frontend", "mobile", "languages"] },
+  { key: "services", categories: ["backend", "auth"] },
+  { key: "data", categories: ["database"], dark: true },
+  { key: "tools", categories: ["devops"] },
 ];
 
 /** Service box names on the hero stack's middle layer (code names, not translated). */

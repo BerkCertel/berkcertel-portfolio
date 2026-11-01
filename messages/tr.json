@@ -106,6 +106,15 @@
       "p1": "Bir özelliği geliştirirken ekranı, API’sini ve veri modelini birlikte düşünmeyi seviyorum. Bu yüzden projelerde sadece bir tarafta kalmıyor; frontend’den backend’e, veritabanından yayına kadar işin tamamında yer alıyorum.",
       "p2": "Kendi girişimim Sunflow’u fikirden yayına tek başıma taşıdım. Bu süreç bana bir ürünün sadece kodunu değil, onu kullanan insanları ve işleyişini de düşünmeyi öğretti.",
       "p3": "Boş zamanlarımda mikroservisler, mesaj kuyrukları ve yeni araçlarla küçük projeler geliştiriyorum. Öğrenmeye ve kendimi geliştirmeye devam ediyorum."
+    },
+    "tech": {
+      "title": "Kullandığım teknolojiler",
+      "bands": {
+        "interface": "Arayüz",
+        "services": "Servisler",
+        "data": "Veri",
+        "tools": "Araçlar"
+      }
     }
   },
   "tech": {

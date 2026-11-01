@@ -106,6 +106,15 @@
       "p1": "When I build a feature, I like to think about the screen, its API and its data model together. That’s why I don’t stay on one side of a project: I work across all of it, from the frontend to the backend and from the database to launch.",
       "p2": "I took my own startup, Sunflow, from idea to launch on my own. It taught me to think not only about a product’s code, but also about the people who use it and how it works day to day.",
       "p3": "In my free time I build small projects with microservices, message queues and new tools. I keep learning and improving."
+    },
+    "tech": {
+      "title": "Technologies I use",
+      "bands": {
+        "interface": "Interface",
+        "services": "Services",
+        "data": "Data",
+        "tools": "Tools"
+      }
     }
   },
   "tech": {
