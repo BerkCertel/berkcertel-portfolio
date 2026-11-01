@@ -119,8 +119,11 @@
       "auth": "Kimlik doğrulama",
       "devops": "DevOps & Araçlar"
     },
-    "tabsLabel": "Teknoloji kategorileri",
-    "count": "{count} teknoloji"
+    "view": {
+      "label": "Görünüm",
+      "flow": "Akan görünüm",
+      "grid": "Hepsini göster"
+    }
   },
   "experience": {
     "title": "Deneyim",

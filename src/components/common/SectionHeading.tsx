@@ -10,11 +10,13 @@ interface SectionHeadingProps {
   title: string;
   /** Optional right-aligned link, e.g. "Tümünü gör →". */
   link?: { href: React.ComponentProps<typeof AppLink>["href"]; label: string };
+  /** Optional right-aligned control instead of a link, e.g. a view switch. */
+  action?: React.ReactNode;
   className?: string;
 }
 
-/** Section h2 with the growing 44×3px brand bar and an optional "view all" link. */
-export function SectionHeading({ id, title, link, className }: SectionHeadingProps) {
+/** Section h2 with the growing 44×3px brand bar and an optional "view all" link or control. */
+export function SectionHeading({ id, title, link, action, className }: SectionHeadingProps) {
   return (
     <Reveal
       className={cn(
@@ -37,6 +39,7 @@ export function SectionHeading({ id, title, link, className }: SectionHeadingPro
           <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-[3px]" />
         </AppLink>
       )}
+      {action}
     </Reveal>
   );
 }

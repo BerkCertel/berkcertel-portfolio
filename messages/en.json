@@ -119,8 +119,11 @@
       "auth": "Authentication",
       "devops": "DevOps & Tools"
     },
-    "tabsLabel": "Technology categories",
-    "count": "{count, plural, one {# technology} other {# technologies}}"
+    "view": {
+      "label": "View",
+      "flow": "Flowing view",
+      "grid": "Show all"
+    }
   },
   "experience": {
     "title": "Experience",

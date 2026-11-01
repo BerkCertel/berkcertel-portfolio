@@ -255,6 +255,12 @@
     transform: translate(-4%, 3%) scale(1.08);
   }
 }
+/* Tech view switch: lines of the active "lanes" icon slide back and forth. */
+@keyframes nudge {
+  50% {
+    transform: translateX(2.5px);
+  }
+}
 
 @layer base {
   * {
